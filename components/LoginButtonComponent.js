@@ -9,15 +9,15 @@ export default class LoginButtonComponent extends Component{
       <View style={styles.container}>
         <Button iconLeft light block style={styles.buttonStyle}>
           <Entypo name="email" size={32} color="black"/>
-          <Text>이메일로그인</Text>
+          <Text style={styles.buttonText}>이메일로그인</Text>
         </Button>
         <Button iconLeft light block style={styles.buttonStyle}>
           <FontAwesome name="google-plus-square" size={32} color="#e0321c"/>
-          <Text>구글로그인</Text>
+          <Text style={styles.buttonText}>구글로그인</Text>
         </Button>
         <Button iconLeft light block style={styles.buttonStyle}>
           <Entypo name="facebook" size={32} color="#3b5998"/>
-          <Text>페이스북로그인</Text>
+          <Text style={styles.buttonText}>페이스북로그인</Text>
         </Button>
       </View>
     )
@@ -25,13 +25,15 @@ export default class LoginButtonComponent extends Component{
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   buttonStyle: {
-    marginTop: 10,
+    marginBottom: 10,
+    padding: 5
+  },
+  buttonText: {
+    marginLeft: 5,
+    textAlign: 'center',
+    color: 'rgb(32, 53, 70)',
+    fontWeight: 'bold',
+    fontSize: 18
   }
 })
