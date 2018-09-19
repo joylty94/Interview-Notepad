@@ -3,6 +3,12 @@ import { View, Text, StyleSheet } from "react-native";
 import { Button } from "native-base";
 
 export default class InitialButtonComponent extends Component{
+  handleJoinButton = () => {
+    this.props.onPressJoin()
+  }
+  handleLoginButton = () => {
+    this.props.onPressLogin()
+  }
   render(){
     return(
       <View>
