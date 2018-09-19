@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native'
+import React, { Component } from "react";
+import { Image, StyleSheet } from "react-native";
 
 export default class LogoComponent extends Component{
   render(){
@@ -13,7 +13,9 @@ export default class LogoComponent extends Component{
 
 const styles = StyleSheet.create({
   logo: {
-    width: 128,
-    height: 56,
+    width: 240,
+    height: 150,
+    margin: 20,
+    marginLeft: -12
   }
 })
