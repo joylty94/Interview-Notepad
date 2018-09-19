@@ -1,23 +1,18 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "native-base";
+import { LoginScreen } from "../screenName";
 
 export default class InitialButtonComponent extends Component{
-  handleJoinButton = () => {
-    this.props.onPressJoin()
-  }
-  handleLoginButton = () => {
-    this.props.onPressLogin()
-  }
   render(){
+    const { navigation } = this.props;
     return(
       <View>
-        <Button iconLeft light block style={styles.buttonStyle}
-          onPress={this.handleJoinButton}>
+        <Button iconLeft light block style={styles.buttonStyle}>
           <Text style={styles.buttonText}>회원가입</Text>
         </Button>
         <Button iconLeft light block style={styles.buttonStyle}
-          onPress={this.handleLoginButton}>
+          onPress={() => {navigation.navigate(LoginScreen)}}>
           <Text style={styles.buttonText}>로그인</Text>
         </Button>
       </View>
