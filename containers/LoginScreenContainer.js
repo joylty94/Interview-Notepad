@@ -5,6 +5,10 @@ import LogoComponent from "../components/LogoComponent";
 import LoginButtonComponent from "../components/LoginButtonComponent";
 
 export default class LoginScreenContainer extends Component {
+  static navigationOptions = ({ navigation }) => {
+    let header = null;
+    return { header }
+  }
   render() {
     const { ...rest } = this.props
     return (

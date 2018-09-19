@@ -6,6 +6,10 @@ import LoginButtonComponent from "../components/LoginButtonComponent";
 import InitialButtonComponent from "../components/InitialButtonComponent";
 
 export default class InitialScreenContainer extends Component{
+  static navigationOptions = ({navigation}) => {
+    let header = null;
+    return { header }
+  }
   render(){
     const { ...rest } = this.props
     return(
