@@ -1,2 +1,2 @@
-export const JOIN_PAGINATION = "JOIN_PAGINATION";
-export const LOGIN_PAGINATION = "LOGIN_PAGINATION";
+export const JOIN_PAGINATION = "loginScreen/JOIN_PAGINATION";
+export const LOGIN_PAGINATION = "loginScreen/LOGIN_PAGINATION";

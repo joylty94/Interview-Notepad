@@ -1,9 +1,9 @@
 import { JOIN_PAGINATION, LOGIN_PAGINATION } from "./actionTypes";
 
-export const Joinpagination = () => ({
+export const JoinPagination = () => ({
   type: JOIN_PAGINATION,
 });
 
-export const loginpagination = () => ({
+export const LoginPagination = () => ({
   type: LOGIN_PAGINATION,
 })
