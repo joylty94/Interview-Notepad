@@ -1,9 +1,9 @@
 const InitialScreen = "InitialScreen";
 const LoginScreen = "LoginScreen";
-const NoteScreen = "NoteScreen";
+const TabScreen = "TabScreen";
 
 export {
   InitialScreen,
   LoginScreen,
-  NoteScreen
+  TabScreen
 }
