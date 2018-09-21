@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { Button } from "native-base";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import * as firebase from "firebase";
-import { NoteScreen } from '../screenName';
+import { TabScreen } from '../screenName';
 
 export default class LoginButtonComponent extends Component{
 
@@ -21,7 +21,7 @@ export default class LoginButtonComponent extends Component{
     } catch (e) {
       console.log('error', e)
     }
-    this.props.navigation.navigate(NoteScreen)
+    this.props.navigation.navigate(TabScreen)
   };
 
   loginWithFacebook = async () => {

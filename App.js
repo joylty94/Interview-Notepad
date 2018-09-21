@@ -1,14 +1,12 @@
 import React from "react";
-import { Provider } from "react-redux"
-import { createStackNavigator } from "react-navigation"
+import { Provider } from "react-redux";
+import { createStackNavigator } from "react-navigation";
 import * as firebase from "firebase";
 
-import store from "./store"
+import store from "./store";
 import InitialScreenContainer from "./containers/InitialScreenContainer";
 import LoginScreenContainer from "./containers/LoginScreenContainer";
 import NoteScreenContainer from "./containers/NoteScreenContainer";
-
-import { LoginScreen, NoteScreen, InitialScreen } from "./screenName";
 
 var config = {
   apiKey: "AIzaSyD4y6p-amG4Ao_Mf1eE65-hDPHZMVxCU5Y",
@@ -30,14 +28,26 @@ export default class App extends React.Component {
   }
 }
 
-const StackApp = createStackNavigator({
+const StackLogin = createStackNavigator({
   InitialScreen: {
     screen: InitialScreenContainer,
   },
   LoginScreen: {
     screen: LoginScreenContainer
   },
-  NoteScreen: {
-    screen: NoteScreenContainer
+})
+
+const StackApp = createStackNavigator({
+  StackLoginScreen: {
+    screen: StackLogin,
+    navigationOptions: {
+      header: null
+    }
+  },
+  TabScreen: {
+    screen: NoteScreenContainer,
+    navigationOptions: {
+      header: null
+    }
   }
 })
