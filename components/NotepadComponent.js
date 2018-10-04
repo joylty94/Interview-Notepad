@@ -6,10 +6,10 @@ export default class NotePadComponent extends Component {
     return (
       <View>
         <View>
-          <Text style={questionText}>질문</Text>
+          <Text style={styles.questionText}>질문</Text>
         </View>
         <View>
-          <Text style={responseText}>답변</Text>
+          <Text style={styles.responseText}>답변</Text>
         </View>
       </View>
     )
