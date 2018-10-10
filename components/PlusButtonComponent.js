@@ -4,7 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import { WritingNotesScreen } from "../screenName";
 
-export default class PlusButton extends Component{
+export default class PlusButtonComponent extends Component{
   render(){
     const { navigation } = this.props
     return(

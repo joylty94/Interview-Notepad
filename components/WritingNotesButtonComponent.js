@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
-export default class WritingNotesButton extends Component{
+export default class WritingNotesButtonComponent extends Component{
   render(){
     return(
       <View style={styles.container}>
@@ -28,9 +28,9 @@ export default class WritingNotesButton extends Component{
             <Text style={styles.buttonText}>공 유</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.saveContainer}>
+        <TouchableOpacity style={styles.saveContainer}>
           <Text style={styles.saveText}>저 장</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderColor: "rgb(134,142,150)",
     borderWidth: 1,
-    paddingHorizontal: 5
+    // paddingHorizontal: 5
   },
   button: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: 50,
+    width: 53,
     height: 45,
   },
   buttonText: {
