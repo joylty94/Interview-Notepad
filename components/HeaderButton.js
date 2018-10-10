@@ -7,10 +7,10 @@ export default class HeaderButton extends Component{
     return(
       <View style={styles.constainer}>
         <TouchableOpacity style={styles.button}>
-          <Feather name="search" size={29} color="black"/>
+          <Feather name="search" size={25} color="rgb(248,249,250)"/>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Feather name="user" size={29} color="black"/>
+          <Feather name="user" size={25} color="rgb(248,249,250)"/>
         </TouchableOpacity>
       </View>
     )
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     marginRight: 3
   },
   button: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     paddingVertical: 15
   }
 })
