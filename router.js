@@ -26,12 +26,12 @@ export const TabNavigator = createBottomTabNavigator(
     animationEnabled: true,
     swipeEnabled: true,
     tabBarOptions: {
-      activeTintColor: 'black',
+      activeTintColor: 'rbg(52,58,64)',
       labelStyle: {
         fontSize: 13,
       },
       style: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(248,249,250)',
         padding: -10
       },
       showLabel: false
