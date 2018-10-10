@@ -4,20 +4,22 @@ import { View, StyleSheet, Text, TouchableOpacity, Dimensions } from "react-nati
 import { WritingNotesScreen } from "../screenName";
 import HeaderButton from "../components/HeaderButton";
 import PlusButton from "../components/PlusButton";
-import { Entypo } from "@expo/vector-icons";
 
 export default class NoteScreenContainer extends Component{
   static navigationOptions = ({ navigation }) => {
     let headerLeft = (
       <TouchableOpacity style={styles.categoryButton}
         onPress={() => navigation.navigate(WritingNotesScreen)}>
-        <Text style={styles.categoryText}>메모</Text>
+        <Text style={styles.categoryText}>메모장</Text>
       </TouchableOpacity>
     );
     let headerRight = (
       <HeaderButton/>
     );
-    return { headerLeft, headerRight }
+    let headerStyle = ({
+      backgroundColor: "rgb(145,167,255)"
+    });
+    return { headerLeft, headerRight, headerStyle }
   }
   render(){
     const { ...rest } = this.props
@@ -43,19 +45,6 @@ const styles = StyleSheet.create({
     fontSize : 22,
     fontWeight: "bold",
     textAlign : "center",
+    color: "rgb(248,249,250)"
   },
-  positionView: {
-    position: "absolute",
-    right: 35,
-    bottom: 35,
-    backgroundColor: "rgb(250,82,82)",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderTopRightRadius: 35,
-    borderTopLeftRadius: 35,
-    borderBottomRightRadius: 35,
-    borderBottomLeftRadius: 35,
-    borderColor: "black",
-    borderWidth: 2
-  }
 })
