@@ -7,10 +7,10 @@ export default class HeaderButton extends Component{
     return(
       <View style={styles.constainer}>
         <TouchableOpacity style={styles.button}>
-          <Feather name="search" size={32} color="black"/>
+          <Feather name="search" size={29} color="black"/>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Feather name="user" size={32} color="black"/>
+          <Feather name="user" size={29} color="black"/>
         </TouchableOpacity>
       </View>
     )
