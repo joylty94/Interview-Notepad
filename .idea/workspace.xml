@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/App.js" afterPath="$PROJECT_DIR$/App.js" />
+      <change beforePath="$PROJECT_DIR$/components/HeaderButtonComponent.js" afterPath="$PROJECT_DIR$/components/HeaderButtonComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/PlusButtonComponent.js" afterPath="$PROJECT_DIR$/components/PlusButtonComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/WritingNotesInputComponent.js" afterPath="$PROJECT_DIR$/components/WritingNotesInputComponent.js" />
       <change beforePath="$PROJECT_DIR$/containers/NoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/NoteScreenContainer.js" />
+      <change beforePath="$PROJECT_DIR$/containers/WritingNotesContainer.js" afterPath="$PROJECT_DIR$/containers/WritingNotesContainer.js" />
+      <change beforePath="$PROJECT_DIR$/router.js" afterPath="$PROJECT_DIR$/router.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,6 +62,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -67,8 +76,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -253,6 +260,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">

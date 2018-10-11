@@ -1,17 +1,14 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Dimensions } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, BackHandler } from "react-native";
 
-import { WritingNotesScreen } from "../screenName";
 import HeaderButtonComponent from "../components/HeaderButtonComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
+import CategoryButtonComponent from "../components/CategoryButtonComponent";
 
 export default class NoteScreenContainer extends Component{
   static navigationOptions = ({ navigation }) => {
     let headerLeft = (
-      <TouchableOpacity style={styles.categoryButton}
-        onPress={() => navigation.navigate(WritingNotesScreen)}>
-        <Text style={styles.categoryText}>메모장</Text>
-      </TouchableOpacity>
+      <CategoryButtonComponent/>
     );
     let headerRight = (
       <HeaderButtonComponent/>
@@ -23,6 +20,7 @@ export default class NoteScreenContainer extends Component{
   }
   render(){
     const { ...rest } = this.props
+    console.log(this.props.navigation)
     return(
       <View style={styles.container}>
         <Text>NOTE</Text>
@@ -35,16 +33,5 @@ export default class NoteScreenContainer extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  categoryButton : {
-    paddingHorizontal: 10,
-    paddingVertical : 15,
-    marginLeft: 10,
-  },
-  categoryText : {
-    fontSize : 22,
-    fontWeight: "bold",
-    textAlign : "center",
-    color: "rgb(248,249,250)"
-  },
+  }
 })
