@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default class CategoryButtonComponent extends Component{
   render(){
-    const defaultCategory = "메모장"
+    const defaultCategory = [{ Category: "메모장" }]
+    const { navigation } = this.props;
     return(
       <View>
         <TouchableOpacity style={styles.categoryButton}
-          onPress={navigation.navigate(WritingNotesScreen)}>
-          <Text style={styles.categoryText}>{this.props.category || defaultCategory}</Text>
+          onPress={() => { navigation.state.params.handleModal() }}
+          >
+          <Text style={styles.categoryText}>{this.props.category || defaultCategory[0].Category}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -27,4 +29,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "rgb(248,249,250)"
   },
+
 })
