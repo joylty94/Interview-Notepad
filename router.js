@@ -11,13 +11,6 @@ export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
     screen: NoteScreenContainer,
   },
-  WritingNotesScreen: {
-    screen: WritingNotesContainer,
-    navigationOptions: () => {
-      header = null;
-      return {header}
-    }
-  }
 })
 
 export const TabNavigator = createBottomTabNavigator(
@@ -64,4 +57,11 @@ export const StackApp = createStackNavigator({
       return { header }
     }
   },
+  WritingNotesScreen: {
+    screen: WritingNotesContainer,
+    navigationOptions: () => {
+      header = null;
+      return { header }
+    }
+  }
 })
