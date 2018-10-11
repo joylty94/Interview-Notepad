@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Keyboard } from "react-native";
 
 export default class WritingNotesInputComponent extends Component {
   render(){
@@ -9,15 +9,17 @@ export default class WritingNotesInputComponent extends Component {
           <TextInput
             placeholder="질문을 입력하세요"
             placeholderTextColor="rgb(134,142,150)"
-            underlineColorAndroid="#fff"/>
+            underlineColorAndroid="#fff"
+            style={styles.questionText}/>
         </View>
         <View style={styles.answerContainer}>
-        <TextInput
-          multiline={true}
-          placeholder="답변를 입력하세요"
-          placeholderTextColor="rgb(134,142,150)"
-          underlineColorAndroid="#fff"/>
-        </View>
+          <TextInput
+            multiline={true}
+            placeholder="답변를 입력하세요"
+            placeholderTextColor="rgb(134,142,150)"
+            underlineColorAndroid="#fff"
+            style={styles.answerText}/>
+          </View>
       </View>
     )
   }
@@ -34,5 +36,12 @@ const styles = StyleSheet.create({
   },
   answerContainer: {
     paddingVertical: 8,
+  },
+  questionText: {
+    fontSize: 20,
+  },
+  answerText: {
+    fontSize: 16,
+    paddingBottom: "125%",
   }
 })
