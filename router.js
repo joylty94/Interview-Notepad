@@ -7,16 +7,23 @@ import InitialScreenContainer from "./containers/InitialScreenContainer";
 import LoginScreenContainer from "./containers/LoginScreenContainer";
 import WritingNotesContainer from "./containers/WritingNotesContainer";
 
-export const NoteScreen = createStackNavigator({
+export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
     screen: NoteScreenContainer,
+  },
+  WritingNotesScreen: {
+    screen: WritingNotesContainer,
+    navigationOptions: () => {
+      header = null;
+      return {header}
+    }
   }
 })
 
 export const TabNavigator = createBottomTabNavigator(
   {
     StackNoteScreen: {
-      screen: NoteScreen,
+      screen: StackNoteScreen,
       navigationOptions: ({
         tabBarIcon: () => <SimpleLineIcons name="note" size={28} color="black" />
       })
@@ -57,11 +64,4 @@ export const StackApp = createStackNavigator({
       return { header }
     }
   },
-  WritingNotesScreen: {
-    screen: WritingNotesContainer,
-    navigationOptions: () => {
-      let header = null;
-      return { header }
-    }
-  }
 })
