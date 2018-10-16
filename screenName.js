@@ -2,10 +2,12 @@ const InitialScreen = "InitialScreen";
 const LoginScreen = "LoginScreen";
 const TabScreen = "TabScreen";
 const WritingNotesScreen = "WritingNotesScreen"
+const CategoryListScreen = "CategoryListScreen"
 
 export {
   InitialScreen,
   LoginScreen,
   TabScreen,
-  WritingNotesScreen
+  WritingNotesScreen,
+  CategoryListScreen
 }

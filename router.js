@@ -6,6 +6,7 @@ import NoteScreenContainer from './containers/NoteScreenContainer';
 import InitialScreenContainer from "./containers/InitialScreenContainer";
 import LoginScreenContainer from "./containers/LoginScreenContainer";
 import WritingNotesContainer from "./containers/WritingNotesContainer";
+import CategoryListContainer from "./containers/CategoryListContainer";
 
 export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
@@ -17,6 +18,9 @@ export const StackNoteScreen = createStackNavigator({
       header = null;
       return { header }
     }
+  },
+  CategoryListScreen: {
+    screen: CategoryListContainer
   }
 })
 
