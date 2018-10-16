@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { View, Text, Modal, StyleSheet, ScrollView, FlatList, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons"
 
-export default class CategoryModal extends Component{
+export default class CategoryListModalComponent extends Component{
   render(){
     const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
     return(
       <Modal
         animationType="slide"
         transparent={true}
-        visible={true}
+        visible={false}
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
         }}>
@@ -27,8 +27,6 @@ export default class CategoryModal extends Component{
                 renderItem={({ item, index }) => {
                   return (
                     <TouchableOpacity
-                      // item={item}
-                      // index={index}
                       style={styles.modalButton}>
                       <Text style={styles.madalText}>{((item.category).length > 23) ? (item.category).substring(0, 20) + "..." : item.category}</Text>
                       <Text style={styles.madalText}>{item.number}</Text>

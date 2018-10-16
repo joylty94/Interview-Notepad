@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, FlatList, ScrollView, Touchab
 import HeaderButtonComponent from "../components/HeaderButtonComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
 import CategoryButtonComponent from "../components/CategoryButtonComponent";
-import CategroyModal from "../components/CategoryModal";
+import CategoryListModalComponent from "../components/CategoryListModalComponent";
 
 export default class NoteScreenContainer extends Component{
   static navigationOptions = ({ navigation }) => {
@@ -27,7 +27,7 @@ export default class NoteScreenContainer extends Component{
       <View style={styles.container}>
         <Text>NOTE</Text>
         <PlusButtonComponent {...rest}/>
-        <CategroyModal {...rest} />
+        <CategoryListModalComponent {...rest} />
       </View>
     )
   }
