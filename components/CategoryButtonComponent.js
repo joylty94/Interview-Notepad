@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default class CategoryButtonComponent extends Component{
+  handleModalbutton = () => {
+    this.props.onModal()
+  }
   render(){
     const defaultCategory = [{ Category: "메모장" }]
-    const { navigation } = this.props;
     return(
       <View>
         <TouchableOpacity style={styles.categoryButton}
-          onPress={() => { navigation.state.params.handleModal() }}
+          onPress={this.handleModalbutton}
           >
           <Text style={styles.categoryText}>{this.props.category || defaultCategory[0].Category}</Text>
         </TouchableOpacity>
@@ -21,7 +23,6 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 10,
     paddingVertical: 15,
-    marginLeft: 10,
   },
   categoryText: {
     fontSize: 22,
