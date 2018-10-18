@@ -3,8 +3,11 @@ import { Provider } from "react-redux";
 import * as firebase from "firebase";
 import { StackApp } from "./router";
 import { Font } from "expo";
-
+import { connect } from "react-redux";
 import store from "./store";
+import { reduxifyNavigator } from 'react-navigation-redux-helpers';
+
+// import CategoryListContainer from "./containers/CategoryListContainer";
 
 var config = {
   apiKey: "AIzaSyD4y6p-amG4Ao_Mf1eE65-hDPHZMVxCU5Y",
@@ -16,6 +19,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const Apps = reduxifyNavigator(StackApp, "root");
+const mapStateToProps = (state) => ({
+  state: state.nav,
+});
+const AppWithNavigationState = connect(mapStateToProps)(Apps);
+
 export default class App extends React.Component {
   async componentDidMount() {
     await Font.loadAsync({
@@ -26,8 +35,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <StackApp/>
+        <AppWithNavigationState/>
       </Provider>
     );
   }
 }
+
