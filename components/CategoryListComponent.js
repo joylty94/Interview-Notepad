@@ -2,33 +2,31 @@ import React, { Component } from "react";
 import { View, FlatList, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 
-export default class CategoryList extends Component{
+export default class CategoryListComponent extends Component{
   render(){
     const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
     return(
-      <View style={{flex:1}}>
-        <FlatList
-          data={defaultCategory}
-          renderItem={({item, index}) => {
-            return(
-              <View style={styles.listItem}>
-                <Text style={styles.listText}>
-                  {((item.category).length > 23) ? (item.category).substring(0, 20) + "..." : item.category}
-                </Text>
-                <View style={styles.listbuttonContainer}>
-                  <TouchableOpacity style={styles.buttonItems}>
-                    <EvilIcons name="pencil" size={34} color="rgb(33,37,41)" />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.buttonItems}>
-                    <EvilIcons name="close" size={34} color="rgb(33,37,41)" />
-                  </TouchableOpacity>
+      <View style={{ flex: 1, paddingHorizontal: 15,}}>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={defaultCategory}
+            renderItem={({ item, index }) => {
+              return (
+                <View style={styles.listItem}>
+                  <Text style={styles.text}>
+                    {((item.category).length > 23) ? (item.category).substring(0, 20) + "..." : item.category}
+                  </Text>
                 </View>
-              </View>
-            )
-          }}
-          keyExtractor={(item, index) => item.category + `${index}`}>
-
-        </FlatList>
+              )
+            }}
+            keyExtractor={(item, index) => item.category + `${index}`}
+            style={styles.listContainer}>
+          </FlatList>
+        </View>
+        <TouchableOpacity style={styles.addButton}>
+          <EvilIcons name="plus" size={32} color="rgb(116,143,252)" />
+          <Text style={styles.addText}>카테고리 추가</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -36,25 +34,27 @@ export default class CategoryList extends Component{
 
 const styles = StyleSheet.create({
   listItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingLeft: 10,
-    paddingRight: 8,
+    paddingVertical: 10,
     borderBottomWidth: 1,
-    borderColor: "rgb(134, 142, 150)"
+    borderColor: "rgb(173,181,189)",
   },
-  listText: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "rgb(33,37,41)"
+  text: {
+    fontWeight: "400",
+    fontSize: 18,
+    color: "rgb(52,58,64)",
+    marginLeft:2
   },
-  listbuttonContainer: {
+  addText: {
+    fontWeight: "400",
+    fontSize: 18,
+    color: "rgb(52,58,64)",
+    marginLeft: 6
+  },
+  addButton: {
+    alignItems: "center",
     flexDirection: "row",
-  },
-  buttonItems: {
-    paddingHorizontal: 2,
-    paddingVertical: 6
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderColor: "rgb(173,181,189)",
   }
 })
