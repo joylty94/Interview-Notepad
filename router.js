@@ -11,6 +11,10 @@ import CategoryListContainer from "./containers/CategoryListContainer";
 export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
     screen: NoteScreenContainer,
+    navigationOptions: () => {
+      header = null;
+      return { header }
+    }
   },
   WritingNotesScreen: {
     screen: WritingNotesContainer,
@@ -19,9 +23,6 @@ export const StackNoteScreen = createStackNavigator({
       return { header }
     }
   },
-  CategoryListScreen: {
-    screen: CategoryListContainer
-  }
 })
 
 export const TabNavigator = createBottomTabNavigator(
@@ -68,4 +69,11 @@ export const StackApp = createStackNavigator({
       return { header }
     }
   },
+  CategoryListScreen: {
+    screen: CategoryListContainer,
+    navigationOptions: () => {
+      header = null;
+      return { header }
+    }
+  }
 })
