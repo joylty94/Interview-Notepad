@@ -1,30 +1,21 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, FlatList, ScrollView, TouchableHighlight } from "react-native";
+import { connect } from "react-redux";
+import { fetchcategoryOnModal, fetchcategoryOffModal } from "../thunk/noteScreen";
 
-import HeaderButtonComponent from "../components/HeaderButtonComponent";
+import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
-import CategoryButtonComponent from "../components/CategoryButtonComponent";
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
 
-export default class NoteScreenContainer extends Component{
-  static navigationOptions = ({ navigation }) => {
-    console.log(navigation)
-    const { parmas = {} } = navigation.state;
-    let headerLeft = (
-      <CategoryButtonComponent navigation={navigation}/>
-    );
-    let headerRight = (
-      <HeaderButtonComponent/>
-    );
-    let headerStyle = ({
-      backgroundColor: "rgb(145,167,255)"
-    });
-    return { headerLeft, headerRight, headerStyle }
+class NoteScreenContainer extends Component{
+  componentDidMount() {
   }
   render(){
+    console.log("n", this.props.modal)
     const { ...rest } = this.props
     return(
       <View style={styles.container}>
+        <NoteHeaderComponent {...rest}/>
         <Text>NOTE</Text>
         <PlusButtonComponent {...rest}/>
         <CategoryListModalComponent {...rest} />
@@ -38,3 +29,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
 })
+
+export default connect(
+  state => ({
+    modal: state.noteScreen.modal,
+  }),
+  dispatch => ({
+    onModal: () => {
+      dispatch(fetchcategoryOnModal())
+    },
+    offModal: () => {
+      dispatch(fetchcategoryOffModal())
+    },
+  })
+)(NoteScreenContainer)
+
