@@ -1,24 +1,24 @@
 import React, { Component } from "react";
-import { View, Modal, Text, Textinput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Textinput, TouchableOpacity, StyleSheet } from "react-native";
+import Modal from "react-native-modal";
 
 export default class CategoryUpdateModalComponent extends Component {
   render() {
     return (
       <View>
         <Modal
-          animationType="slide"
+          animationIn="slideInLeft"
+          animationOut="slideOutRight"
           transparent={true}
-          visible={false}>
+          isVisible={false}>
           <View>
             <Textinput
-              placeholder="질문을 입력하세요"
-              //placeholder={`${category}`}
-              //value
+              placeholder="category"
               placeholderTextColor="rgb(134,142,150)"
               underlineColorAndroid="#fff"/>
             <View>
               <TouchableOpacity>
-                <Text>삭제</Text>
+                <Text>추가</Text>
               </TouchableOpacity>
               <TouchableOpacity>
                 <Text>취소</Text>
