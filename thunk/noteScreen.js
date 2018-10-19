@@ -3,13 +3,13 @@ import { noteScreenLoading, noteScreenOnHandleModal, noteScreenOffHandleModal, n
 
 export const fetchNoteScreen = () => async (dispatch) => {
   dispatch(noteScreenLoading())
-  const { uid } = firebase.auth().currentUser;
-  console.log(uid)
+  // const { uid } = firebase.auth().currentUser;
+  // console.log(uid)
   const snapshot = await firebase.database().ref("users/visit").once("value");
   const visit = snapshot.val() || [];
   if(visit === undefined){
     try {
-      await firebase.database().ref(`${uid}/categorys/`).set("메모장")
+      await firebase.database().ref(`users/categorys/`).set("메모장")
     } catch (e) {
       console.log(e);
     }
