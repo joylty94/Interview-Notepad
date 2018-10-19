@@ -4,11 +4,12 @@ import { FontAwesome } from "@expo/vector-icons";
 
 export default class CategoryListHeaderComponent extends Component {
   render() {
-    const { ...rest } = this.props;
+    const { navigation } = this.props;
     return (
       <View style={styles.header}>
         <View style={{ flexDirection: "row", alignItems: "center",}}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button}
+            onPress={() => navigation.goBack()}>
             <FontAwesome name="angle-left" size={26} color="rgb(248,249,250)"/>
           </TouchableOpacity>
           <Text style={styles.text}>카테고리 관리</Text>
