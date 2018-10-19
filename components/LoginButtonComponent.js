@@ -38,7 +38,7 @@ export default class LoginButtonComponent extends Component{
     } catch (e){
       console.log('error', e)
     }
-    this.props.navigation.navigate(NoteScreen)
+    this.props.navigation.navigate(TabScreen)
   }
   render(){
     return(
