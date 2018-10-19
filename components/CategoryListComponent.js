@@ -23,10 +23,12 @@ export default class CategoryListComponent extends Component{
             style={styles.listContainer}>
           </FlatList>
         </View>
-        <TouchableOpacity style={styles.addButton}>
-          <EvilIcons name="plus" size={32} color="rgb(116,143,252)" />
-          <Text style={styles.addText}>카테고리 추가</Text>
-        </TouchableOpacity>
+        <View style={styles.addContainer}>
+          <TouchableOpacity style={styles.addButton}>
+            <EvilIcons name="plus" size={32} color="rgb(116,143,252)" />
+            <Text style={styles.addText}>카테고리 추가</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
     color: "rgb(52,58,64)",
     marginLeft:2
   },
+  addContainer: {
+    borderBottomWidth: 1,
+    borderColor: "rgb(173,181,189)",
+  },
   addText: {
     fontWeight: "400",
     fontSize: 18,
@@ -54,7 +60,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderColor: "rgb(173,181,189)",
   }
 })
