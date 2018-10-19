@@ -8,12 +8,13 @@ import CategoryListHeaderComponent from "../components/CategoryListHeaderCompone
 
 export default class CategoryListContainer extends Component{
   render(){
+    const { ...rest } = this.props
     return(
       <View style={{flex: 1}}>
-        <CategoryListHeaderComponent/>
-        <CategoryListComponent/>
-        <CategoryDeleteModalComponent/>
-        <CategoryUpdateModalComponent/>
+        <CategoryListHeaderComponent {...rest }/>
+        <CategoryListComponent {...rest }/>
+        <CategoryDeleteModalComponent {...rest }/>
+        <CategoryUpdateModalComponent {...rest }/>
       </View>
     )
   }
