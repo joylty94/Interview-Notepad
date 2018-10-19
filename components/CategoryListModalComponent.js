@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, Modal, StyleSheet, ScrollView, FlatList, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons"
+import Modal from "react-native-modal";
+
 import { CategoryListScreen } from "../screenName";
 
 export default class CategoryListModalComponent extends Component{
@@ -13,10 +15,14 @@ export default class CategoryListModalComponent extends Component{
     const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
     return(
       <Modal
-        animationType="fade"
+        animationIn="zoomInDown"
+        animationOut="zoomOutUp"
         transparent={true}
-        visible={modal}
-        onRequestClose={this.handleModalbutton}>
+        isVisible={modal}
+        onBackdropPress={() => this.props.offModal()}
+        onBackButtonPress={() => this.props.offModal()}
+        // onRequestClose={this.props.offModal}
+        >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <View style={styles.categoryHeader}>
@@ -52,12 +58,12 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.5)"
+    // backgroundColor: "rgba(255, 255, 255, 0.5)"
   },
   modalView: {
     width: "90%",
     maxHeight: "92%",
-    marginTop: 14,
+    // marginTop: "5%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
