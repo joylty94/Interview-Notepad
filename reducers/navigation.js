@@ -1,4 +1,4 @@
 import { createNavigationReducer } from 'react-navigation-redux-helpers';
-import { StackApp } from '../router';
+import { SwitchApp } from '../router';
 
-export default navReducer = createNavigationReducer(StackApp);
+export default navReducer = createNavigationReducer(SwitchApp);
