@@ -1,4 +1,5 @@
 const SignUpScreen = "SignUpScreen";
+const SignInScreen = "SignInScreen"
 const TabScreen = "TabScreen";
 const WritingNotesScreen = "WritingNotesScreen"
 const CategoryListScreen = "CategoryListScreen"
@@ -8,10 +9,11 @@ const AuthLoading = "AuthLoading"
 
 export {
   SignUpScreen,
+  SignInScreen,
   TabScreen,
   WritingNotesScreen,
   CategoryListScreen,
   App,
   Auth,
-  AuthLoading
+  AuthLoading,
 }
