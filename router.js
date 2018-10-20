@@ -4,6 +4,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 
 import NoteScreenContainer from "./containers/NoteScreenContainer";
 import SignUpScreenContainer from "./containers/SignUpScreenContainer";
+import SignInScreenContainer from "./containers/SignInScreenContainer";
 import WritingNotesContainer from "./containers/WritingNotesContainer";
 import CategoryListContainer from "./containers/CategoryListContainer";
 import WithAuth from "./containers/WithAuth";
@@ -53,6 +54,13 @@ export const TabNavigator = createBottomTabNavigator(
 )
 
 export const StackAuth = createStackNavigator({
+  SignInScreen: {
+    screen: SignInScreenContainer,
+    navigationOptions: () => {
+      let header = null;
+      return { header }
+    }
+  },
   SignUpScreen: {
     screen: SignUpScreenContainer,
     navigationOptions: () => {
