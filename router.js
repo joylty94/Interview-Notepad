@@ -2,11 +2,11 @@ import React from "react";
 import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-import NoteScreenContainer from './containers/NoteScreenContainer';
-import InitialScreenContainer from "./containers/InitialScreenContainer";
-import LoginScreenContainer from "./containers/LoginScreenContainer";
+import NoteScreenContainer from "./containers/NoteScreenContainer";
+import SignUpScreenContainer from "./containers/SignUpScreenContainer";
 import WritingNotesContainer from "./containers/WritingNotesContainer";
 import CategoryListContainer from "./containers/CategoryListContainer";
+import WithAuth from "./containers/WithAuth";
 
 export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
@@ -52,12 +52,13 @@ export const TabNavigator = createBottomTabNavigator(
   }
 )
 
-export const StackLogin = createStackNavigator({
-  InitialScreen: {
-    screen: InitialScreenContainer
-  },
-  LoginScreen: {
-    screen: LoginScreenContainer
+export const StackAuth = createStackNavigator({
+  SignUpScreen: {
+    screen: SignUpScreenContainer,
+    navigationOptions: () => {
+      let header = null;
+      return { header }
+    }
   },
 })
 
@@ -77,3 +78,20 @@ export const StackApp = createStackNavigator({
     }
   }
 })
+
+export const SwitchApp = createSwitchNavigator(
+  {
+    AuthLoading: {
+      screen: WithAuth
+    },
+    App: {
+      screen: StackApp
+    },
+    Auth: {
+      screen: StackAuth
+    },
+  },
+  {
+    initialRouteName: "AuthLoading",
+  }
+);
