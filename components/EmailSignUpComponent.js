@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Platform, Alert } from "react-native";
+import { View, StyleSheet, Text, TextInput, Platform, Alert } from "react-native";
 import { Button } from "native-base";
-// import { AuthLoading } from "../screenName";
 import * as firebase from "firebase";
 
 export default class EmailSignUpComponent extends Component {
@@ -43,7 +42,6 @@ export default class EmailSignUpComponent extends Component {
     }
   }
   render(){
-    const { navigation } = this.props
     return(
       <View style={styles.container}>
         <Text style={styles.titleText}>회원 가입</Text>
@@ -52,9 +50,6 @@ export default class EmailSignUpComponent extends Component {
             <Text style={styles.labelText}>아이디</Text>
             <TextInput
               style={styles.input}
-              placeholder=""
-              placeholderTextColor='rgb(134,142,150)'
-              underlineColorAndroid="rgba(255,255,255,0.2)"
               keyboardType='email-address'
               autoCorrect={false}
               autoCapitalize="none"
@@ -65,9 +60,6 @@ export default class EmailSignUpComponent extends Component {
             <Text style={styles.labelText}>패스워드</Text>
             <TextInput
               style={styles.input}
-              placeholder=""
-              placeholderTextColor='rgb(134,142,150)'
-              underlineColorAndroid="rgba(255,255,255,0.2)"
               secureTextEntry={true}
               autoCorrect={false}
               autoCapitalize="none"
@@ -79,9 +71,6 @@ export default class EmailSignUpComponent extends Component {
             <Text style={styles.labelText}>패스워드 확인</Text>
             <TextInput
               style={styles.input}
-              placeholder=""
-              placeholderTextColor='rgb(134,142,150)'
-              underlineColorAndroid="rgba(255,255,255,0.2)"
               secureTextEntry={true}
               autoCorrect={false}
               autoCapitalize="none"
@@ -94,7 +83,14 @@ export default class EmailSignUpComponent extends Component {
               style={styles.button}
               onPress={() => this.signupUser(this.state.email, this.state.password, this.state.identifyPW)}
               >
-              <Text style={styles.buttonText}>SignUp</Text>
+              <Text style={styles.buttonText}>가입</Text>
+            </Button>
+            <Button
+              full
+              style={styles.button}
+              onPress={() => this.props.navigation.goBack()}
+              >
+              <Text style={styles.buttonText}>취소</Text>
             </Button>
         </View>
       </View>
@@ -105,16 +101,15 @@ export default class EmailSignUpComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
+    paddingTop: Platform.OS === "ios" ? 34 : 24,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: Platform.OS === "ios" ? 34 : 24,
-    paddingHorizontal: 20
   },
   titleText: {
     fontSize: 24,
     color: "rgb(73,80,87)",
     fontWeight: "bold",
-    marginBottom: 25
+    marginVertical: 25
   },
   labelText: {
     fontSize: 18,
@@ -128,7 +123,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 300,
+    width: 350,
     backgroundColor: 'rgb(222,226,230)',
     marginBottom: 15,
     paddingHorizontal: 10,
@@ -141,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    marginVertical: 20,
+    marginTop: 20,
     backgroundColor: "rgb(201,42,42)"
   },
   buttonText: {
