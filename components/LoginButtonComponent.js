@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import * as firebase from "firebase";
 import { App } from '../screenName';
@@ -23,12 +23,17 @@ export default class LoginButtonComponent extends Component{
   loginWithGoogle = async () => {
     try {
       const result = await Expo.Google.logInAsync({
-        androidClientId: '698587011968-dlehss85m4qm1m6muatgdpc504enccmh.apps.googleusercontent.com',
+        androidClientId: '592233350268-51itcpv67blgmjj5aqfv46obf6j38h3m.apps.googleusercontent.com',
         scopes: ['profile', 'email'],
       });
       if (result.type === 'success') {
-        this.props.navigation.navigate(App)
-        console.log(result.accessToken);
+        // return result.accessToken;
+        const credential = firebase.auth.GoogleAuthProvider.credential(result.accessToken);
+        const signIn = firebase.auth().signInAndRetrieveDataWithCredential(credential)
+        await Promise.all([credential, signIn])
+        // const provider = new firebase.auth.GoogleAuthProvider();
+        // await firebase.auth().signInWithPopup(provider)
+        // this.props.navigation.navigate(App)
       } else {
         console.log(cancelled)
       }
@@ -39,14 +44,12 @@ export default class LoginButtonComponent extends Component{
 
   loginWithFacebook = async () => {
     try{
-      const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync
-      ('2159074207668401', {permissions: ['public_profile']});
+      const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
+        '721596061545138', {permissions: ['public_profile']});
       if (type === 'success') {
-        const credential = firebase.auth.logInWithReadPermissionsAsync.credential(token)
-        firebase.auth().signInWithCredential(credential).catch((error) => {
-          console.log(error)
-        })
-        this.props.navigation.navigate(App)
+        const credential = firebase.auth.FacebookAuthProvider.credential(token);
+        await firebase.auth().signInAndRetrieveDataWithCredential(credential)
+        // this.props.navigation.navigate(App)
       }
     } catch (e){
       console.log('error', e)
@@ -68,10 +71,10 @@ export default class LoginButtonComponent extends Component{
     return(
       <View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonStyle}>
+          {/* <TouchableOpacity style={styles.buttonStyle}>
             <Entypo name="email" size={30} color="rgb(52,58,64)" />
             <Text style={styles.buttonText}>이메일로그인</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity style={styles.buttonStyle}
             onPress={() => this.loginWithGoogle()}>
             <FontAwesome name="google-plus-square" size={30} color="#e0321c" />
@@ -83,35 +86,6 @@ export default class LoginButtonComponent extends Component{
             <Text style={styles.buttonText}>페이스북로그인</Text>
           </TouchableOpacity>
         </View>
-        {/* <Container style={styles.buttonContainer}>
-          <Form>
-            <Item floatingLabel>
-              <Label>Email</Label>
-              <Input
-                autoCorrect={false}
-                autoCapitalize="none"
-                onChangeText={(email) => this.setState({email})}
-                />
-            </Item>
-            <Item floatingLabel>
-              <Label>Password</Label>
-              <Input
-                secureTextEntry={true}
-                autoCorrect={false}
-                autoCapitalize="none"
-                onChangeText={(password) => this.setState({ password })}
-                />
-            </Item>
-            <Button
-              full
-              rounded
-              success
-              style={styles.buttonStyle}
-              onPress={() => this.signupUser(this.state.email, this.state.password)}>
-              <Text>signupUser</Text>
-            </Button>
-          </Form>
-        </Container> */}
       </View>
     )
   }
