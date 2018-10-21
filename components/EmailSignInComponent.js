@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from "react-native";
 import * as firebase from "firebase";
 import { Container, Content, Header, Form, Input, Item, Button, Label } from "native-base";
-import { SignUpScreen } from "../screenName";
+import { App, SignUpScreen } from "../screenName";
 
 export default class EmailSignInComponent extends Component {
   constructor(props) {
@@ -11,6 +11,15 @@ export default class EmailSignInComponent extends Component {
       email: "",
       password: "",
     })
+  }
+  signInUser = (email, password) => {
+    try{
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      this.props.navigation.navigate(App)
+    }
+    catch(e){
+      console.log(e)
+    }
   }
   render() {
     return (
@@ -42,7 +51,7 @@ export default class EmailSignInComponent extends Component {
           <Button
             full
             style={styles.button}
-            onPress={() => this.signupUser(this.state.email, this.state.password)}>
+            onPress={() => this.signInUser(this.state.email, this.state.password)}>
             <Text style={styles.buttonText}>로그인</Text>
           </Button>
         </View>
