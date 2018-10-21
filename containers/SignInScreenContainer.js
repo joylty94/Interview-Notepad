@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  View, StatusBar, SafeAreaView, StyleSheet, ImageBackground, KeyboardAvoidingView,
+  View, SafeAreaView, StyleSheet, ImageBackground, KeyboardAvoidingView,
   TouchableWithoutFeedback, Keyboard, Platform
 } from "react-native";
 
@@ -12,7 +12,6 @@ export default class SignInScreenContainer extends Component {
     const { ...rest } = this.props
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar hidden={true} />
         <ImageBackground
           source={require("../images/note.png")}
           style={styles.container}
@@ -43,6 +42,7 @@ export default class SignInScreenContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === 'ios' ? 34 : 24,
   },
   logoContainer: {
     flex: 1,

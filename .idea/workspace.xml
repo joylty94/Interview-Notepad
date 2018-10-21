@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/actions/noteScreen.js" afterPath="$PROJECT_DIR$/actions/noteScreen.js" />
-      <change beforePath="$PROJECT_DIR$/components/EmailSignInComponent.js" afterPath="$PROJECT_DIR$/components/EmailSignInComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/HeaderButtonComponent.js" afterPath="$PROJECT_DIR$/components/HeaderButtonComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/LoginButtonComponent.js" afterPath="$PROJECT_DIR$/components/LoginButtonComponent.js" />
-      <change beforePath="$PROJECT_DIR$/containers/CategoryListContainer.js" afterPath="$PROJECT_DIR$/containers/CategoryListContainer.js" />
-      <change beforePath="$PROJECT_DIR$/containers/NoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/NoteScreenContainer.js" />
       <change beforePath="$PROJECT_DIR$/containers/WithAuth.js" afterPath="$PROJECT_DIR$/containers/WithAuth.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/loginScreen.js" afterPath="$PROJECT_DIR$/reducers/loginScreen.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/noteScreen.js" afterPath="$PROJECT_DIR$/reducers/noteScreen.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
