@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ActivityIndicator, StyleSheet, Platform } from "react-native";
+import { View, ActivityIndicator, StyleSheet, Platform, StatusBar } from "react-native";
 import * as firebase from 'firebase';
 import { App, Auth } from "../screenName";
 
@@ -8,13 +8,10 @@ export default class WithAuth extends Component{
     super(props);
     this._bootstrapAsync();
   }
-
   _bootstrapAsync = async () => {
-    const { currentUser } = firebase.auth();
-    console.log("currentUser", currentUser)
-    if (currentUser) {
-      this.props.navigation.navigate(App)
-      };
+    // const { currentUser } = firebase.auth();
+    // console.log("currentUser", currentUser)
+    // this.props.navigation.navigate(currentUser)
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       console.log("user", user)
       unsubscribe();
@@ -27,11 +24,11 @@ export default class WithAuth extends Component{
   }
 
   render(){
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      );
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 }
 
