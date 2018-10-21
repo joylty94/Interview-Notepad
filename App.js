@@ -1,15 +1,13 @@
 import React from "react";
 import { Provider } from "react-redux";
 import * as firebase from "firebase";
-import { StackApp } from "./router";
+import { SwitchApp } from "./router";
 import { Font } from "expo";
 import { connect } from "react-redux";
 import store from "./store";
 import { reduxifyNavigator } from 'react-navigation-redux-helpers';
 
-// import CategoryListContainer from "./containers/CategoryListContainer";
-
-var config = {
+const config = {
   apiKey: "AIzaSyD4y6p-amG4Ao_Mf1eE65-hDPHZMVxCU5Y",
   authDomain: "interview-notepad.firebaseapp.com",
   databaseURL: "https://interview-notepad.firebaseio.com",
@@ -19,7 +17,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const Apps = reduxifyNavigator(StackApp, "root");
+const Apps = reduxifyNavigator(SwitchApp, "root");
 const mapStateToProps = (state) => ({
   state: state.nav,
 });

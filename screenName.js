@@ -1,13 +1,19 @@
-const InitialScreen = "InitialScreen";
-const LoginScreen = "LoginScreen";
+const SignUpScreen = "SignUpScreen";
+const SignInScreen = "SignInScreen"
 const TabScreen = "TabScreen";
 const WritingNotesScreen = "WritingNotesScreen"
 const CategoryListScreen = "CategoryListScreen"
+const App = "App"
+const Auth = "Auth"
+const AuthLoading = "AuthLoading"
 
 export {
-  InitialScreen,
-  LoginScreen,
+  SignUpScreen,
+  SignInScreen,
   TabScreen,
   WritingNotesScreen,
-  CategoryListScreen
+  CategoryListScreen,
+  App,
+  Auth,
+  AuthLoading,
 }

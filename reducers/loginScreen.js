@@ -1,5 +1,3 @@
-import { JOIN_PAGINATION, LOGIN_PAGINATION } from "../actions/actionTypes";
-
 const initialState = {
   initialEnble: true,
   joinEnble: false,
