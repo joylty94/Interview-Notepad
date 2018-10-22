@@ -16,7 +16,8 @@ export default function ( state = initialState, action) {
       return{
         ...state,
         loading: false,
-        notesItem: aciton.notesItem
+        currentCategory: action.currentCategory,
+        notesItem: action.notesItem
     };
     case ONHANDLEMODAL:
       return{
