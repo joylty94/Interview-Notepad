@@ -2,26 +2,28 @@ import * as firebase from 'firebase';
 import { noteScreenLoading, noteScreenOnHandleModal, noteScreenOffHandleModal, noteScreenSuccess } from "../actions/noteScreen";;
 
 export const fetchNoteScreen = () => async (dispatch) => {
-  dispatch(noteScreenLoading())
-  // const { uid } = firebase.auth().currentUser;
-  // console.log(uid)
-  const snapshot = await firebase.database().ref("users/visit").once("value");
-  const visit = snapshot.val() || [];
-  if(visit === undefined){
-    try {
-      await firebase.database().ref(`users/categorys/`).set("메모장")
-    } catch (e) {
-      console.log(e);
-    }
-  }
   try {
-    const snapshot = await firebase.database().ref(`${uid}/categorys`).once("value");
-    const categorysObject = snapshot.val() || [];
-    const categoryItem = Object.entries(categorysObject).map(([category, article]) => ({
+  dispatch(noteScreenLoading())
+  const { uid } = firebase.auth().currentUser;
+  const snapshot = await firebase.database().ref(`/users/${uid}/currentCategory`).once("value");
+  const current = snapshot.val() || [];
+  console.log("커런트", current)
+  if (current[0] === undefined){
+    await firebase.database().ref(`users/${uid}/categorys/`).push({
+      categoryName: "메모장",
+      number: 1,
+    })
+    await firebase.database().ref(`users/${uid}/currentCategory/`).set("메모장")
+    dispatch(noteScreenSuccess("메모장", []))
+  }else {
+    const snapshot = await firebase.database().ref(`users/${uid}/${current}`).once("value");
+    const notesObject = snapshot.val() || [];
+    const notesItem = Object.entries(notesObject).map(([category, article]) => ({
       ...article,
-      id,
     }));
-    dispatch(noteScreenSuccess(categoryItem))
+    console.log("노트 아이탬", notesItem)
+    dispatch(noteScreenSuccess(current, notesItem))
+  }
   } catch(e) {
     console.log(e);
   }
