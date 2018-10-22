@@ -5,7 +5,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import NoteScreenContainer from "./containers/NoteScreenContainer";
 import SignUpScreenContainer from "./containers/SignUpScreenContainer";
 import SignInScreenContainer from "./containers/SignInScreenContainer";
-import WritingNotesContainer from "./containers/WritingNotesContainer";
+import WritingNoteScreenContainer from "./containers/WritingNoteScreenContainer";
 import CategoryListContainer from "./containers/CategoryListContainer";
 import WithAuth from "./containers/WithAuth";
 
@@ -18,7 +18,7 @@ export const StackNoteScreen = createStackNavigator({
     }
   },
   WritingNotesScreen: {
-    screen: WritingNotesContainer,
+    screen: WritingNoteScreenContainer,
     navigationOptions: () => {
       header = null;
       return { header }
