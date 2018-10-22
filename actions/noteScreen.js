@@ -11,9 +11,10 @@ export function noteScreenLoading() {
   };
 }
 
-export function noteScreenSuccess(notesItem) {
+export function noteScreenSuccess(currentCategory ,notesItem) {
   return{
     type: SUCCESS,
+    currentCategory,
     notesItem
   };
 }
