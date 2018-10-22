@@ -25,8 +25,10 @@ const styles = StyleSheet.create({
   header: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
     flexDirection: "row",
+    alignItems: "center",
     justifyContent : "space-between",
     backgroundColor: "rgb(145,167,255)",
-    paddingLeft: 12
+    paddingLeft: 12,
+    height: 85,
   }
 })
