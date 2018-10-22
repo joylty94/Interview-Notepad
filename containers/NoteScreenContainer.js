@@ -8,11 +8,11 @@ import PlusButtonComponent from "../components/PlusButtonComponent";
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
 
 class NoteScreenContainer extends Component{
-  // componentDidMount() {
-  //   this.props.onMount()
-  // }
+  componentDidMount() {
+    this.props.onMount()
+  }
   render(){
-    console.log("n", this.props.modal)
+    console.log("카테코리", this.props.notesItem)
     const { ...rest } = this.props
     return(
       <View style={styles.container}>
@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
 export default connect(
   state => ({
     modal: state.noteScreen.modal,
+    currentCategory: state.noteScreen.currentCategory,
+    notesItem: state.noteScreen.notesItem
   }),
   dispatch => ({
     onMount: () => {
