@@ -1,28 +1,28 @@
-export const HANDLECATEGORY = "writingNoteScreen/ONHANDLECATEGORY";
+export const HANDLECATEGORY = "writingNoteScreen/HANDLECATEGORY";
 export const HANDLETAG = "writingNoteScreen/HANDLETAG";
 export const HANDLESHARE = "writingNoteScreen/HANDLESHARE";
 export const CREATING = 'writingNoteScreen/CREATING';
 
-export function WritingNotesScreenHandleCategory(){
+export function writingNoteScreenHandleCategory(){
   return{
-    type: ONHANDLEBUTTON,
+    type: HANDLECATEGORY,
   }
 }
 
-export function WritingNotesScreenHandleTag(){
+export function writingNoteScreenHandleTag(){
   return{
     type: HANDLETAG
   }
 }
 
-export function WritingNotesScreenHandleShare(){
+export function writingNoteScreenHandleShare(){
   return{
     type: HANDLESHARE
   }
 }
 
-export function WritingNotesScreenCreating(){
+export function writingNoteScreenHandleCreating(){
   return{
-    type: CREATING
+    type: CREATING,
   }
 }
