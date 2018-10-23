@@ -7,7 +7,6 @@ export const fetchNoteScreen = () => async (dispatch) => {
   const { uid } = firebase.auth().currentUser;
   const snapshot = await firebase.database().ref(`/users/${uid}/currentCategory`).once("value");
   const current = snapshot.val() || [];
-  console.log("커런트", current)
   if (current[0] === undefined){
     await firebase.database().ref(`users/${uid}/categorys/`).push({
       categoryName: "메모장",
