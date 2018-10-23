@@ -8,7 +8,8 @@ export default class WritingNotesInputComponent extends Component {
     const { writingTag, writingShare, answer, changeQuestion, changeAnswer } = this.props
     if (!writingTag) {
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}
+        behavior="padding">
         <View style={styles.questionContainer}>
           <TextInput
             placeholder="질문을 입력하세요"
@@ -32,10 +33,11 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(answer) => changeAnswer( answer )}
             style={styles.answerText} />
         </TouchableHighlight>
-      </View>
+      </KeyboardAvoidingView>
     )}
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}
+        behavior="padding">
         <View style={styles.questionContainer}>
           <TextInput
             placeholder="질문을 입력하세요"
@@ -59,19 +61,9 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(answer) => changeAnswer(answer)}
             style={styles.answerText} />
         </TouchableHighlight>
-        <View>
-          <Text style={styles.tageText}>#tags:</Text>
-          <Tags
-            onChangeTags={tags => console.log(tags)}
-            onTagPress={(index, tagLabel, event, deleted) =>
-              console.log(index, tagLabel, event, deleted ? "deleted" : "not deleted")
-            }
-            containerStyle={{ justifyContent: "center" }}
-            inputStyle={{ backgroundColor: "rgb(222,226,230)" }}
-            maxNumberOfTags={5}
-            />
+        <View style={{ flex: 1.5 }}>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -82,13 +74,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   questionContainer: {
-    paddingVertical: 8,
+    height: 50,
+    paddingVertical: 9,
     borderBottomWidth: 1,
     borderBottomColor: "rgb(173,181,189)"
   },
   answerContainer: {
-    flex: 1,
-    paddingVertical: 8,
+    flex: 4,
+    paddingVertical: 9,
   },
   tageText: {
     color: "rgb(134, 142, 150)",
@@ -98,6 +91,6 @@ const styles = StyleSheet.create({
   },
   answerText: {
     fontSize: 16,
-    paddingBottom: "40%"
+    // paddingBottom: "40%"
   }
 })
