@@ -44,9 +44,6 @@ export default connect(
     onModal: () => {
       dispatch(fetchcategoryOnModal())
     },
-    offModal: () => {
-      dispatch(fetchcategoryOffModal())
-    },
   })
 )(NoteScreenContainer)
 

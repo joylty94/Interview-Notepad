@@ -32,8 +32,3 @@ export const fetchNoteScreen = () => async (dispatch) => {
 export const fetchcategoryOnModal = () => (dispatch) => {
   dispatch(noteScreenOnHandleModal())
 }
-
-export const fetchcategoryOffModal = () => (dispatch) => {
-  console.log("디스패치")
-  dispatch(noteScreenOffHandleModal())
-}

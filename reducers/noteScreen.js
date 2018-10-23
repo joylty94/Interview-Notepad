@@ -1,4 +1,4 @@
-import { LOADING, ONHANDLEMODAL, OFFHANDLEMODAL, SUCCESS } from "../actions/noteScreen";
+import { LOADING, ONHANDLEMODAL, SUCCESS } from "../actions/noteScreen";
 
 const initialState = {
   loading: false,
@@ -7,27 +7,22 @@ const initialState = {
 
 export default function ( state = initialState, action) {
   switch(action.type) {
-    case LOADING:
+    case LOADING :
       return{
         ...state,
         loading: true
     };
-    case SUCCESS:
+    case SUCCESS :
       return{
         ...state,
         loading: false,
         currentCategory: action.currentCategory,
         notesItem: action.notesItem
     };
-    case ONHANDLEMODAL:
+    case ONHANDLEMODAL :
       return{
         ...state,
-        modal: true
-    };
-    case OFFHANDLEMODAL:
-      return{
-        ...state,
-        modal: false
+        modal: !state.modal
     };
     default:
       return state;

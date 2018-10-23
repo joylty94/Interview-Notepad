@@ -7,7 +7,7 @@ import { CategoryListScreen } from "../screenName";
 
 export default class CategoryListModalComponent extends Component{
   handleModalbutton = () => {
-    this.props.offModal()
+    this.props.onModal()
     this.props.navigation.navigate(CategoryListScreen)
   }
   render(){
@@ -19,8 +19,8 @@ export default class CategoryListModalComponent extends Component{
         animationOut="zoomOutUp"
         transparent={true}
         isVisible={modal}
-        onBackdropPress={() => this.props.offModal()}
-        onBackButtonPress={() => this.props.offModal()}
+        onBackdropPress={() => this.props.onModal()}
+        onBackButtonPress={() => this.props.onModal()}
         // onRequestClose={this.props.offModal}
         >
         <View style={styles.modalContainer}>

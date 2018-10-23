@@ -1,6 +1,5 @@
 export const LOADING = "noteScreen/LOADING";
 export const ONHANDLEMODAL = "noteScreen/ONHANDLEMODAL";
-export const OFFHANDLEMODAL = "noteScreen/OFFHANDLEMODAL";
 export const SUCCESS = "noteScreen/SUCCESS";
 
 
@@ -24,10 +23,3 @@ export function noteScreenOnHandleModal() {
     type: ONHANDLEMODAL
   };
 }
-
-export function noteScreenOffHandleModal() {
-  return{
-    type: OFFHANDLEMODAL
-  };
-}
-
