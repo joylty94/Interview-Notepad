@@ -2,7 +2,7 @@ import { LOADING, ONHANDLEMODAL, SUCCESS } from "../actions/noteScreen";
 
 const initialState = {
   loading: false,
-  modal: false
+  noteModal: false
 }
 
 export default function ( state = initialState, action) {
@@ -22,7 +22,7 @@ export default function ( state = initialState, action) {
     case ONHANDLEMODAL :
       return{
         ...state,
-        modal: !state.modal
+        noteModal: !state.noteModal
     };
     default:
       return state;
