@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, TextInput, StyleSheet, Keyboard, Text, TouchableHighlight,
   KeyboardAvoidingView, Platform } from "react-native";
-import Tags from "react-native-tags";
 
 export default class WritingNotesInputComponent extends Component {
   render(){
@@ -61,8 +60,6 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(answer) => changeAnswer(answer)}
             style={styles.answerText} />
         </TouchableHighlight>
-        <View style={{ flex: 1.5 }}>
-        </View>
       </KeyboardAvoidingView>
     )
   }

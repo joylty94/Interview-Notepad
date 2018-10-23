@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/actions/writingNoteScreen.js" afterPath="$PROJECT_DIR$/actions/writingNoteScreen.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryListModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListModalComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/WritingNoteButtonComponent.js" afterPath="$PROJECT_DIR$/components/WritingNoteButtonComponent.js" />
       <change beforePath="$PROJECT_DIR$/components/WritingNoteInputComponent.js" afterPath="$PROJECT_DIR$/components/WritingNoteInputComponent.js" />
       <change beforePath="$PROJECT_DIR$/containers/NoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/NoteScreenContainer.js" />
       <change beforePath="$PROJECT_DIR$/containers/WritingNoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/WritingNoteScreenContainer.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/index.js" afterPath="$PROJECT_DIR$/reducers/index.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/noteScreen.js" afterPath="$PROJECT_DIR$/reducers/noteScreen.js" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
