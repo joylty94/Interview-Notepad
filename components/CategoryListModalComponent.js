@@ -6,29 +6,36 @@ import Modal from "react-native-modal";
 import { CategoryListScreen } from "../screenName";
 
 export default class CategoryListModalComponent extends Component{
-  handleModalbutton = () => {
+  handleModalPage = () => {
     this.props.onModal()
     this.props.navigation.navigate(CategoryListScreen)
   }
+  handleModalButton = () => {
+    if(this.props.onModal){
+      this.props.onModal()
+    } else {
+      this.props.handleModal()
+    }
+  }
   render(){
-    const { modal } = this.props
+    const { noteModal, writingModal, onModal, handleModal } = this.props
+    console.log(writingModal)
     const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
     return(
       <Modal
         animationIn="zoomInDown"
         animationOut="zoomOutUp"
         transparent={true}
-        isVisible={modal}
-        onBackdropPress={() => this.props.onModal()}
-        onBackButtonPress={() => this.props.onModal()}
-        // onRequestClose={this.props.offModal}
+        isVisible={noteModal || writingModal}
+        onBackdropPress={this.handleModalButton}
+        onBackButtonPress={this.handleModalButton}
         >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <View style={styles.categoryHeader}>
               <Text style={styles.categoryText}>카태고리</Text>
               <TouchableOpacity
-                onPress={this.handleModalbutton}>
+                onPress={this.handleModalPage}>
                 <MaterialIcons name="settings" size={28} color="rgb(145,167,255)" />
               </TouchableOpacity>
             </View>
@@ -61,9 +68,8 @@ const styles = StyleSheet.create({
     // backgroundColor: "rgba(255, 255, 255, 0.5)"
   },
   modalView: {
-    width: "90%",
+    width: "100%",
     maxHeight: "92%",
-    // marginTop: "5%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
