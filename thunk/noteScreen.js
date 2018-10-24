@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { noteScreenLoading, noteScreenOnHandleModal, noteScreenOffHandleModal, noteScreenSuccess } from "../actions/noteScreen";;
+import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess } from "../actions/noteScreen";
 
 export const fetchNoteScreen = () => async (dispatch) => {
   try {
@@ -20,8 +20,8 @@ export const fetchNoteScreen = () => async (dispatch) => {
     const notesItem = Object.entries(notesObject).map(([category, article]) => ({
       ...article,
     }));
-    console.log("노트 아이탬", notesItem)
-    dispatch(noteScreenSuccess(current, notesItem))
+    const sortNotesItem = notesItem.reverse()
+    dispatch(noteScreenSuccess(current, sortNotesItem))
   }
   } catch(e) {
     console.log(e);
