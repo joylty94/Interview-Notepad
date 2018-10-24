@@ -18,9 +18,7 @@ export default class CategoryListModalComponent extends Component{
     }
   }
   render(){
-    const { noteModal, writingModal, onModal, handleModal } = this.props
-    console.log(writingModal)
-    const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
+    const { noteModal, writingModal, categoryItem, currentCategory } = this.props
     return(
       <Modal
         animationIn="zoomInDown"
@@ -41,13 +39,17 @@ export default class CategoryListModalComponent extends Component{
             </View>
             <ScrollView>
               <FlatList
-                data={defaultCategory}
+                data={categoryItem}
                 renderItem={({ item, index }) => {
                   return (
                     <TouchableOpacity
                       style={styles.modalButton}>
-                      <Text style={styles.madalText}>{((item.category).length > 23) ? (item.category).substring(0, 20) + "..." : item.category}</Text>
-                      <Text style={styles.madalText}>{item.number}</Text>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)"}]}>
+                        {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
+                      </Text>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)" }]}>
+                        {item.number}
+                      </Text>
                     </TouchableOpacity>
                   )
                 }}
@@ -103,6 +105,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    color: "rgb(52,58,64)",
   }
 })
