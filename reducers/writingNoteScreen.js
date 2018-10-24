@@ -25,7 +25,10 @@ export default function ( state = initialState, action ) {
       };
     case CREATING :
       return{
-        ...initialState,
+        ...state,
+        writingModal: false,
+        writingTag: false,
+        writingShare: false
       };
     default :
       return state;
