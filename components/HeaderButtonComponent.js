@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
   constainer: {
     flex: 1,
     flexDirection: "row",
-    marginRight: 3
+    marginRight: 3,
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
     paddingHorizontal: 10,
