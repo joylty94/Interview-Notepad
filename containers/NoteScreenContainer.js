@@ -35,7 +35,8 @@ export default connect(
   state => ({
     noteModal: state.noteScreen.noteModal,
     currentCategory: state.noteScreen.currentCategory,
-    notesItem: state.noteScreen.notesItem
+    notesItem: state.noteScreen.notesItem,
+    categoryItem: state.noteScreen.categoryItem
   }),
   dispatch => ({
     onMount: () => {

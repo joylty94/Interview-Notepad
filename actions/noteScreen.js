@@ -18,8 +18,9 @@ export function noteScreenSuccess(currentCategory ,notesItem) {
   };
 }
 
-export function noteScreenOnHandleModal() {
+export function noteScreenOnHandleModal(categoryItem) {
   return{
-    type: ONHANDLEMODAL
+    type: ONHANDLEMODAL,
+    categoryItem
   };
 }

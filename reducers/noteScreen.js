@@ -22,7 +22,8 @@ export default function ( state = initialState, action) {
     case ONHANDLEMODAL :
       return{
         ...state,
-        noteModal: !state.noteModal
+        noteModal: !state.noteModal,
+        categoryItem: action.categoryItem
     };
     default:
       return state;
