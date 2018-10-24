@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet, Keyboard, Text, TouchableHighlight,
+import { View, TextInput, StyleSheet, Keyboard, Text, TouchableWithoutFeedback,
   KeyboardAvoidingView, Platform } from "react-native";
 
 export default class WritingNotesInputComponent extends Component {
   render(){
-    const { writingTag, writingShare, answer, changeQuestion, changeAnswer } = this.props
+    const { writingTag, changeQuestion, changeAnswer, changeTag } = this.props
     if (!writingTag) {
     return(
       <KeyboardAvoidingView style={styles.container}
@@ -20,18 +20,20 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(question) => changeQuestion( question )}
             style={styles.questionText} />
         </View>
-        <TouchableHighlight
-          style={styles.answerContainer}
+        <TouchableWithoutFeedback
           onPress={() => this.refs.txtanswer.focus()}>
-          <TextInput
-            multiline={true}
-            placeholder="답변를 입력하세요"
-            placeholderTextColor="rgb(134,142,150)"
-            underlineColorAndroid="#fff"
-            ref={"txtanswer"}
-            onChangeText={(answer) => changeAnswer( answer )}
-            style={styles.answerText} />
-        </TouchableHighlight>
+          <View style={styles.answerContainer}>
+            <TextInput
+              multiline={true}
+              placeholder="답변를 입력하세요"
+              placeholderTextColor="rgb(134,142,150)"
+              underlineColorAndroid="#fff"
+              autoCapitalize="none"
+              ref={"txtanswer"}
+              onChangeText={(answer) => changeAnswer( answer )}
+              style={styles.answerText} />
+          </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     )}
     return(
@@ -48,18 +50,32 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(question) => changeQuestion(question)}
             style={styles.questionText} />
         </View>
-        <TouchableHighlight
-          style={styles.answerContainer}
+        <TouchableWithoutFeedback
           onPress={()=>this.refs.txtanswer.focus()}>
+          <View style={styles.answerContainer}>
+            <TextInput
+              multiline={true}
+              placeholder="답변를 입력하세요"
+              placeholderTextColor="rgb(134,142,150)"
+              underlineColorAndroid="#fff"
+              autoCapitalize="none"
+              returnKeyType='next'
+              ref={"txtanswer"}
+              onSubmitEditing={() => this.refs.txttag.focus()}
+              onChangeText={(answer) => changeAnswer(answer)}
+              style={styles.answerText} />
+          </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.tageContainer}>
           <TextInput
-            multiline={true}
-            placeholder="답변를 입력하세요"
+            placeholder="#키워드 입력하세요"
             placeholderTextColor="rgb(134,142,150)"
-            underlineColorAndroid="#fff"
-            ref={"txtanswer"}
-            onChangeText={(answer) => changeAnswer(answer)}
-            style={styles.answerText} />
-        </TouchableHighlight>
+            underlineColorAndroid="rgb(222,226,230)"
+            autoCapitalize="none"
+            reg={"txttag"}
+            onChangeText={(tag) => changeTag(tag)}
+            style={styles.tagText}/>
+        </View>
       </KeyboardAvoidingView>
     )
   }
@@ -71,23 +87,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   questionContainer: {
-    height: 50,
-    paddingVertical: 9,
+    height: 45,
+    paddingTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: "rgb(173,181,189)"
   },
   answerContainer: {
-    flex: 4,
+    flex: 8,
     paddingVertical: 9,
   },
-  tageText: {
-    color: "rgb(134, 142, 150)",
+  tageContainer: {
+    height: 40,
+    paddingVertical: 9,
+    backgroundColor: "rgb(222,226,230)",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   questionText: {
+    paddingLeft: 5,
     fontSize: 20,
   },
   answerText: {
+    paddingLeft: 8,
     fontSize: 16,
-    // paddingBottom: "40%"
+  },
+  tagText: {
+    paddingLeft: 10,
+    fontSize: 16,
   }
 })
