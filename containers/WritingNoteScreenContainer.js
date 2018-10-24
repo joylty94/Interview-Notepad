@@ -11,10 +11,11 @@ import { fatchCategoryHandleModal, fatchHandleTag,
 class WritingNoteScreenContainer extends Component{
   constructor(props) {
     super(props)
-    this.state = ({
+    this.state = {
       question: "",
-      answer: ""
-    })
+      answer: "",
+      tag: "",
+    }
   }
 
   changeQuestion = (question) => {
@@ -23,14 +24,17 @@ class WritingNoteScreenContainer extends Component{
   changeAnswer = (answer) => {
     this.setState({answer})
   }
+  changeTag = (tag) => {
+    this.setState({tag})
+  }
   render(){
     const { ...rest } = this.props
     return(
       <View style={styles.container}>
         <WritingNoteButtonComponent {...rest} question={this.state.question}
-          answer={this.state.answer} />
+          answer={this.state.answer} tag={this.state.tag}/>
         <WritingNoteInputComponent {...rest} changeAnswer={this.changeAnswer}
-          changeQuestion={this.changeQuestion}/>
+          changeQuestion={this.changeQuestion} changeTag={this.changeTag}/>
         <CategoryListModalComponent {...rest} />
       </View>
     )
@@ -60,8 +64,8 @@ export default connect (
     handleShare: () => {
       dispatch(fatchHandleShare())
     },
-    handleCreating: (question, answer) => {
-      dispatch(fatchCreating(question, answer))
+    handleCreating: (question, answer, tag) => {
+      dispatch(fatchCreating(question, answer, tag))
     }
   })
 )(WritingNoteScreenContainer)
