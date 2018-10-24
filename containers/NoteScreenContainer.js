@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, FlatList, ScrollView, TouchableHighlight } from "react-native";
+import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
 import { fetchNoteScreen, fetchcategoryOnModal, fetchcategoryOffModal } from "../thunk/noteScreen";
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
+import NoteListComponent from "../components/NoteListComponent";
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
 
 class NoteScreenContainer extends Component{
@@ -12,12 +13,11 @@ class NoteScreenContainer extends Component{
     this.props.onMount()
   }
   render(){
-    console.log("카테코리", this.props.notesItem)
-    const { ...rest } = this.props
+    const { onMount, ...rest } = this.props
     return(
       <View style={styles.container}>
         <NoteHeaderComponent {...rest}/>
-        <Text>NOTE</Text>
+        <NoteListComponent {...rest}/>
         <PlusButtonComponent {...rest}/>
         <CategoryListModalComponent {...rest} />
       </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => ({
-    modal: state.noteScreen.modal,
+    noteModal: state.noteScreen.noteModal,
     currentCategory: state.noteScreen.currentCategory,
     notesItem: state.noteScreen.notesItem
   }),
