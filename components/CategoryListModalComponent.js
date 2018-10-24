@@ -48,7 +48,7 @@ export default class CategoryListModalComponent extends Component{
                         {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
                       </Text>
                       <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)" }]}>
-                        {item.number}
+                        {item.count}
                       </Text>
                     </TouchableOpacity>
                   )

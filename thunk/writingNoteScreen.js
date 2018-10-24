@@ -31,9 +31,8 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         time: firebase.database.ServerValue.TIMESTAMP,
         count
       })
-      const categoryNumber = firebase.database().ref(`users/${uid}/categorys`).push({
-        categoryName: currentCategory,
-        number: count,
+      const categoryNumber = firebase.database().ref(`users/${uid}/categorys`).update({
+        count,
       })
       const sharePush = firebase.database().ref(`shared/`).push({
         question,
