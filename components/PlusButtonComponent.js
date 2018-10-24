@@ -8,20 +8,15 @@ export default class PlusButtonComponent extends Component{
   render(){
     const { navigation } = this.props
     return(
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.positionView}
-          onPress={() => { navigation.navigate(WritingNotesScreen)}}>
-          <Entypo name="plus" size={32} color="rgb(248,249,250)" />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.positionView}
+        onPress={() => { navigation.navigate(WritingNotesScreen)}}>
+        <Entypo name="plus" size={32} color="rgb(248,249,250)" />
+      </TouchableOpacity>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-  },
   positionView: {
     position: "absolute",
     right: 35,
