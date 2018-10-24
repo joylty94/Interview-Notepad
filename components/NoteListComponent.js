@@ -1,50 +1,49 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, FlatList } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback, FlatList, ScrollView } from "react-native";
+
+import NoteListAnimatedComponent from "./NoteListAnimatedComponent";
 
 export default class NoteListComponent extends Component{
-  constructor(props){
-    super(props)
-    this.state({
-      animatePress : new Animated.Value(1)
-    })
-  }
-  AnimateIn = () => {
-    Animated.timing(this.state.animatePress, {
-      toValue: 0.8,
-      duration: 300,
-    }).start()
-  }
-  Animate = () => {
-    Animated.timing(this.state.animatePress, {
-      toValue: 1,
-      duration: 300,
-    }).start()
-  }
   render(){
-    const { noteItem } = this.props;
+    const { notesItem } = this.props;
+    console.log("리스트", notesItem)
     return(
-      <View>
-        <FaltList
-          date={ noteItem }
+      <ScrollView style={styles.container}>
+        <FlatList
+          data={ notesItem }
           renderItem= {({item, index}) => {
-            <TouchableWithoutFeedback
-              onPressIn={() => this.AnimateIn()}
-              onPressOut={() => this.AnimateOut()}>
-              <Animated.View style={{
-                Transform: [
-                  {
-                    scale: this.state.animatePress
-                  }
-                ]
-              }}>
-                <Text>질문</Text>
-                <Text>답변</Text>
-              </Animated.View>
-            </TouchableWithoutFeedback>
+            return(
+              <NoteListAnimatedComponent item={item}/>
+            )
           }}
           keyExtractor={(item, index) => item.category + `${index}`}>
-        </FaltList>
-      </View>
+        </FlatList>
+      </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+  },
+  listView:{
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "rgb(173,181,189)",
+    marginTop: 10
+  },
+  questionText:{
+    fontSize: 18,
+    fontWeight: "500",
+    color: "rgb(73,80,87)"
+  },
+  answerText:{
+    fontSize: 18,
+    fontWeight: "300",
+    color: "rgb(73,80,87)"
+  },
+})
