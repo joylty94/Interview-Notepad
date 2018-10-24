@@ -12,12 +12,12 @@ export default class WritingNoteButtonComponent extends Component{
   handleShareButton = () => {
     this.props.handleShare()
   }
-  handleCreatingButton = (question, answer) => {
-    this.props.handleCreating(question, answer)
+  handleCreatingButton = (question, answer, tag) => {
+    this.props.handleCreating(question, answer, tag)
     this.props.navigation.goBack()
   }
   render(){
-    const { writingShare, writingTag, question, answer } = this.props
+    const { writingShare, writingTag, question, answer, tag } = this.props
     return(
       <View style={styles.header}>
         <View style={styles.container}>
@@ -37,7 +37,7 @@ export default class WritingNoteButtonComponent extends Component{
               <FontAwesome name="tags" size={23} color={writingTag ? "rgb(247,131,172)" : "rgb(33,37,41)"} />
               <Text style={[styles.buttonText,
                   { color: writingTag ? "rgb(248,249,250)" : "rgb(33,37,41)" }]}>
-                태 그
+                키워드
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, { backgroundColor: writingShare ? "rgb(206,212,218)" : "rgb(248,249,250)" }]}
@@ -49,7 +49,7 @@ export default class WritingNoteButtonComponent extends Component{
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
-              onPress={() => this.handleCreatingButton(question, answer)}>
+              onPress={() => this.handleCreatingButton(question, answer, tag)}>
               <FontAwesome name="save" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>저 장</Text>
             </TouchableOpacity>
