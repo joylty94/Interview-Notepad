@@ -6,7 +6,7 @@ import NoteScreenContainer from "./containers/NoteScreenContainer";
 import SignUpScreenContainer from "./containers/SignUpScreenContainer";
 import SignInScreenContainer from "./containers/SignInScreenContainer";
 import WritingNoteScreenContainer from "./containers/WritingNoteScreenContainer";
-import CategoryListContainer from "./containers/CategoryListContainer";
+import CategoryListScreenContainer from "./containers/CategoryListScreenContainer";
 import WithAuth from "./containers/WithAuth";
 
 export const StackNoteScreen = createStackNavigator({
@@ -79,7 +79,7 @@ export const StackApp = createStackNavigator({
     }
   },
   CategoryListScreen: {
-    screen: CategoryListContainer,
+    screen: CategoryListScreenContainer,
     navigationOptions: () => {
       header = null;
       return { header }
