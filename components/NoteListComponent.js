@@ -6,7 +6,6 @@ import NoteListAnimatedComponent from "./NoteListAnimatedComponent";
 export default class NoteListComponent extends Component{
   render(){
     const { notesItem } = this.props;
-    console.log("리스트", notesItem)
     return(
       <ScrollView style={styles.container}>
         <FlatList

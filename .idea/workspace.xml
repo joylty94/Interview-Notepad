@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/actions/noteScreen.js" afterPath="$PROJECT_DIR$/actions/noteScreen.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryListComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListComponent.js" />
-      <change beforePath="$PROJECT_DIR$/containers/NoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/NoteScreenContainer.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/noteScreen.js" afterPath="$PROJECT_DIR$/reducers/noteScreen.js" />
-      <change beforePath="$PROJECT_DIR$/thunk/noteScreen.js" afterPath="$PROJECT_DIR$/thunk/noteScreen.js" />
-      <change beforePath="$PROJECT_DIR$/thunk/writingNoteScreen.js" afterPath="$PROJECT_DIR$/thunk/writingNoteScreen.js" />
+      <change beforePath="$PROJECT_DIR$/components/CategoryListModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListModalComponent.js" />
+      <change beforePath="$PROJECT_DIR$/containers/CategoryListContainer.js" afterPath="$PROJECT_DIR$/containers/CategoryListContainer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />

@@ -18,7 +18,7 @@ export default class CategoryListModalComponent extends Component{
     }
   }
   render(){
-    const { noteModal, writingModal, categoryItem, currentCategory } = this.props
+    const { noteModal, writingModal, categoryItem, currentCategory } = this.props;
     return(
       <Modal
         animationIn="zoomInDown"
@@ -33,7 +33,7 @@ export default class CategoryListModalComponent extends Component{
             <View style={styles.categoryHeader}>
               <Text style={styles.categoryText}>카태고리</Text>
               <TouchableOpacity
-                onPress={this.handleModalPage}>
+                onPress={() => this.handleModalPage()}>
                 <MaterialIcons name="settings" size={28} color="rgb(145,167,255)" />
               </TouchableOpacity>
             </View>
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: "center",
-    // backgroundColor: "rgba(255, 255, 255, 0.5)"
   },
   modalView: {
     width: "100%",
