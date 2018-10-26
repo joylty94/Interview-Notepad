@@ -17,13 +17,13 @@ export default function ( state = initialState, action) {
         ...state,
         loading: false,
         currentCategory: action.currentCategory,
-        notesItem: action.notesItem
+        notesItem: action.notesItem,
+        categoryItem: action.categoryItem
     };
     case ONHANDLEMODAL :
       return{
         ...state,
         noteModal: !state.noteModal,
-        categoryItem: action.categoryItem
     };
     default:
       return state;

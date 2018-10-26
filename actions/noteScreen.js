@@ -10,17 +10,17 @@ export function noteScreenLoading() {
   };
 }
 
-export function noteScreenSuccess(currentCategory ,notesItem) {
+export function noteScreenSuccess(currentCategory, notesItem, categoryItem) {
   return{
     type: SUCCESS,
     currentCategory,
-    notesItem
+    notesItem,
+    categoryItem
   };
 }
 
-export function noteScreenOnHandleModal(categoryItem) {
+export function noteScreenOnHandleModal() {
   return{
     type: ONHANDLEMODAL,
-    categoryItem
   };
 }
