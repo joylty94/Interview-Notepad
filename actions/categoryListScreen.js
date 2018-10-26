@@ -1,6 +1,8 @@
 export const LOADING = "categoryListScreen/LOADING";
 export const SUCCESS = "categoryListScreen/SUCCESS";
 export const ADDCATEGORY = "categoryListScreen/ADDCATEGORY";
+export const UPDATECATEGORY = "categoryListScreen/UPDATECATEGORY";
+export const DELETECATEGORY = "categoryListScreen/DELETECATEGORY";
 
 export function categoryListScreenLoading() {
   return {
@@ -19,5 +21,17 @@ export function categoryListScreenSuccess(currentCategory, categoryItem) {
 export function categoryListScreenAddCategory() {
   return {
     type: ADDCATEGORY
+  };
+}
+
+export function categoryListScreenUpdateCategory() {
+  return {
+    type: UPDATECATEGORY
+  };
+}
+
+export function categoryListScreenDeleteCategory() {
+  return {
+    type: DELETECATEGORY
   };
 }
