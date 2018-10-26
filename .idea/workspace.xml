@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/actions/categoryListScreen.js" afterPath="$PROJECT_DIR$/actions/categoryListScreen.js" />
       <change beforePath="$PROJECT_DIR$/components/CategoryAddModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryAddModalComponent.js" />
       <change beforePath="$PROJECT_DIR$/components/CategoryListComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/CategoryListHeaderComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListHeaderComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/CategoryUpdateModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryUpdateModalComponent.js" />
       <change beforePath="$PROJECT_DIR$/containers/CategoryListScreenContainer.js" afterPath="$PROJECT_DIR$/containers/CategoryListScreenContainer.js" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/reducers/categoryListScreen.js" afterPath="$PROJECT_DIR$/reducers/categoryListScreen.js" />
       <change beforePath="$PROJECT_DIR$/thunk/categoryListScreen.js" afterPath="$PROJECT_DIR$/thunk/categoryListScreen.js" />
     </list>
@@ -202,7 +201,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
