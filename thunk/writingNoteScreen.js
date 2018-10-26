@@ -23,27 +23,10 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     const countItem = stateItem.noteScreen.notesItem;
     const count = countItem.length + 1;
     const share = stateItem.writingNoteScreen.writingShare;
+    const categoryItem = stateItem.noteScreen.categoryItem;
+    const category = categoryItem.find(item => item.categoryName === currentCategory)
     if (share) {
       const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/`).push({
-        question,
-        answer,
-        tag,
-        time: firebase.database.ServerValue.TIMESTAMP,
-        count
-      })
-      const categoryNumber = firebase.database().ref(`users/${uid}/categorys`).update({
-        count,
-      })
-      const sharePush = firebase.database().ref(`shared/`).push({
-        question,
-        answer,
-        tag,
-        time: firebase.database.ServerValue.TIMESTAMP,
-        uid,
-      })
-      await Promise.all([notePush, categoryNumber, sharePush])
-    } else {
-      await firebase.database().ref(`users/${uid}/${currentCategory}/`).push({
         question,
         answer,
         tag,
@@ -51,6 +34,34 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         count,
         share: share
       })
+      const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
+        categoryName: category.categoryName,
+        count: category.count,
+        noteCount: category.noteCount + 1,
+      })
+      const sharePush = firebase.database().ref(`shared/${uid}`).push({
+        question,
+        answer,
+        tag,
+        time: firebase.database.ServerValue.TIMESTAMP,
+        count,
+      })
+      await Promise.all([notePush, sharePush])
+    } else {
+      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/`).push({
+        question,
+        answer,
+        tag,
+        time: firebase.database.ServerValue.TIMESTAMP,
+        count,
+        share: share
+      })
+      const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
+        categoryName: category.categoryName,
+        count: category.count,
+        noteCount: category.noteCount + 1,
+      })
+      await Promise.all([notePush, categoryNoteCount])
     }
     dispatch(writingNoteScreenHandleCreating())
     dispatch(fetchNoteScreen())
