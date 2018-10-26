@@ -5,19 +5,39 @@ import { connect } from "react-redux";
 import CategoryListComponent from "../components/CategoryListComponent";
 import CategoryListHeaderComponent from "../components/CategoryListHeaderComponent";
 import CategoryAddModalComponent from "../components/CategoryAddModalComponent";
-import { fetchCategoryListScreen, fetchAddCategory } from "../thunk/categoryListScreen";
+import CategoryUpdateModalComponent from "../components/CategoryUpdateModalComponent";
+import { fetchCategoryListScreen, fetchAddCategory, fetchUpdateCategory, fetchDeleteCategory } from "../thunk/categoryListScreen";
 
 class CategoryListScreenContainer extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      text : "",
+      category: {},
+    }
+  }
   componentDidMount() {
     this.props.onMount()
+  }
+  changeText = (text) => {
+    this.setState({
+      text
+    })
+  }
+  changeCategory = (category) => {
+    this.setState({
+      category
+    })
   }
   render() {
     const { ...rest } = this.props
     return(
       <View style={{flex: 1}}>
         <CategoryListHeaderComponent {...rest }/>
-        <CategoryListComponent {...rest }/>
-        <CategoryAddModalComponent {...rest}/>
+        <CategoryListComponent {...rest} changeCategory={this.changeCategory} changeText={this.changeText} />
+        <CategoryAddModalComponent {...rest} changeText={this.changeText} text={this.state.text}/>
+        <CategoryUpdateModalComponent {...rest} changeText={this.changeText} category={this.state.category}
+          text={this.state.text}/>
       </View>
     )
   }
@@ -27,14 +47,21 @@ export default connect(
   state => ({
     currentCategory: state.categoryListScreen.currentCategory,
     categoryItem: state.categoryListScreen.categoryItem,
-    addPrompt: state.categoryListScreen.addPrompt
+    addPrompt: state.categoryListScreen.addPrompt,
+    updatePrompt: state.categoryListScreen.updatePrompt
   }),
   dispatch => ({
     onMount: () => {
       dispatch(fetchCategoryListScreen())
     },
-    onPrompt: (text) => {
+    onAddPrompt: (text) => {
       dispatch(fetchAddCategory(text))
+    },
+    onUpdatePrompt: (text, category) => {
+      dispatch(fetchUpdateCategory(text, category))
+    },
+    onDeleteButton: (category) => {
+      dispatch(fetchDeleteCategory(category))
     }
   })
 )(CategoryListScreenContainer)

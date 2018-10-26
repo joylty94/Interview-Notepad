@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
-import { categoryListScreenLoading, categoryListScreenSuccess, categoryListScreenAddCategory } from "../actions/categoryListScreen";
+import { categoryListScreenLoading, categoryListScreenSuccess, categoryListScreenAddCategory,
+  categoryListScreenUpdateCategory, categoryListScreenDeleteCategory } from "../actions/categoryListScreen";
 
 export const fetchCategoryListScreen = () => async (dispatch) => {
   try{
@@ -10,6 +11,7 @@ export const fetchCategoryListScreen = () => async (dispatch) => {
     const snapshot2 = await firebase.database().ref(`/users/${uid}/categorys`).once("value");
     const categoryObject = snapshot2.val() || [];
     const categoryItem = Object.entries(categoryObject).map(([id, category]) => ({
+      id,
       ...category
     }))
     dispatch(categoryListScreenSuccess(currentCategory, categoryItem))
@@ -25,10 +27,11 @@ export const fetchAddCategory = (text) => async (dispatch) => {
       const snapshot = await firebase.database().ref(`/users/${uid}/categorys`).once("value");
       const categoryObject = snapshot.val() || [];
       const categoryItem = Object.entries(categoryObject).map(([id, category]) => ({
+        id,
         ...category
       }))
       const count = categoryItem.length + 1
-      await firebase.database().ref(`/users/${uid}/categorys`).push({
+      await firebase.database().ref(`/users/${uid}/categorys/`).push({
         categoryName: text,
         count,
         noteCount: 0,
@@ -37,6 +40,35 @@ export const fetchAddCategory = (text) => async (dispatch) => {
     dispatch(categoryListScreenAddCategory())
     dispatch(fetchCategoryListScreen())
   } catch(e){
+    console.log(e)
+  }
+}
+
+export const fetchUpdateCategory = (text, category) => async(dispatch) => {
+  try{
+    if (text.length >= 1) {
+      const { uid } = firebase.auth().currentUser;
+      console.log(category.count)
+      await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).update({
+        categoryName: text,
+        count: category.count,
+        noteCount: category.noteCount
+      })
+    }
+    dispatch(categoryListScreenUpdateCategory())
+    dispatch(fetchCategoryListScreen())
+  } catch(e) {
+    console.log(e)
+  }
+}
+export const fetchDeleteCategory = (category) => async(dispatch) => {
+  try{
+      const { uid } = firebase.auth().currentUser;
+      console.log(category.count)
+    await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
+    dispatch(categoryListScreenDeleteCategory())
+    dispatch(fetchCategoryListScreen())
+  } catch(e) {
     console.log(e)
   }
 }
