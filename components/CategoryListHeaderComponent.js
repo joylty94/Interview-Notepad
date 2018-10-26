@@ -14,9 +14,9 @@ export default class CategoryListHeaderComponent extends Component {
           </TouchableOpacity>
           <Text style={styles.text}>카테고리 관리</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        {/* <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>편집</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     )
   }
