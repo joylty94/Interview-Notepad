@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 import { writingNoteScreenHandleCategory, writingNoteScreenHandleTag, writingNoteScreenHandleShare,
   writingNoteScreenHandleCreating } from "../actions/writingNoteScreen";
-import { noteScreenSuccess } from "../actions/noteScreen";
+import { fetchNoteScreen } from "./noteScreen";
 
 export const fatchCategoryHandleModal = () => (dispatch) => {
   dispatch(writingNoteScreenHandleCategory())
@@ -53,13 +53,7 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
       })
     }
     dispatch(writingNoteScreenHandleCreating())
-    const snapshot = await firebase.database().ref(`users/${uid}/${currentCategory}`).once("value");
-    const notesObject = snapshot.val() || [];
-    const notesItem = Object.entries(notesObject).map(([category, article]) => ({
-      ...article,
-    }));
-    const sortNotesItem = notesItem.reverse()
-    dispatch(noteScreenSuccess(currentCategory, sortNotesItem))
+    dispatch(fetchNoteScreen())
   } catch(e) {
     console.log(e)
   }
