@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, FlatList, ScrollView } from "react-native";
+import { StyleSheet, FlatList, ScrollView } from "react-native";
 
 import NoteListAnimatedComponent from "./NoteListAnimatedComponent";
 
@@ -27,22 +27,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     paddingBottom: 10,
-  },
-  listView:{
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "rgb(173,181,189)",
-    marginTop: 10
-  },
-  questionText:{
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgb(73,80,87)"
-  },
-  answerText:{
-    fontSize: 18,
-    fontWeight: "300",
-    color: "rgb(73,80,87)"
   },
 })
