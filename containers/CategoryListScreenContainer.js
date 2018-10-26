@@ -4,19 +4,20 @@ import { connect } from "react-redux";
 
 import CategoryListComponent from "../components/CategoryListComponent";
 import CategoryListHeaderComponent from "../components/CategoryListHeaderComponent";
-import { fetchCategoryListScreen } from "../thunk/categoryListScreen";
+import CategoryAddModalComponent from "../components/CategoryAddModalComponent";
+import { fetchCategoryListScreen, fetchAddCategory } from "../thunk/categoryListScreen";
 
 class CategoryListScreenContainer extends Component{
   componentDidMount() {
     this.props.onMount()
   }
-  render(){
-    const { ...rest, } = this.props
-    console.log("요거", this.props.currentCategory, this.props.categoryItem)
+  render() {
+    const { ...rest } = this.props
     return(
       <View style={{flex: 1}}>
         <CategoryListHeaderComponent {...rest }/>
         <CategoryListComponent {...rest }/>
+        <CategoryAddModalComponent {...rest}/>
       </View>
     )
   }
@@ -25,11 +26,15 @@ class CategoryListScreenContainer extends Component{
 export default connect(
   state => ({
     currentCategory: state.categoryListScreen.currentCategory,
-    categoryItem: state.categoryListScreen.categoryItem
+    categoryItem: state.categoryListScreen.categoryItem,
+    addPrompt: state.categoryListScreen.addPrompt
   }),
   dispatch => ({
     onMount: () => {
       dispatch(fetchCategoryListScreen())
+    },
+    onPrompt: (text) => {
+      dispatch(fetchAddCategory(text))
     }
   })
 )(CategoryListScreenContainer)
