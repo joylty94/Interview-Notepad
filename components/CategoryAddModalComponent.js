@@ -10,13 +10,13 @@ export default class CategoryAddModalComponent extends Component{
     }
   }
   handlePrompt = () => {
-    this.props.onPrompt("")
+    this.props.onAddPrompt("")
   }
   handleAdd = (text) => {
-    this.props.onPrompt(text)
+    this.props.onAddPrompt(text)
   }
   render(){
-    const { addPrompt } = this.props;
+    const { addPrompt, changeText, text } = this.props;
     return(
       <Modal
         animationIn="slideInLeft"
@@ -36,11 +36,11 @@ export default class CategoryAddModalComponent extends Component{
               autoCapitalize="none"
               autoFocus={true}
               style={styles.modalInput}
-              onChangeText={(text) => this.setState({text})}/>
+              onChangeText={(text) => changeText(text)}/>
           </View>
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
-                onPress={() => { this.handleAdd(this.state.text)}}
+                onPress={() => { this.handleAdd(text)}}
                 style={styles.modalButton}>
                 <Text style={styles.buttonText}>추가</Text>
               </TouchableOpacity>
