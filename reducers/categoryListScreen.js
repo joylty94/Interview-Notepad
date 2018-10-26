@@ -1,7 +1,8 @@
-import { LOADING, SUCCESS } from "../actions/categoryListScreen";
+import { LOADING, SUCCESS, ADDCATEGORY } from "../actions/categoryListScreen";
 
 const initialState = {
   loading: false,
+  addPrompt: false
 }
 
 export default function (state = initialState, action) {
@@ -17,6 +18,11 @@ export default function (state = initialState, action) {
         loading: false,
         currentCategory: action.currentCategory,
         categoryItem: action.categoryItem
+      };
+    case ADDCATEGORY:
+      return {
+        ...state,
+        addPrompt: !state.addPrompt
       };
     default:
       return state;
