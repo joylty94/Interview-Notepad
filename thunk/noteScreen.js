@@ -11,7 +11,7 @@ export const fetchNoteScreen = () => async (dispatch) => {
     await firebase.database().ref(`users/${uid}/categorys/`).push({
       categoryName: "메모장",
       count: 0,
-      number: 0,
+      noteCount: 0,
     })
     await firebase.database().ref(`users/${uid}/currentCategory/`).set("메모장")
     dispatch(noteScreenSuccess("메모장", []))
