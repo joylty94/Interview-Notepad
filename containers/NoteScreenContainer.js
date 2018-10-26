@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
-import { fetchNoteScreen, fetchcategoryOnModal, fetchcategoryOffModal } from "../thunk/noteScreen";
+import { fetchNoteScreen, fetchcategoryOnModal } from "../thunk/noteScreen";
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
