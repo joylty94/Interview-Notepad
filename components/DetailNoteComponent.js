@@ -13,8 +13,7 @@ export default class DetailNoteComponent extends Component{
     this.props.navigation.goBack()
   }
   render() {
-    const { navigation, detailCategory, } = this.props;
-    console.log("함수", this.props.onDelete)
+    const { navigation, detailCategory, onShare } = this.props;
     if (detailCategory){
       return (
         <View style={{ flex: 1 }}>
@@ -27,11 +26,41 @@ export default class DetailNoteComponent extends Component{
             <View style={styles.headerButtonContainer}>
               {(detailCategory.share)
                 ?
-                <TouchableOpacity style={styles.headerButton}>
+                <TouchableOpacity style={styles.headerButton}
+                  onPress={() => Alert.alert(
+                    "",
+                    "메모를 공유 취소합니다.",
+                    [
+                      {
+                        text: '공유 취소', onPress: () => {
+                          onShare(detailCategory)
+                        }
+                      },
+                      {
+                        text: '취소'
+                      },
+                    ],
+                    { cancelable: false }
+                  )}>
                   <Text style={styles.headerText}>공유중</Text>
                 </TouchableOpacity>
                 :
-                <TouchableOpacity style={styles.headerButton}>
+                <TouchableOpacity style={styles.headerButton}
+                  onPress={() => Alert.alert(
+                    "",
+                    "메모를 공유합니다.",
+                    [
+                      {
+                        text: '공유', onPress: () => {
+                          onShare(detailCategory)
+                        }
+                      },
+                      {
+                        text: '취소'
+                      },
+                    ],
+                    { cancelable: false }
+                  )}>
                   <Text style={styles.headerText}>공 유</Text>
                 </TouchableOpacity>
               }

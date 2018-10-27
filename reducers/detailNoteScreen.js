@@ -1,4 +1,4 @@
-import { LOADING, SUCCESS, DELETE } from "../actions/detailNoteScreen";
+import { LOADING, SUCCESS, DELETE, SHARE } from "../actions/detailNoteScreen";
 
 const initialState = {
   loading: false,
@@ -18,6 +18,10 @@ export default function (state = initialState, action) {
         detailCategory: action.detailCategory
       }
     case DELETE :
+      return {
+        ...state,
+      }
+    case SHARE :
       return {
         ...state,
       }

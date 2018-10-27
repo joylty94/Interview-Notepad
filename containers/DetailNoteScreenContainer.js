@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { fetchDetailNoteScreen, fetchDetailNoteScreenDelete } from "../thunk/detailNoteScreen";
+import { fetchDetailNoteScreen, fetchDetailNoteScreenDelete, fetchDetailNoteScreenShare } from "../thunk/detailNoteScreen";
 
 import DetailNoteComponent from "../components/DetailNoteComponent";
 
@@ -26,6 +26,9 @@ export default connect(
     },
     onDelete: (detailCategory) => {
       dispatch(fetchDetailNoteScreenDelete(detailCategory))
+    },
+    onShare: (detailCategory) => {
+      dispatch(fetchDetailNoteScreenShare(detailCategory))
     },
   })
 )(DetailNoteScreenContainer)

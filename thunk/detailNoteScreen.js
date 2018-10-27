@@ -29,3 +29,39 @@ export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, 
   dispatch(detailNoteScreenDelete());
   dispatch(fetchNoteScreen())
 }
+
+export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, getstate) => {
+  const { uid } = firebase.auth().currentUser;
+  const stateItem = getstate();
+  const currentCategory = stateItem.noteScreen.currentCategory;
+  if(detailCategory.share){
+    const rmShare = firebase.database().ref(`/shared/${uid}/${detailCategory.id}`).remove()
+    const categoryUpdate = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).update({
+      question: detailCategory.question,
+      answer: detailCategory.answer,
+      tag: detailCategory.tag,
+      time: detailCategory.time,
+      count: detailCategory.count,
+      share: false
+    })
+    await Promise.all([rmShare, categoryUpdate])
+    dispatch(fetchDetailNoteScreen(detailCategory))
+  } else {
+    const addShare = firebase.database().ref(`/shared/${uid}/${detailCategory.id}`).set({
+      question: detailCategory.question,
+      answer: detailCategory.answer,
+      tag: detailCategory.tag,
+      time: detailCategory.time,
+    })
+    const categoryUpdate = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).update({
+      question: detailCategory.question,
+      answer: detailCategory.answer,
+      tag: detailCategory.tag,
+      time: detailCategory.time,
+      count: detailCategory.count,
+      share: true
+    })
+    await Promise.all([addShare, categoryUpdate])
+    dispatch(fetchDetailNoteScreen(detailCategory))
+  }
+}
