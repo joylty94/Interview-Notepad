@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/actions/categoryListScreen.js" afterPath="$PROJECT_DIR$/actions/categoryListScreen.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryAddModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryAddModalComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryListComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryListHeaderComponent.js" afterPath="$PROJECT_DIR$/components/CategoryListHeaderComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryUpdateModalComponent.js" afterPath="$PROJECT_DIR$/components/CategoryUpdateModalComponent.js" />
-      <change beforePath="$PROJECT_DIR$/containers/CategoryListScreenContainer.js" afterPath="$PROJECT_DIR$/containers/CategoryListScreenContainer.js" />
-      <change beforePath="$PROJECT_DIR$/reducers/categoryListScreen.js" afterPath="$PROJECT_DIR$/reducers/categoryListScreen.js" />
-      <change beforePath="$PROJECT_DIR$/thunk/categoryListScreen.js" afterPath="$PROJECT_DIR$/thunk/categoryListScreen.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/components/NoteListAnimatedComponent.js" afterPath="$PROJECT_DIR$/components/NoteListAnimatedComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/NoteListComponent.js" afterPath="$PROJECT_DIR$/components/NoteListComponent.js" />
+      <change beforePath="$PROJECT_DIR$/reducers/loginScreen.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/router.js" afterPath="$PROJECT_DIR$/router.js" />
+      <change beforePath="$PROJECT_DIR$/screenName.js" afterPath="$PROJECT_DIR$/screenName.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,7 +59,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -73,9 +70,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,6 +258,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">

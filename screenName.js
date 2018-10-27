@@ -6,6 +6,7 @@ const CategoryListScreen = "CategoryListScreen"
 const App = "App"
 const Auth = "Auth"
 const AuthLoading = "AuthLoading"
+const DetailNoteScreen = "DetailNoteScreen"
 
 export {
   SignUpScreen,
@@ -16,4 +17,5 @@ export {
   App,
   Auth,
   AuthLoading,
+  DetailNoteScreen,
 }
