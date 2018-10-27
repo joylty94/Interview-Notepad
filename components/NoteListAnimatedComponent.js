@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, FlatList } from "react-native";
+import { Text, StyleSheet, TouchableWithoutFeedback, Animated } from "react-native";
+import { DetailNoteScreen } from "../screenName";
 
 export default class NoteListComponent extends Component {
   constructor(props) {
@@ -20,14 +21,15 @@ export default class NoteListComponent extends Component {
       toValue: 1,
       duration: 200,
     }).start()
+    this.props.navigation.navigate(DetailNoteScreen, this.props.item)
   }
   render() {
     const { item } = this.props;
-    console.log(item)
     return (
       <TouchableWithoutFeedback
         onPressIn={() => this.AnimateIn()}
-        onPressOut={() => this.AnimateOut()}>
+        onPressOut={() => this.AnimateOut()}
+        >
         <Animated.View style={[{
           transform: [
             {
@@ -37,7 +39,7 @@ export default class NoteListComponent extends Component {
         }, styles.listView]}>
           <Text style={styles.questionText}>{item.question}</Text>
           <Text style={styles.answerText}>{item.answer}</Text>
-          {/* <Text>{((item.tag).length === 0) ? null : item.tag }</Text> */}
+          <Text>{((item.tag).length === 0) ? null : item.tag }</Text>
         </Animated.View>
       </TouchableWithoutFeedback>
     )
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   questionText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "500",
     color: "rgb(73,80,87)"
   },

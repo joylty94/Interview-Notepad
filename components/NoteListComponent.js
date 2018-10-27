@@ -5,14 +5,14 @@ import NoteListAnimatedComponent from "./NoteListAnimatedComponent";
 
 export default class NoteListComponent extends Component{
   render(){
-    const { notesItem } = this.props;
+    const { notesItem, ...rest } = this.props;
     return(
       <ScrollView style={styles.container}>
         <FlatList
           data={ notesItem }
           renderItem= {({item, index}) => {
             return(
-              <NoteListAnimatedComponent item={item}/>
+              <NoteListAnimatedComponent item={item} {...rest} />
             )
           }}
           keyExtractor={(item, index) => item.category + `${index}`}>
