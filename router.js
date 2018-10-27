@@ -18,7 +18,7 @@ export const StackNoteScreen = createStackNavigator({
       return { header }
     }
   },
-  WritingNotesScreen: {
+  WritingNoteScreen: {
     screen: WritingNoteScreenContainer,
     navigationOptions: () => {
       header = null;

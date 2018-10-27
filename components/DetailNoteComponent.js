@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform, TouchableWithoutFeedback, Alert } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import Moment from 'react-moment';
+import { WritingNoteScreen } from "../screenName";
 
 export default class DetailNoteComponent extends Component{
   componentDidMount() {
@@ -83,7 +84,8 @@ export default class DetailNoteComponent extends Component{
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("")}>
             <View style={styles.bodyView}>
               <Text style={styles.questionText}>
                 {detailCategory.question}

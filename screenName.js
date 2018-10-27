@@ -1,7 +1,7 @@
 const SignUpScreen = "SignUpScreen";
 const SignInScreen = "SignInScreen"
 const TabScreen = "TabScreen";
-const WritingNotesScreen = "WritingNotesScreen"
+const WritingNoteScreen = "WritingNoteScreen"
 const CategoryListScreen = "CategoryListScreen"
 const App = "App"
 const Auth = "Auth"
@@ -12,7 +12,7 @@ export {
   SignUpScreen,
   SignInScreen,
   TabScreen,
-  WritingNotesScreen,
+  WritingNoteScreen,
   CategoryListScreen,
   App,
   Auth,

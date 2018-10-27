@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
-import { WritingNotesScreen } from "../screenName";
+import { WritingNoteScreen } from "../screenName";
 
 export default class PlusButtonComponent extends Component{
   render(){
     const { navigation } = this.props
     return(
       <TouchableOpacity style={styles.positionView}
-        onPress={() => { navigation.navigate(WritingNotesScreen)}}>
+        onPress={() => { navigation.navigate(WritingNoteScreen)}}>
         <Entypo name="plus" size={32} color="rgb(248,249,250)" />
       </TouchableOpacity>
     )
