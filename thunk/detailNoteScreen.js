@@ -14,12 +14,18 @@ export const fetchDetailNoteScreen = (item) => async(dispatch, getstate) => {
 }
 
 export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, getstate) => {
+  const { uid } = firebase.auth().currentUser;
   const stateItem = getstate();
   const currentCategory = stateItem.noteScreen.currentCategory;
-  const { uid } = firebase.auth().currentUser;
-  console.log("currentCategory", currentCategory)
-  console.log("id", detailCategory)
-  await firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).remove()
+  const categoryItem = stateItem.noteScreen.categoryItem;
+  const category = categoryItem.find(item => item.categoryName === currentCategory)
+  const deletenote = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).remove()
+  const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
+    categoryName: category.categoryName,
+    count: category.count,
+    noteCount: category.noteCount - 1,
+  })
+  await Promise.all([deletenote, categoryNoteCount])
   dispatch(detailNoteScreenDelete());
   dispatch(fetchNoteScreen())
 }
