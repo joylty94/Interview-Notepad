@@ -26,7 +26,7 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     const categoryItem = stateItem.noteScreen.categoryItem;
     const category = categoryItem.find(item => item.categoryName === currentCategory)
     if (share) {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/`).push({
+      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}`).push({
         question,
         answer,
         tag,
@@ -39,16 +39,15 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         count: category.count,
         noteCount: category.noteCount + 1,
       })
-      const sharePush = firebase.database().ref(`shared/${uid}`).push({
+      const sharePush = firebase.database().ref(`shared/${uid}/${notePush.key}`).set({
         question,
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
-        count,
       })
-      await Promise.all([notePush, sharePush])
+      await Promise.all([notePush, categoryNoteCount, sharePush])
     } else {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/`).push({
+      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}`).push({
         question,
         answer,
         tag,
