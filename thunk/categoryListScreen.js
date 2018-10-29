@@ -1,6 +1,7 @@
 import * as firebase from "firebase";
 import { categoryListScreenLoading, categoryListScreenSuccess, categoryListScreenAddCategory,
   categoryListScreenUpdateCategory, categoryListScreenDeleteCategory } from "../actions/categoryListScreen";
+import { fetchNoteScreen } from "./noteScreen"
 
 export const fetchCategoryListScreen = () => async (dispatch) => {
   try{
@@ -39,6 +40,7 @@ export const fetchAddCategory = (text) => async (dispatch) => {
     }
     dispatch(categoryListScreenAddCategory())
     dispatch(fetchCategoryListScreen())
+    dispatch(fetchNoteScreen())
   } catch(e){
     console.log(e)
   }
@@ -56,17 +58,18 @@ export const fetchUpdateCategory = (text, category) => async(dispatch) => {
     }
     dispatch(categoryListScreenUpdateCategory())
     dispatch(fetchCategoryListScreen())
+    dispatch(fetchNoteScreen())
   } catch(e) {
     console.log(e)
   }
 }
 export const fetchDeleteCategory = (category) => async(dispatch) => {
   try{
-      const { uid } = firebase.auth().currentUser;
-      console.log(category.count)
+    const { uid } = firebase.auth().currentUser;
     await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
     dispatch(categoryListScreenDeleteCategory())
     dispatch(fetchCategoryListScreen())
+    dispatch(fetchNoteScreen())
   } catch(e) {
     console.log(e)
   }
