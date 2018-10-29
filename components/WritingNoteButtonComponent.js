@@ -12,12 +12,17 @@ export default class WritingNoteButtonComponent extends Component{
   handleShareButton = () => {
     this.props.handleShare()
   }
-  handleCreatingButton = (question, answer, tag) => {
-    this.props.handleCreating(question, answer, tag)
+  handleCreatingButton = (category, question, answer, tag) => {
+    if (category){
+      this.props.handleUpdating(category, question, answer, tag)
+    } else {
+      this.props.handleCreating(question, answer, tag)
+    }
     this.props.navigation.goBack()
   }
   render(){
-    const { writingShare, writingTag, question, answer, tag } = this.props
+    const { writingShare, writingTag, question, answer, tag, navigation } = this.props;
+    const category = navigation.state.params;
     return(
       <View style={styles.header}>
         <View style={styles.container}>
@@ -49,7 +54,7 @@ export default class WritingNoteButtonComponent extends Component{
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
-              onPress={() => this.handleCreatingButton(question, answer, tag)}>
+              onPress={() => this.handleCreatingButton(category, question, answer, tag)}>
               <FontAwesome name="save" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>저 장</Text>
             </TouchableOpacity>
