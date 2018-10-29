@@ -1,4 +1,4 @@
-import { HANDLECATEGORY, HANDLETAG, HANDLESHARE, CREATING } from "../actions/writingNoteScreen";
+import { HANDLECATEGORY, HANDLETAG, HANDLESHARE, CREATING, UPDATING } from "../actions/writingNoteScreen";
 
 const initialState = {
   writingModal: false,
@@ -24,6 +24,13 @@ export default function ( state = initialState, action ) {
         writingShare: !state.writingShare
       };
     case CREATING :
+      return{
+        ...state,
+        writingModal: false,
+        writingTag: false,
+        writingShare: false
+      };
+    case UPDATING :
       return{
         ...state,
         writingModal: false,
