@@ -1,7 +1,8 @@
 import * as firebase from "firebase";
 import { writingNoteScreenHandleCategory, writingNoteScreenHandleTag, writingNoteScreenHandleShare,
-  writingNoteScreenHandleCreating } from "../actions/writingNoteScreen";
+  writingNoteScreenHandleCreating, writingNoteScreenHandleUpdating } from "../actions/writingNoteScreen";
 import { fetchNoteScreen } from "./noteScreen";
+import { fetchDetailNoteScreen } from "./detailNoteScreen";
 
 export const fatchCategoryHandleModal = () => (dispatch) => {
   dispatch(writingNoteScreenHandleCategory())
@@ -65,6 +66,48 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     dispatch(writingNoteScreenHandleCreating())
     dispatch(fetchNoteScreen())
   } catch(e) {
+    console.log(e)
+  }
+}
+
+export const fatchUpdating = (category, question, answer, tag) => async(dispatch, gestate) => {
+  try {
+    const { uid } = firebase.auth().currentUser;
+    const stateItem = gestate();
+    const currentCategory = stateItem.noteScreen.currentCategory;
+    const share = stateItem.writingNoteScreen.writingShare;
+    if (share) {
+      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/${category.id}`).update({
+        question,
+        answer,
+        tag,
+        time: firebase.database.ServerValue.TIMESTAMP,
+        count: category.count,
+        share: share
+      })
+      const sharePush = firebase.database().ref(`shared/${uid}/${category.id}`).update({
+        question,
+        answer,
+        tag,
+        time: firebase.database.ServerValue.TIMESTAMP,
+      })
+      await Promise.all([notePush, sharePush])
+    } else {
+      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/${category.id}`).update({
+        question,
+        answer,
+        tag,
+        time: firebase.database.ServerValue.TIMESTAMP,
+        count: category.count,
+        share: share
+      })
+      const noteDelete = firebase.database().ref(`shared/${uid}/${category.id}`).remove()
+      await Promise.all([notePush, noteDelete])
+    }
+    dispatch(writingNoteScreenHandleUpdating())
+    dispatch(fetchDetailNoteScreen(category))
+    dispatch(fetchNoteScreen())
+  } catch (e) {
     console.log(e)
   }
 }
