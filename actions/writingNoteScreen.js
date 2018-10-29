@@ -2,6 +2,7 @@ export const HANDLECATEGORY = "writingNoteScreen/HANDLECATEGORY";
 export const HANDLETAG = "writingNoteScreen/HANDLETAG";
 export const HANDLESHARE = "writingNoteScreen/HANDLESHARE";
 export const CREATING = 'writingNoteScreen/CREATING';
+export const UPDATING = 'writingNoteScreen/UPDATING';
 
 export function writingNoteScreenHandleCategory(){
   return{
@@ -24,5 +25,11 @@ export function writingNoteScreenHandleShare(){
 export function writingNoteScreenHandleCreating(){
   return{
     type: CREATING,
+  }
+}
+
+export function writingNoteScreenHandleUpdating(){
+  return{
+    type: UPDATING,
   }
 }
