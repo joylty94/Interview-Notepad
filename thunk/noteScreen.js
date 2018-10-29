@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess } from "../actions/noteScreen";
+import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess, noteScreenCurrentCategoryUpdating } from "../actions/noteScreen";
 
 export const fetchNoteScreen = () => async (dispatch) => {
   try {
@@ -8,12 +8,12 @@ export const fetchNoteScreen = () => async (dispatch) => {
   const snapshot = await firebase.database().ref(`/users/${uid}/currentCategory`).once("value");
   const current = snapshot.val() || [];
   if (current[0] === undefined){
-    initCategory = firebase.database().ref(`users/${uid}/categorys/`).push({
+    const initCategory = firebase.database().ref(`users/${uid}/categorys/`).push({
       categoryName: "메모장",
       count: 1,
       noteCount: 0,
     })
-    initCurrent = firebase.database().ref(`users/${uid}/currentCategory/`).set("메모장")
+    const initCurrent = firebase.database().ref(`users/${uid}/currentCategory/`).set("메모장")
     await Promise.all([initCategory, initCurrent])
     const snapshot = await firebase.database().ref(`users/${uid}/categorys`).once("value");
     const categoryObject = snapshot.val() || [];
@@ -45,4 +45,11 @@ export const fetchNoteScreen = () => async (dispatch) => {
 
 export const fetchcategoryOnModal = () => async (dispatch) => {
   dispatch(noteScreenOnHandleModal())
+}
+
+export const fetchCategoryUpdating = (categoryName) => async (dispatch) => {
+  const { uid } = firebase.auth().currentUser;
+  await firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryName}`)
+  dispatch(noteScreenCurrentCategoryUpdating())
+  dispatch(fetchNoteScreen())
 }
