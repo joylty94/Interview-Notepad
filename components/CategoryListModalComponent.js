@@ -6,6 +6,10 @@ import Modal from "react-native-modal";
 import { CategoryListScreen } from "../screenName";
 
 export default class CategoryListModalComponent extends Component{
+  handleCurrentCategory = (categoryName) =>{
+    this.props.onCurrentCategory(categoryName)
+    this.props.onModal()
+  }
   handleModalPage = () => {
     this.props.onModal()
     this.props.navigation.navigate(CategoryListScreen)
@@ -43,7 +47,8 @@ export default class CategoryListModalComponent extends Component{
                 renderItem={({ item, index }) => {
                   return (
                     <TouchableOpacity
-                      style={styles.modalButton}>
+                      style={styles.modalButton}
+                      onPress={() => this.handleCurrentCategory(item.categoryName)}>
                       <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)"}]}>
                         {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
                       </Text>
