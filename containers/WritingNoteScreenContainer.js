@@ -6,7 +6,7 @@ import CategoryListModalComponent from "../components/CategoryListModalComponent
 import WritingNoteButtonComponent from "../components/WritingNoteButtonComponent";
 import WritingNoteInputComponent from "../components/WritingNoteInputComponent";
 import { fatchCategoryHandleModal, fatchHandleTag,
-  fatchHandleShare, fatchCreating } from "../thunk/writingNoteScreen";
+  fatchHandleShare, fatchCreating, fatchUpdating } from "../thunk/writingNoteScreen";
 
 class WritingNoteScreenContainer extends Component{
   constructor(props) {
@@ -17,7 +17,17 @@ class WritingNoteScreenContainer extends Component{
       tag: "",
     }
   }
-
+  componentDidMount() {
+    if (this.props.navigation.state.params) {
+      const category = this.props.navigation.state.params;
+      this.changeQuestion(category.question);
+      this.changeAnswer(category.answer);
+      this.changeTag(category.tag);
+      if(category.share){
+        this.props.handleShare()
+      }
+    }
+  }
   changeQuestion = (question) => {
     this.setState({question})
   }
@@ -34,7 +44,8 @@ class WritingNoteScreenContainer extends Component{
         <WritingNoteButtonComponent {...rest} question={this.state.question}
           answer={this.state.answer} tag={this.state.tag}/>
         <WritingNoteInputComponent {...rest} changeAnswer={this.changeAnswer}
-          changeQuestion={this.changeQuestion} changeTag={this.changeTag}/>
+          changeQuestion={this.changeQuestion} changeTag={this.changeTag} question={this.state.question}
+          answer={this.state.answer} tag={this.state.tag}/>
         <CategoryListModalComponent {...rest} />
       </View>
     )
@@ -66,6 +77,9 @@ export default connect (
     },
     handleCreating: (question, answer, tag) => {
       dispatch(fatchCreating(question, answer, tag))
+    },
+    handleUpdating: (category, question, answer, tag) => {
+      dispatch(fatchUpdating(category, question, answer, tag))
     }
   })
 )(WritingNoteScreenContainer)
