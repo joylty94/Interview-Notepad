@@ -85,7 +85,8 @@ export default class DetailNoteComponent extends Component{
             </View>
           </View>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("")}>
+            onPress={() => navigation.navigate(WritingNoteScreen, detailCategory)}
+            style={styles.bodyContainer}>
             <View style={styles.bodyView}>
               <Text style={styles.questionText}>
                 {detailCategory.question}
