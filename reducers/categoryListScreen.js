@@ -3,7 +3,7 @@ import { LOADING, SUCCESS, ADDCATEGORY, UPDATECATEGORY, DELETECATEGORY } from ".
 const initialState = {
   loading: false,
   addPrompt: false,
-  updatePrompt: false
+  updatePrompt: false,
 }
 
 export default function (state = initialState, action) {

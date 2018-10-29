@@ -48,7 +48,6 @@ export const fetchUpdateCategory = (text, category) => async(dispatch) => {
   try{
     if (text.length >= 1) {
       const { uid } = firebase.auth().currentUser;
-      console.log(category.count)
       await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).update({
         categoryName: text,
         count: category.count,
