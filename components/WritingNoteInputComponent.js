@@ -4,7 +4,8 @@ import { View, TextInput, StyleSheet, TouchableWithoutFeedback,
 
 export default class WritingNotesInputComponent extends Component {
   render(){
-    const { writingTag, changeQuestion, changeAnswer, changeTag, navigation } = this.props
+    const { writingTag, changeQuestion, changeAnswer, changeTag, navigation, question,
+    answer, tag } = this.props
     return(
       <KeyboardAvoidingView style={styles.container}
         behavior="padding">
@@ -16,7 +17,8 @@ export default class WritingNotesInputComponent extends Component {
             autoCapitalize="none"
             returnKeyType='next'
             onSubmitEditing={() => this.refs.txtanswer.focus()}
-            onChangeText={(question) => changeQuestion( question )}
+            onChangeText={(text) => changeQuestion(text)}
+            value={question}
             style={styles.questionText} />
         </View>
         <TouchableWithoutFeedback
@@ -29,7 +31,8 @@ export default class WritingNotesInputComponent extends Component {
               underlineColorAndroid="#fff"
               autoCapitalize="none"
               ref={"txtanswer"}
-              onChangeText={(answer) => changeAnswer( answer )}
+              onChangeText={(text) => changeAnswer(text)}
+              value={answer}
               style={styles.answerText} />
           </View>
         </TouchableWithoutFeedback>
@@ -41,7 +44,8 @@ export default class WritingNotesInputComponent extends Component {
             underlineColorAndroid="rgb(222,226,230)"
             autoCapitalize="none"
             reg={"txttag"}
-            onChangeText={(tag) => changeTag(tag)}
+            onChangeText={(text) => changeTag(text)}
+            value={tag}
             style={styles.tagText}/>
         </View>
         }
@@ -68,6 +72,7 @@ const styles = StyleSheet.create({
   tageContainer: {
     height: 40,
     paddingVertical: 9,
+    marginBottom: 5,
     backgroundColor: "rgb(222,226,230)",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
