@@ -1,4 +1,4 @@
-import { LOADING, ONHANDLEMODAL, SUCCESS } from "../actions/noteScreen";
+import { LOADING, ONHANDLEMODAL, SUCCESS, CURRENTCATEGORYUPDATING } from "../actions/noteScreen";
 
 const initialState = {
   loading: false,
@@ -24,6 +24,11 @@ export default function ( state = initialState, action) {
       return{
         ...state,
         noteModal: !state.noteModal,
+    };
+    case CURRENTCATEGORYUPDATING :
+      return{
+        ...state,
+        currentCategory: action.currentCategory,
     };
     default:
       return state;

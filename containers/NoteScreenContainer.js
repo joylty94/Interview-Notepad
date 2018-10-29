@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
-import { fetchNoteScreen, fetchcategoryOnModal } from "../thunk/noteScreen";
+import { fetchNoteScreen, fetchcategoryOnModal, fetchCategoryUpdating } from "../thunk/noteScreen";
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
@@ -45,6 +45,9 @@ export default connect(
     onModal: () => {
       dispatch(fetchcategoryOnModal())
     },
+    onCurrentCategory: (categoryName) => {
+      dispatch(fetchCategoryUpdating(categoryName))
+    }
   })
 )(NoteScreenContainer)
 
