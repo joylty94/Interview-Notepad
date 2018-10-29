@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet, Keyboard, Text, TouchableWithoutFeedback,
-  KeyboardAvoidingView, Platform } from "react-native";
+import { View, TextInput, StyleSheet, TouchableWithoutFeedback,
+  KeyboardAvoidingView } from "react-native";
 
 export default class WritingNotesInputComponent extends Component {
   render(){
-    const { writingTag, changeQuestion, changeAnswer, changeTag } = this.props
-    if (!writingTag) {
+    const { writingTag, changeQuestion, changeAnswer, changeTag, navigation } = this.props
     return(
       <KeyboardAvoidingView style={styles.container}
         behavior="padding">
@@ -34,38 +33,7 @@ export default class WritingNotesInputComponent extends Component {
               style={styles.answerText} />
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    )}
-    return(
-      <KeyboardAvoidingView style={styles.container}
-        behavior="padding">
-        <View style={styles.questionContainer}>
-          <TextInput
-            placeholder="질문을 입력하세요"
-            placeholderTextColor="rgb(134,142,150)"
-            underlineColorAndroid="#fff"
-            autoCapitalize="none"
-            returnKeyType='next'
-            onSubmitEditing={() => this.refs.txtanswer.focus()}
-            onChangeText={(question) => changeQuestion(question)}
-            style={styles.questionText} />
-        </View>
-        <TouchableWithoutFeedback
-          onPress={()=>this.refs.txtanswer.focus()}>
-          <View style={styles.answerContainer}>
-            <TextInput
-              multiline={true}
-              placeholder="답변를 입력하세요"
-              placeholderTextColor="rgb(134,142,150)"
-              underlineColorAndroid="#fff"
-              autoCapitalize="none"
-              returnKeyType='next'
-              ref={"txtanswer"}
-              onSubmitEditing={() => this.refs.txttag.focus()}
-              onChangeText={(answer) => changeAnswer(answer)}
-              style={styles.answerText} />
-          </View>
-        </TouchableWithoutFeedback>
+        {(!writingTag) ? null :
         <View style={styles.tageContainer}>
           <TextInput
             placeholder="#키워드 입력하세요"
@@ -76,6 +44,7 @@ export default class WritingNotesInputComponent extends Component {
             onChangeText={(tag) => changeTag(tag)}
             style={styles.tagText}/>
         </View>
+        }
       </KeyboardAvoidingView>
     )
   }
