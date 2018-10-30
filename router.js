@@ -9,6 +9,7 @@ import WritingNoteScreenContainer from "./containers/WritingNoteScreenContainer"
 import CategoryListScreenContainer from "./containers/CategoryListScreenContainer";
 import DetailNoteScreenContainer from "./containers/DetailNoteScreenContainer";
 import WithAuth from "./containers/WithAuth";
+import SharedNotesScreenContainer from "./containers/SharedNotesScreenContainer";
 
 export const StackNoteScreen = createStackNavigator({
   NoteScreen: {
@@ -39,7 +40,13 @@ export const TabNavigator = createBottomTabNavigator(
     StackNoteScreen: {
       screen: StackNoteScreen,
       navigationOptions: ({
-        tabBarIcon: () => <SimpleLineIcons name="note" size={28} color="black" />
+        tabBarIcon: ({ tintColor }) => <SimpleLineIcons name="note" size={28} color={tintColor} />
+      })
+    },
+    StackShareNotesScreen: {
+      screen: SharedNotesScreenContainer,
+      navigationOptions: ({
+        tabBarIcon: ({ tintColor }) => <SimpleLineIcons name="notebook" size={28} color={tintColor}/>
       })
     },
   },
@@ -47,15 +54,17 @@ export const TabNavigator = createBottomTabNavigator(
     animationEnabled: true,
     swipeEnabled: true,
     tabBarOptions: {
-      activeTintColor: 'rbg(52,58,64)',
+      activeTintColor: "rgb(116,192,252)",
+      inactiveTintColor: "rgb(73,80,87)",
+      showIcon: true,
       labelStyle: {
-        fontSize: 13,
+        fontSize: 12,
       },
       style: {
-        backgroundColor: 'rgb(248,249,250)',
+        backgroundColor: "rgb(233,236,239)",
         padding: -10
       },
-      showLabel: false
+      showLabel: false,
     },
   // order: [Settings, Home, Cloud, Info],
   }
