@@ -27,7 +27,7 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     const categoryItem = stateItem.noteScreen.categoryItem;
     const category = categoryItem.find(item => item.categoryName === currentCategory)
     if (share) {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}`).push({
+      const notePush = firebase.database().ref(`users/${uid}/notes/${currentCategory}`).push({
         question,
         answer,
         tag,
@@ -48,7 +48,7 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
       })
       await Promise.all([notePush, categoryNoteCount, sharePush])
     } else {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}`).push({
+      const notePush = firebase.database().ref(`users/${uid}/notes/${currentCategory}`).push({
         question,
         answer,
         tag,
@@ -77,7 +77,7 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
     const currentCategory = stateItem.noteScreen.currentCategory;
     const share = stateItem.writingNoteScreen.writingShare;
     if (share) {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/${category.id}`).update({
+      const notePush = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${category.id}`).update({
         question,
         answer,
         tag,
@@ -93,7 +93,7 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
       })
       await Promise.all([notePush, sharePush])
     } else {
-      const notePush = firebase.database().ref(`users/${uid}/${currentCategory}/${category.id}`).update({
+      const notePush = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${category.id}`).update({
         question,
         answer,
         tag,
