@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
-import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess, noteScreenCurrentCategoryUpdating } from "../actions/noteScreen";
+import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess,
+  noteScreenCurrentCategoryUpdating, noteScreenSearching } from "../actions/noteScreen";
 
 export const fetchNoteScreen = () => async (dispatch) => {
   try {
@@ -23,7 +24,7 @@ export const fetchNoteScreen = () => async (dispatch) => {
     }));
     dispatch(noteScreenSuccess("메모장", [], categoryItem))
   }else {
-    const snapshot = await firebase.database().ref(`users/${uid}/${current}`).once("value");
+    const snapshot = await firebase.database().ref(`users/${uid}/notes/${current}`).once("value");
     const notesObject = snapshot.val() || [];
     const notesItem = Object.entries(notesObject).map(([id, article]) => ({
       id,
@@ -48,8 +49,29 @@ export const fetchcategoryOnModal = () => async (dispatch) => {
 }
 
 export const fetchCategoryUpdating = (categoryName) => async (dispatch) => {
-  const { uid } = firebase.auth().currentUser;
-  await firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryName}`)
-  dispatch(noteScreenCurrentCategoryUpdating())
-  dispatch(fetchNoteScreen())
+  try {
+    const { uid } = firebase.auth().currentUser;
+    await firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryName}`)
+    dispatch(noteScreenCurrentCategoryUpdating())
+    dispatch(fetchNoteScreen())
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const fetchNoteScreenSearching = () => async (dispatch, getstate) => {
+  try {
+    const stateItem = getstate();
+    const currentCategory = stateItem.noteScreen.currentCategory;
+    const { uid } = firebase.auth().currentUser;
+    const snapshot = await firebase.database().ref(`users/${uid}/notes/${currentCategory}`).once("value")
+    const searchObject = snapshot.val() || []
+    const searchItem = Object.entries(searchObject).map(([id, article]) => ({
+      id,
+      ...article,
+    }));
+    dispatch(noteScreenSearching(searchItem))
+  } catch(e) {
+    console.log(e)
+  }
 }
