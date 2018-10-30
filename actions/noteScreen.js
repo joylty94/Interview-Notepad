@@ -2,7 +2,7 @@ export const LOADING = "noteScreen/LOADING";
 export const ONHANDLEMODAL = "noteScreen/ONHANDLEMODAL";
 export const SUCCESS = "noteScreen/SUCCESS";
 export const CURRENTCATEGORYUPDATING = "noteScreen/CURRENTCATEGORYUPDATING";
-
+export const SEARCHING = "noteScreen/SEARCHING";
 
 //NoteScreen
 export function noteScreenLoading() {
@@ -30,5 +30,12 @@ export function noteScreenCurrentCategoryUpdating(currentCategory) {
   return{
     type: CURRENTCATEGORYUPDATING,
     currentCategory
+  };
+}
+
+export function noteScreenSearching(searchItem) {
+  return{
+    type: SEARCHING,
+    searchItem
   };
 }

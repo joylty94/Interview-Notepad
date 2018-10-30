@@ -1,8 +1,9 @@
-import { LOADING, ONHANDLEMODAL, SUCCESS, CURRENTCATEGORYUPDATING } from "../actions/noteScreen";
+import { LOADING, ONHANDLEMODAL, SUCCESS, CURRENTCATEGORYUPDATING, SEARCHING } from "../actions/noteScreen";
 
 const initialState = {
   loading: false,
-  noteModal: false
+  noteModal: false,
+  search: false,
 }
 
 export default function ( state = initialState, action) {
@@ -29,6 +30,12 @@ export default function ( state = initialState, action) {
       return{
         ...state,
         currentCategory: action.currentCategory,
+    };
+    case SEARCHING :
+      return{
+        ...state,
+        search: !state.search,
+        searchItem: action.searchItem
     };
     default:
       return state;
