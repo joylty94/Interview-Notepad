@@ -21,16 +21,7 @@ class CategoryListScreenContainer extends Component{
     this.props.onMount()
   }
   changeText = (text) => {
-    const { categoryItem } = this.props
-    if (categoryItem.find(item => item.categoryName === text)) {
-      this.setState({
-        check: false,
-      })
-    } else {
-      this.setState({
-        check: true,
-      })
-    }
+    this.changecheck(text)
     this.setState({
       text
     })
@@ -42,10 +33,17 @@ class CategoryListScreenContainer extends Component{
     })
   }
 
-  changecheck = () => {
-    this.setState({
-      check: true,
-    })
+  changecheck = (text) => {
+    const { categoryItem } = this.props
+    if (categoryItem.find(item => item.categoryName === text)) {
+      this.setState({
+        check: false,
+      })
+    } else {
+      this.setState({
+        check: true,
+      })
+    }
   }
 
   render() {
