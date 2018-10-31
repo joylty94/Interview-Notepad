@@ -11,6 +11,10 @@ export default class NoteHeaderComponent extends Component{
     this.props.onSearshing()
     this.searchBar.show()
   }
+  handleBack = () => {
+    this.props.onSearshing()
+    this.searchBar.hide()
+  }
   render(){
     const { _handleResults, searchItem, ...rest } = this.props;
     return(
@@ -32,6 +36,7 @@ export default class NoteHeaderComponent extends Component{
             data={searchItem || []}
             handleResults={_handleResults}
             backButton={<Entypo name="chevron-left" size={28} />}
+            onBack={() => this.handleBack()}
           />
         </View>
       </View>
