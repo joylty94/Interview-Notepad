@@ -23,7 +23,7 @@ export default class CategoryListComponent extends Component{
               return (
                 <View style={styles.listItem}>
                   <Text style={[styles.text,
-                    { color: currentCategory === item.categoryName ? "rgb(245,159,0)" : "rgb(52,58,64)"}]}>
+                    { color: currentCategory === item.categoryName ? "rgb(230,119,0)" : "rgb(52,58,64)"}]}>
                     {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
                   </Text>
                   <TouchableOpacity style={styles.updateButton}

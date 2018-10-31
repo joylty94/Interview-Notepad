@@ -49,10 +49,10 @@ export default class CategoryListModalComponent extends Component{
                     <TouchableOpacity
                       style={styles.modalButton}
                       onPress={() => this.handleCurrentCategory(item.categoryName)}>
-                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)"}]}>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)"}]}>
                         {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
                       </Text>
-                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(255,212,59)" : "rgb(52,58,64)" }]}>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }]}>
                         {item.noteCount}
                       </Text>
                     </TouchableOpacity>
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "rgb(52,58,64)",
     backgroundColor: "rgb(248,249,250)",
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    paddingVertical: 5
   },
   categoryHeader: {
     flexDirection: "row",
