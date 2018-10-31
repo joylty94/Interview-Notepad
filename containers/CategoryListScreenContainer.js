@@ -14,28 +14,48 @@ class CategoryListScreenContainer extends Component{
     this.state = {
       text : "",
       category: {},
+      check: true,
     }
   }
   componentDidMount() {
     this.props.onMount()
   }
   changeText = (text) => {
+    const { categoryItem } = this.props
+    if (categoryItem.find(item => item.categoryName === text)) {
+      this.setState({
+        check: false,
+      })
+    } else {
+      this.setState({
+        check: true,
+      })
+    }
     this.setState({
       text
     })
   }
+
   changeCategory = (category) => {
     this.setState({
       category
     })
   }
+
+  changecheck = () => {
+    this.setState({
+      check: true,
+    })
+  }
+
   render() {
     const { ...rest } = this.props
     return(
       <View style={{flex: 1}}>
         <CategoryListHeaderComponent {...rest }/>
         <CategoryListComponent {...rest} changeCategory={this.changeCategory} changeText={this.changeText} />
-        <CategoryAddModalComponent {...rest} changeText={this.changeText} text={this.state.text}/>
+        <CategoryAddModalComponent {...rest} changeText={this.changeText} text={this.state.text}
+          check={this.state.check} changecheck={this.changecheck}/>
         <CategoryUpdateModalComponent {...rest} changeText={this.changeText} category={this.state.category}
           text={this.state.text}/>
       </View>
@@ -48,7 +68,8 @@ export default connect(
     currentCategory: state.categoryListScreen.currentCategory,
     categoryItem: state.categoryListScreen.categoryItem,
     addPrompt: state.categoryListScreen.addPrompt,
-    updatePrompt: state.categoryListScreen.updatePrompt
+    updatePrompt: state.categoryListScreen.updatePrompt,
+    check: state.categoryListScreen.check
   }),
   dispatch => ({
     onMount: () => {
