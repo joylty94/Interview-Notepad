@@ -21,7 +21,6 @@ export default class NoteListComponent extends Component {
       toValue: 1,
       duration: 200,
     }).start()
-    this.props.navigation.navigate(DetailNoteScreen, this.props.item)
   }
   render() {
     const { item } = this.props;
@@ -29,6 +28,7 @@ export default class NoteListComponent extends Component {
       <TouchableWithoutFeedback
         onPressIn={() => this.AnimateIn()}
         onPressOut={() => this.AnimateOut()}
+        onPress={() => this.props.navigation.navigate(DetailNoteScreen, this.props.item)}
         >
         <Animated.View style={[{
           transform: [
@@ -39,7 +39,13 @@ export default class NoteListComponent extends Component {
         }, styles.listView]}>
           <Text style={styles.questionText}>{item.question}</Text>
           <Text style={styles.answerText}>{item.answer}</Text>
-          <Text>{((item.tag).length === 0) ? null : item.tag }</Text>
+          {
+            ((item.tag).length === 0)
+            ?
+            null
+            :
+            <Text style={styles.tagText}>#{item.tag}</Text>
+          }
         </Animated.View>
       </TouchableWithoutFeedback>
     )
@@ -48,20 +54,31 @@ export default class NoteListComponent extends Component {
 
 const styles = StyleSheet.create({
   listView: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderWidth: 1,
+    marginTop: 10,
     borderColor: "rgb(173,181,189)",
-    marginTop: 10
+    backgroundColor: "rgb(241,243,245)",
+    borderRadius:5
   },
   questionText: {
     fontSize: 20,
     fontWeight: "500",
-    color: "rgb(73,80,87)"
+    color: "rgb(73,80,87)",
+    marginBottom: 2
   },
   answerText: {
     fontSize: 18,
     fontWeight: "300",
-    color: "rgb(73,80,87)"
+    color: "rgb(73,80,87)",
+    marginBottom: 10,
+    marginLeft:2
+  },
+  tagText: {
+    fontSize: 16,
+    fontWeight: "200",
+    color: "rgb(134,142,150)",
+    marginLeft: 3
   },
 })

@@ -26,7 +26,6 @@ class NoteScreenContainer extends Component{
   }
   render(){
     const { onMount, ...rest } = this.props
-    console.log(this.state.results)
     return(
       <View style={styles.container}>
         <NoteHeaderComponent {...rest} _handleResults={this._handleResults}/>
@@ -40,7 +39,8 @@ class NoteScreenContainer extends Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor:"rgb(222,226,230)"
   },
 })
 
