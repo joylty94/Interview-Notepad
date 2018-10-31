@@ -40,11 +40,12 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         count: category.count,
         noteCount: category.noteCount + 1,
       })
-      const sharePush = firebase.database().ref(`shared/${uid}/${notePush.key}`).set({
+      const sharePush = firebase.database().ref(`shared/${notePush.key}`).set({
         question,
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
+        uid
       })
       await Promise.all([notePush, categoryNoteCount, sharePush])
     } else {
@@ -85,11 +86,12 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
         count: category.count,
         share: share
       })
-      const sharePush = firebase.database().ref(`shared/${uid}/${category.id}`).update({
+      const sharePush = firebase.database().ref(`shared/${category.id}`).update({
         question,
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
+        uid
       })
       await Promise.all([notePush, sharePush])
     } else {
@@ -101,7 +103,7 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
         count: category.count,
         share: share
       })
-      const noteDelete = firebase.database().ref(`shared/${uid}/${category.id}`).remove()
+      const noteDelete = firebase.database().ref(`shared/${category.id}`).remove()
       await Promise.all([notePush, noteDelete])
     }
     dispatch(writingNoteScreenHandleUpdating())
