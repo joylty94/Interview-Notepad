@@ -35,7 +35,12 @@ class NoteScreenContainer extends Component{
       <View style={styles.container}>
         <NoteHeaderComponent {...rest} _handleResults={this._handleResults}/>
         <NoteListComponent {...rest} results={this.state.results}/>
+        {(!this.props.search)
+        ?
         <PlusButtonComponent {...rest}/>
+        :
+        null
+        }
         <CategoryListModalComponent {...rest} />
       </View>
     )
