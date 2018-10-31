@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Platform } from "react-native";
-import { FontAwesome, Feather } from "@expo/vector-icons";
+import { FontAwesome, Entypo } from "@expo/vector-icons";
 
 export default class WritingNoteButtonComponent extends Component{
   handleModalButton = () => {
@@ -25,6 +25,11 @@ export default class WritingNoteButtonComponent extends Component{
     const category = navigation.state.params;
     return(
       <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.button}>
+          <Entypo name="chevron-left" size={30} color="rgb(33,37,41)" />
+        </TouchableOpacity>
         <View style={styles.container}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button}
@@ -32,8 +37,9 @@ export default class WritingNoteButtonComponent extends Component{
               <FontAwesome name="bars" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>카테고리</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Feather name="check-square" size={23} color="rgb(33,37,41)" />
+            <TouchableOpacity style={styles.button}
+              onPress={this.handleModalButton}>
+              <FontAwesome name="check-square" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>체 크</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button,
@@ -53,18 +59,13 @@ export default class WritingNoteButtonComponent extends Component{
                 공 유
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}
-              onPress={() => this.handleCreatingButton(category, question, answer, tag)}>
-              <FontAwesome name="save" size={23} color="rgb(33,37,41)" />
-              <Text style={styles.buttonText}>저 장</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}
-              onPress= {() => this.props.navigation.goBack()}>
-              <FontAwesome name="window-close" size={23} color="rgb(33,37,41)" />
-              <Text style={styles.buttonText}>취 소</Text>
-            </TouchableOpacity>
           </View>
         </View>
+        <TouchableOpacity
+          onPress={() => this.handleCreatingButton(category, question, answer, tag)}
+          style={styles.saveButton}>
+          <Text style={styles.saveText}>저 장</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -73,27 +74,28 @@ export default class WritingNoteButtonComponent extends Component{
 const styles = StyleSheet.create({
   header: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgb(145,167,255)",
+    justifyContent: "space-between",
     height: 85,
+    paddingRight: 10
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgb(248,249,250)",
   },
   buttonContainer: {
     flexDirection: "row",
     borderColor: "rgb(134,142,150)",
     borderWidth: 1,
+    marginRight: 5
   },
   button: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: 60,
+    width: 55,
     height: 45,
   },
   buttonText: {
@@ -102,4 +104,17 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "rgb(33,37,41)"
   },
+  saveButton: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 55,
+    height: 45,
+  },
+  saveText: {
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "500",
+    color: "rgb(245,159,0)"
+  }
 })
