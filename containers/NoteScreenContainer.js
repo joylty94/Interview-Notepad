@@ -3,11 +3,13 @@ import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
 import { fetchNoteScreen, fetchcategoryOnModal, fetchCategoryUpdating,
   fetchNoteScreenSearching } from "../thunk/noteScreen";
+import { Spinner } from 'native-base';
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
 import NoteListComponent from "../components/NoteListComponent";
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
+import LoadingContainer from "./LoadingContainer";
 
 class NoteScreenContainer extends Component{
   constructor(props) {
@@ -25,7 +27,10 @@ class NoteScreenContainer extends Component{
     });
   }
   render(){
-    const { onMount, ...rest } = this.props
+    const { onMount, loading, ...rest } = this.props
+    if (loading){
+      return (<LoadingContainer/>)
+    }
     return(
       <View style={styles.container}>
         <NoteHeaderComponent {...rest} _handleResults={this._handleResults}/>
@@ -46,12 +51,13 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => ({
+    loading: state.noteScreen.loading,
     noteModal: state.noteScreen.noteModal,
     currentCategory: state.noteScreen.currentCategory,
     notesItem: state.noteScreen.notesItem,
     categoryItem: state.noteScreen.categoryItem,
     search: state.noteScreen.search,
-    searchItem: state.noteScreen.searchItem
+    searchItem: state.noteScreen.searchItem,
   }),
   dispatch => ({
     onMount: () => {

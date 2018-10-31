@@ -7,6 +7,7 @@ import CategoryListHeaderComponent from "../components/CategoryListHeaderCompone
 import CategoryAddModalComponent from "../components/CategoryAddModalComponent";
 import CategoryUpdateModalComponent from "../components/CategoryUpdateModalComponent";
 import { fetchCategoryListScreen, fetchAddCategory, fetchUpdateCategory, fetchDeleteCategory } from "../thunk/categoryListScreen";
+import LoadingContainer from "./LoadingContainer"
 
 class CategoryListScreenContainer extends Component{
   constructor(props){
@@ -47,7 +48,10 @@ class CategoryListScreenContainer extends Component{
   }
 
   render() {
-    const { ...rest } = this.props
+    const { loading, ...rest } = this.props
+    if(loading){
+      return (<LoadingContainer/>)
+    }
     return(
       <View style={{flex: 1}}>
         <CategoryListHeaderComponent {...rest }/>
@@ -63,6 +67,7 @@ class CategoryListScreenContainer extends Component{
 
 export default connect(
   state => ({
+    loading: state.categoryListScreen.loading,
     currentCategory: state.categoryListScreen.currentCategory,
     categoryItem: state.categoryListScreen.categoryItem,
     addPrompt: state.categoryListScreen.addPrompt,
