@@ -1,32 +1,41 @@
-import { LOADING, ONHANDLEMODAL, OFFHANDLEMODAL, SUCCESS } from "../actions/noteScreen";
+import { LOADING, ONHANDLEMODAL, SUCCESS, CURRENTCATEGORYUPDATING, SEARCHING } from "../actions/noteScreen";
 
 const initialState = {
   loading: false,
-  modal: false
+  noteModal: false,
+  search: false,
 }
 
 export default function ( state = initialState, action) {
   switch(action.type) {
-    case LOADING:
+    case LOADING :
       return{
         ...state,
         loading: true
     };
-    case SUCCESS:
+    case SUCCESS :
       return{
         ...state,
         loading: false,
-        notesItem: aciton.notesItem
+        currentCategory: action.currentCategory,
+        notesItem: action.notesItem,
+        categoryItem: action.categoryItem
     };
-    case ONHANDLEMODAL:
+    case ONHANDLEMODAL :
       return{
         ...state,
-        modal: true
+        noteModal: !state.noteModal,
     };
-    case OFFHANDLEMODAL:
+    case CURRENTCATEGORYUPDATING :
       return{
         ...state,
-        modal: false
+        currentCategory: action.currentCategory,
+    };
+    case SEARCHING :
+      return{
+        ...state,
+        search: !state.search,
+        searchItem: action.searchItem
     };
     default:
       return state;

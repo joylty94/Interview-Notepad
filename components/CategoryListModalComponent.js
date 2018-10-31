@@ -6,41 +6,55 @@ import Modal from "react-native-modal";
 import { CategoryListScreen } from "../screenName";
 
 export default class CategoryListModalComponent extends Component{
-  handleModalbutton = () => {
-    this.props.offModal()
+  handleCurrentCategory = (categoryName) =>{
+    this.props.onCurrentCategory(categoryName)
+    this.props.onModal()
+  }
+  handleModalPage = () => {
+    this.props.onModal()
     this.props.navigation.navigate(CategoryListScreen)
   }
+  handleModalButton = () => {
+    if(this.props.onModal){
+      this.props.onModal()
+    } else {
+      this.props.handleModal()
+    }
+  }
   render(){
-    const { modal } = this.props
-    const defaultCategory = [{ category: '메모장011111111111111111111111111111111111111111111111', number: 1 }, { category: '메모장', number: 23 }, { category: '메모장', number: 333 }, { category: '메모장0', number: 1 }, { category: '메모장', number: 23 }]
+    const { noteModal, writingModal, categoryItem, currentCategory } = this.props;
     return(
       <Modal
         animationIn="zoomInDown"
         animationOut="zoomOutUp"
         transparent={true}
-        isVisible={modal}
-        onBackdropPress={() => this.props.offModal()}
-        onBackButtonPress={() => this.props.offModal()}
-        // onRequestClose={this.props.offModal}
+        isVisible={noteModal || writingModal}
+        onBackdropPress={this.handleModalButton}
+        onBackButtonPress={this.handleModalButton}
         >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <View style={styles.categoryHeader}>
               <Text style={styles.categoryText}>카태고리</Text>
               <TouchableOpacity
-                onPress={this.handleModalbutton}>
+                onPress={() => this.handleModalPage()}>
                 <MaterialIcons name="settings" size={28} color="rgb(145,167,255)" />
               </TouchableOpacity>
             </View>
             <ScrollView>
               <FlatList
-                data={defaultCategory}
+                data={categoryItem}
                 renderItem={({ item, index }) => {
                   return (
                     <TouchableOpacity
-                      style={styles.modalButton}>
-                      <Text style={styles.madalText}>{((item.category).length > 23) ? (item.category).substring(0, 20) + "..." : item.category}</Text>
-                      <Text style={styles.madalText}>{item.number}</Text>
+                      style={styles.modalButton}
+                      onPress={() => this.handleCurrentCategory(item.categoryName)}>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)"}]}>
+                        {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
+                      </Text>
+                      <Text style={[styles.madalText, { color: (currentCategory === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }]}>
+                        {item.noteCount}
+                      </Text>
                     </TouchableOpacity>
                   )
                 }}
@@ -58,12 +72,10 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: "center",
-    // backgroundColor: "rgba(255, 255, 255, 0.5)"
   },
   modalView: {
-    width: "90%",
+    width: "100%",
     maxHeight: "92%",
-    // marginTop: "5%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
@@ -71,7 +83,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "rgb(52,58,64)",
     backgroundColor: "rgb(248,249,250)",
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    paddingVertical: 5
   },
   categoryHeader: {
     flexDirection: "row",
@@ -97,6 +110,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    color: "rgb(52,58,64)",
   }
 })

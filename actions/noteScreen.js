@@ -1,8 +1,8 @@
 export const LOADING = "noteScreen/LOADING";
 export const ONHANDLEMODAL = "noteScreen/ONHANDLEMODAL";
-export const OFFHANDLEMODAL = "noteScreen/OFFHANDLEMODAL";
 export const SUCCESS = "noteScreen/SUCCESS";
-
+export const CURRENTCATEGORYUPDATING = "noteScreen/CURRENTCATEGORYUPDATING";
+export const SEARCHING = "noteScreen/SEARCHING";
 
 //NoteScreen
 export function noteScreenLoading() {
@@ -11,22 +11,31 @@ export function noteScreenLoading() {
   };
 }
 
-export function noteScreenSuccess(notesItem) {
+export function noteScreenSuccess(currentCategory, notesItem, categoryItem) {
   return{
     type: SUCCESS,
-    notesItem
+    currentCategory,
+    notesItem,
+    categoryItem
   };
 }
 
 export function noteScreenOnHandleModal() {
   return{
-    type: ONHANDLEMODAL
+    type: ONHANDLEMODAL,
   };
 }
 
-export function noteScreenOffHandleModal() {
+export function noteScreenCurrentCategoryUpdating(currentCategory) {
   return{
-    type: OFFHANDLEMODAL
+    type: CURRENTCATEGORYUPDATING,
+    currentCategory
   };
 }
 
+export function noteScreenSearching(searchItem) {
+  return{
+    type: SEARCHING,
+    searchItem
+  };
+}

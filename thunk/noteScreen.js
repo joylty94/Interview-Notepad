@@ -1,37 +1,77 @@
 import * as firebase from 'firebase';
-import { noteScreenLoading, noteScreenOnHandleModal, noteScreenOffHandleModal, noteScreenSuccess } from "../actions/noteScreen";;
+import { noteScreenLoading, noteScreenOnHandleModal, noteScreenSuccess,
+  noteScreenCurrentCategoryUpdating, noteScreenSearching } from "../actions/noteScreen";
 
 export const fetchNoteScreen = () => async (dispatch) => {
-  dispatch(noteScreenLoading())
-  // const { uid } = firebase.auth().currentUser;
-  // console.log(uid)
-  const snapshot = await firebase.database().ref("users/visit").once("value");
-  const visit = snapshot.val() || [];
-  if(visit === undefined){
-    try {
-      await firebase.database().ref(`users/categorys/`).set("메모장")
-    } catch (e) {
-      console.log(e);
-    }
-  }
   try {
-    const snapshot = await firebase.database().ref(`${uid}/categorys`).once("value");
-    const categorysObject = snapshot.val() || [];
-    const categoryItem = Object.entries(categorysObject).map(([category, article]) => ({
-      ...article,
+  dispatch(noteScreenLoading())
+  const { uid } = firebase.auth().currentUser;
+  const snapshot = await firebase.database().ref(`/users/${uid}/currentCategory`).once("value");
+  const current = snapshot.val() || [];
+  if (current[0] === undefined){
+    const initCategory = firebase.database().ref(`users/${uid}/categorys/`).push({
+      categoryName: "메모장",
+      count: 1,
+      noteCount: 0,
+    })
+    const initCurrent = firebase.database().ref(`users/${uid}/currentCategory/`).set("메모장")
+    await Promise.all([initCategory, initCurrent])
+    const snapshot = await firebase.database().ref(`users/${uid}/categorys`).once("value");
+    const categoryObject = snapshot.val() || [];
+    const categoryItem = Object.entries(categoryObject).map(([id, article]) => ({
       id,
+      ...article,
     }));
-    dispatch(noteScreenSuccess(categoryItem))
+    dispatch(noteScreenSuccess("메모장", [], categoryItem))
+  }else {
+    const snapshot = await firebase.database().ref(`users/${uid}/notes/${current}`).once("value");
+    const notesObject = snapshot.val() || [];
+    const notesItem = Object.entries(notesObject).map(([id, article]) => ({
+      id,
+      ...article,
+    }));
+    const sortNotesItem = notesItem.reverse()
+    const snapshot2 = await firebase.database().ref(`users/${uid}/categorys`).once("value");
+    const categoryObject = snapshot2.val() || [];
+    const categoryItem = Object.entries(categoryObject).map(([id, article]) => ({
+      id,
+      ...article,
+    }));
+    dispatch(noteScreenSuccess(current, sortNotesItem, categoryItem))
+  }
   } catch(e) {
     console.log(e);
   }
 }
 
-export const fetchcategoryOnModal = () => (dispatch) => {
+export const fetchcategoryOnModal = () => async (dispatch) => {
   dispatch(noteScreenOnHandleModal())
 }
 
-export const fetchcategoryOffModal = () => (dispatch) => {
-  console.log("디스패치")
-  dispatch(noteScreenOffHandleModal())
+export const fetchCategoryUpdating = (categoryName) => async (dispatch) => {
+  try {
+    const { uid } = firebase.auth().currentUser;
+    await firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryName}`)
+    dispatch(noteScreenCurrentCategoryUpdating())
+    dispatch(fetchNoteScreen())
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const fetchNoteScreenSearching = () => async (dispatch, getstate) => {
+  try {
+    const stateItem = getstate();
+    const currentCategory = stateItem.noteScreen.currentCategory;
+    const { uid } = firebase.auth().currentUser;
+    const snapshot = await firebase.database().ref(`users/${uid}/notes/${currentCategory}`).once("value")
+    const searchObject = snapshot.val() || []
+    const searchItem = Object.entries(searchObject).map(([id, article]) => ({
+      id,
+      ...article,
+    }));
+    dispatch(noteScreenSearching(searchItem))
+  } catch(e) {
+    console.log(e)
+  }
 }

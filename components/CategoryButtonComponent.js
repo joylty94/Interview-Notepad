@@ -6,13 +6,15 @@ export default class CategoryButtonComponent extends Component{
     this.props.onModal()
   }
   render(){
-    const defaultCategory = [{ Category: "메모장" }]
+    const defaultCategory = "메모장";
     return(
       <View>
         <TouchableOpacity style={styles.categoryButton}
           onPress={this.handleModalbutton}
           >
-          <Text style={styles.categoryText}>{this.props.category || defaultCategory[0].Category}</Text>
+          <Text style={styles.categoryText}>
+            {this.props.currentCategory || defaultCategory}
+          </Text>
         </TouchableOpacity>
       </View>
     )

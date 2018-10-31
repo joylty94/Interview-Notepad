@@ -3,9 +3,8 @@ import { Provider } from "react-redux";
 import * as firebase from "firebase";
 import { SwitchApp } from "./router";
 import { Font } from "expo";
-import { connect } from "react-redux";
 import store from "./store";
-import { reduxifyNavigator } from 'react-navigation-redux-helpers';
+import { BackHandler } from "react-native"
 
 const config = {
   apiKey: "AIzaSyD4y6p-amG4Ao_Mf1eE65-hDPHZMVxCU5Y",
@@ -17,12 +16,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const Apps = reduxifyNavigator(SwitchApp, "root");
-const mapStateToProps = (state) => ({
-  state: state.nav,
-});
-const AppWithNavigationState = connect(mapStateToProps)(Apps);
-
 export default class App extends React.Component {
   async componentDidMount() {
     await Font.loadAsync({
@@ -33,7 +26,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <AppWithNavigationState/>
+        <SwitchApp />
       </Provider>
     );
   }
