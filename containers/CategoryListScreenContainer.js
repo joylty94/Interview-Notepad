@@ -7,7 +7,7 @@ import CategoryListHeaderComponent from "../components/CategoryListHeaderCompone
 import CategoryAddModalComponent from "../components/CategoryAddModalComponent";
 import CategoryUpdateModalComponent from "../components/CategoryUpdateModalComponent";
 import { fetchCategoryListScreen, fetchAddCategory, fetchUpdateCategory, fetchDeleteCategory } from "../thunk/categoryListScreen";
-import LoadingContainer from "./LoadingContainer"
+import LoadingContainer from "./LoadingContainer";
 
 class CategoryListScreenContainer extends Component{
   constructor(props){
@@ -86,6 +86,6 @@ export default connect(
     },
     onDeleteButton: (category) => {
       dispatch(fetchDeleteCategory(category))
-    }
+    },
   })
 )(CategoryListScreenContainer)
