@@ -10,7 +10,7 @@ export default class CategoryAddModalComponent extends Component{
     }
   }
   handlePrompt = () => {
-    this.props.changecheck()
+    this.props.changecheck("")
     this.props.onAddPrompt("")
   }
   handleAdd = (text) => {
