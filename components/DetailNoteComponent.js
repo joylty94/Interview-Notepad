@@ -5,10 +5,6 @@ import Moment from 'react-moment';
 import { WritingNoteScreen } from "../screenName";
 
 export default class DetailNoteComponent extends Component{
-  componentDidMount() {
-    let item = this.props.navigation.state.params;
-    this.props.onMount(item)
-  }
   handleDelet = (detailCategory) => {
     this.props.onDelete(detailCategory)
     this.props.navigation.goBack()
