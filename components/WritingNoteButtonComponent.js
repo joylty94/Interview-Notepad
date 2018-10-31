@@ -37,8 +37,7 @@ export default class WritingNoteButtonComponent extends Component{
               <FontAwesome name="bars" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>카테고리</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}
-              onPress={this.handleModalButton}>
+            <TouchableOpacity style={styles.button}>
               <FontAwesome name="check-square" size={23} color="rgb(33,37,41)" />
               <Text style={styles.buttonText}>체 크</Text>
             </TouchableOpacity>
