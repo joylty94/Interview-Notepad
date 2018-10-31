@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   positionView: {
     position: "absolute",
     right: 35,
-    bottom: 35,
+    bottom: 30,
     backgroundColor: "rgb(145,167,255)",
     paddingVertical: 13,
     paddingHorizontal: 13,
