@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
+import { View, Text, StyleSheet, BackHandler } from "react-native";
 import { connect } from "react-redux";
 
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
@@ -17,6 +17,7 @@ class WritingNoteScreenContainer extends Component{
       tag: "",
     }
   }
+
   componentDidMount() {
     if (this.props.navigation.state.params) {
       const category = this.props.navigation.state.params;
@@ -37,6 +38,7 @@ class WritingNoteScreenContainer extends Component{
   changeTag = (tag) => {
     this.setState({tag})
   }
+
   render(){
     const { ...rest } = this.props
     return(
