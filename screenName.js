@@ -7,6 +7,7 @@ const App = "App"
 const Auth = "Auth"
 const AuthLoading = "AuthLoading"
 const DetailNoteScreen = "DetailNoteScreen"
+const DetailSharedNotesScreen = "DetailSharedNotesScreen"
 
 export {
   SignUpScreen,
@@ -18,4 +19,5 @@ export {
   Auth,
   AuthLoading,
   DetailNoteScreen,
+  DetailSharedNotesScreen
 }
