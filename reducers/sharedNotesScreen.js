@@ -14,6 +14,7 @@ export default function(state = initialState, action) {
     case SUCCESS :
       return{
         ...state,
+        loading: false,
         sharedItem: action.sharedItem
       }
     default :
