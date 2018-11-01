@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, TouchableWithoutFeedback, Animated } from "react-native";
+import { DetailSharedNotesScreen } from "../screenName";
 
 export default class SharedNotesListAnimatedComponent extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class SharedNotesListAnimatedComponent extends Component {
       <TouchableWithoutFeedback
         onPressIn={() => this.AnimateIn()}
         onPressOut={() => this.AnimateOut()}
+        onPress={() => this.props.navigation.navigate(DetailSharedNotesScreen, item)}
       >
         <Animated.View style={[{
           transform: [
