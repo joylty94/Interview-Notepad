@@ -21,8 +21,8 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     const { uid } = firebase.auth().currentUser;
     const stateItem = gestate();
     const currentCategory = stateItem.noteScreen.currentCategory;
-    const countItem = stateItem.noteScreen.notesItem;
-    const count = countItem.length + 1;
+    // const countItem = stateItem.noteScreen.notesItem;
+    // const count = countItem.length + 1;
     const share = stateItem.writingNoteScreen.writingShare;
     const categoryItem = stateItem.noteScreen.categoryItem;
     const category = categoryItem.find(item => item.categoryName === currentCategory)
@@ -32,7 +32,6 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
-        count,
         share: share
       })
       const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
@@ -47,14 +46,14 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
         time: firebase.database.ServerValue.TIMESTAMP,
         uid
       })
-      await Promise.all([notePush, categoryNoteCount, sharePush])
+      const likePush = firebase.database().ref(`likesForNote`).set(`${ notePush.key }`)
+      await Promise.all([notePush, categoryNoteCount, sharePush, likePush])
     } else {
       const notePush = firebase.database().ref(`users/${uid}/notes/${currentCategory}`).push({
         question,
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
-        count,
         share: share
       })
       const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
@@ -83,7 +82,6 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
-        count: category.count,
         share: share
       })
       const sharePush = firebase.database().ref(`shared/${category.id}`).update({
@@ -100,7 +98,6 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
         answer,
         tag,
         time: firebase.database.ServerValue.TIMESTAMP,
-        count: category.count,
         share: share
       })
       const noteDelete = firebase.database().ref(`shared/${category.id}`).remove()
