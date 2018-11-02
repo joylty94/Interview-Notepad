@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 
 
@@ -13,23 +13,24 @@ export default class CategoryListComponent extends Component{
     this.props.onUpdatePrompt("")
   }
   render(){
-    const { currentCategory, categoryItem } = this.props;
+    const { currentCategory, categoryItem, addPrompt } = this.props;
     return(
-      <View style={{ flex: 1, paddingHorizontal: 15,}}>
+      <ScrollView style={styles.scrollContainer}>
         <View style={styles.listContainer}>
           <FlatList
             data={categoryItem}
+            extraData={addPrompt}
             renderItem={({ item, index }) => {
               return (
                 <View style={styles.listItem}>
                   <Text style={[styles.text,
-                    { color: currentCategory === item.categoryName ? "rgb(230,119,0)" : "rgb(52,58,64)"}]}>
+                  { color: currentCategory === item.categoryName ? "rgb(230,119,0)" : "rgb(52,58,64)" }]}>
                     {((item.categoryName).length > 23) ? (item.categoryName).substring(0, 20) + "..." : item.categoryName}
                   </Text>
                   <TouchableOpacity style={styles.updateButton}
                     onPress={() => this.handleUpdatePrompt(item)}>
                     <Text style={[styles.buttonText,
-                      { color: "rgb(241,243,245)" }]}>편집</Text>
+                    { color: "rgb(241,243,245)" }]}>편집</Text>
                   </TouchableOpacity>
                 </View>
               )
@@ -41,17 +42,21 @@ export default class CategoryListComponent extends Component{
         <View style={styles.addContainer}>
           <TouchableOpacity style={styles.addButton}
             onPress={this.handleAddPrompt}
-            >
+          >
             <EvilIcons name="plus" size={32} color="rgb(116,143,252)" />
             <Text style={styles.addText}>카테고리 추가</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flex:1,
+    paddingHorizontal: 15
+  },
   listItem: {
     flexDirection:"row",
     justifyContent: "space-between",
