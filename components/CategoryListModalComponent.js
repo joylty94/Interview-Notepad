@@ -8,10 +8,10 @@ import { CategoryListScreen } from "../screenName";
 export default class CategoryListModalComponent extends Component{
   handleCurrentCategory = (categoryName) =>{
     this.props.onCurrentCategory(categoryName)
-    this.props.onModal()
+    this.handleModalButton()
   }
   handleModalPage = () => {
-    this.props.onModal()
+    this.handleModalButton()
     this.props.navigation.navigate(CategoryListScreen)
   }
   handleModalButton = () => {
