@@ -79,7 +79,6 @@ export const fetchUpdateCategory = (text, category) => async(dispatch, getstate)
         noteCount: category.noteCount
       })
     }
-    console.log("이거11", categoryItem)
     dispatch(categoryListScreenUpdateCategory(categoryItem))
     dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
   } catch(e) {
