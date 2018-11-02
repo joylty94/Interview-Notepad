@@ -2,7 +2,6 @@ import * as firebase from "firebase";
 import { categoryListScreenLoading, categoryListScreenSuccess, categoryListScreenAddCategory,
   categoryListScreenUpdateCategory, categoryListScreenDeleteCategory } from "../actions/categoryListScreen";
 import { fetchNoteScreen } from "./noteScreen"
-import { InputGroup } from "native-base";
 
 export const fetchCategoryListScreen = () => async (dispatch) => {
   try{
@@ -22,26 +21,28 @@ export const fetchCategoryListScreen = () => async (dispatch) => {
   }
 }
 
-export const fetchAddCategory = (text) => async (dispatch) => {
+export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
   try{
+    const { uid } = firebase.auth().currentUser;
+    const stateItem = getstate();
+    const categoryItem = stateItem.categoryListScreen.categoryItem
     if( text.length >= 1 ){
-      const { uid } = firebase.auth().currentUser;
-      const snapshot = await firebase.database().ref(`/users/${uid}/categorys`).once("value");
-      const categoryObject = snapshot.val() || [];
-      const categoryItem = Object.entries(categoryObject).map(([id, category]) => ({
-        id,
-        ...category
-      }))
       const count = categoryItem.length + 1
-      await firebase.database().ref(`/users/${uid}/categorys/`).push({
+      const categoryPush = await firebase.database().ref(`/users/${uid}/categorys/`).push({
         categoryName: text,
         count,
         noteCount: 0,
       })
+      categoryItem.push({
+        categoryName: text,
+        count,
+        noteCount: 0,
+        id: categoryPush.key
+      })
+      console.log(categoryItem)
     }
-    dispatch(categoryListScreenAddCategory())
-    dispatch(fetchCategoryListScreen())
-    dispatch(fetchNoteScreen())
+    dispatch(categoryListScreenAddCategory(categoryItem))
+    // dispatch(fetchNoteScreen())
   } catch(e){
     console.log(e)
   }
@@ -82,7 +83,6 @@ export const fetchDeleteCategory = (category) => async(dispatch, getstate) => {
     const stateItem = getstate();
     const currentCategory = stateItem.noteScreen.currentCategory;
     const categoryItem = stateItem.noteScreen.categoryItem
-    console.log("요거", categoryItem[1]["categoryName"])
     if (currentCategory===category.categoryName){
       if (categoryItem[0]["categoryName"] === currentCategory) {
         const deleteCategory = firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
