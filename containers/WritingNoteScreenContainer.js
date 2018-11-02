@@ -7,6 +7,7 @@ import WritingNoteButtonComponent from "../components/WritingNoteButtonComponent
 import WritingNoteInputComponent from "../components/WritingNoteInputComponent";
 import { fatchCategoryHandleModal, fatchHandleTag,
   fatchHandleShare, fatchCreating, fatchUpdating } from "../thunk/writingNoteScreen";
+import { fetchCategoryUpdating } from "../thunk/noteScreen";
 
 class WritingNoteScreenContainer extends Component{
   constructor(props) {
@@ -65,7 +66,9 @@ export default connect (
   state => ({
     writingModal: state.writingNoteScreen.writingModal,
     writingTag : state.writingNoteScreen.writingTag,
-    writingShare : state.writingNoteScreen.writingShare
+    writingShare : state.writingNoteScreen.writingShare,
+    currentCategory : state.writingNoteScreen.currentCategory,
+    categoryItem: state.writingNoteScreen.categoryItem
   }),
   dispatch => ({
     handleModal: () => {
@@ -82,6 +85,9 @@ export default connect (
     },
     handleUpdating: (category, question, answer, tag) => {
       dispatch(fatchUpdating(category, question, answer, tag))
-    }
+    },
+    onCurrentCategory: (categoryName) => {
+      dispatch(fetchCategoryUpdating(categoryName))
+    },
   })
 )(WritingNoteScreenContainer)
