@@ -25,9 +25,10 @@ export function categoryListScreenAddCategory(categoryItem) {
   };
 }
 
-export function categoryListScreenUpdateCategory() {
+export function categoryListScreenUpdateCategory(categoryItem) {
   return {
-    type: UPDATECATEGORY
+    type: UPDATECATEGORY,
+    categoryItem
   };
 }
 
