@@ -4,8 +4,11 @@ import { writingNoteScreenHandleCategory, writingNoteScreenHandleTag, writingNot
 import { fetchNoteScreen } from "./noteScreen";
 import { fetchDetailNoteScreen } from "./detailNoteScreen";
 
-export const fatchCategoryHandleModal = () => (dispatch) => {
-  dispatch(writingNoteScreenHandleCategory())
+export const fatchCategoryHandleModal = () => (dispatch, gestate) => {
+  const stateItem = gestate();
+  const currentCategory = stateItem.noteScreen.currentCategory;
+  const categoryItem = stateItem.noteScreen.categoryItem;
+  dispatch(writingNoteScreenHandleCategory(currentCategory, categoryItem))
 }
 
 export const fatchHandleTag = () => (dispatch) => {
@@ -21,8 +24,6 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     const { uid } = firebase.auth().currentUser;
     const stateItem = gestate();
     const currentCategory = stateItem.noteScreen.currentCategory;
-    // const countItem = stateItem.noteScreen.notesItem;
-    // const count = countItem.length + 1;
     const share = stateItem.writingNoteScreen.writingShare;
     const categoryItem = stateItem.noteScreen.categoryItem;
     const category = categoryItem.find(item => item.categoryName === currentCategory)
