@@ -1,7 +1,8 @@
 import * as firebase from "firebase";
 import { categoryListScreenLoading, categoryListScreenSuccess, categoryListScreenAddCategory,
   categoryListScreenUpdateCategory, categoryListScreenDeleteCategory } from "../actions/categoryListScreen";
-import { fetchNoteScreen } from "./noteScreen"
+import { fetchNoteScreen } from "./noteScreen";
+import { noteScreenSuccess } from "../actions/noteScreen";
 
 export const fetchCategoryListScreen = () => async (dispatch) => {
   try{
@@ -25,7 +26,9 @@ export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
   try{
     const { uid } = firebase.auth().currentUser;
     const stateItem = getstate();
+    const currentCategory = stateItem.categoryListScreen.currentCategory
     const categoryItem = stateItem.categoryListScreen.categoryItem
+    const notesItem = stateItem.noteScreen.notesItem
     if( text.length >= 1 ){
       const count = categoryItem.length + 1
       const categoryPush = await firebase.database().ref(`/users/${uid}/categorys/`).push({
@@ -41,7 +44,7 @@ export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
       })
     }
     dispatch(categoryListScreenAddCategory(categoryItem))
-    // dispatch(fetchNoteScreen())
+    dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
   } catch(e){
     console.log(e)
   }
@@ -49,9 +52,10 @@ export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
 
 export const fetchUpdateCategory = (text, category) => async(dispatch, getstate) => {
   try{
-    const stateItem = getstate();
-    const currentCategory = stateItem.categoryListScreen.currentCategory;
+    const stateItem = getstate()
+    const currentCategory = stateItem.categoryListScreen.currentCategory
     const categoryItem = stateItem.categoryListScreen.categoryItem
+    const notesItem = stateItem.noteScreen.notesItem
     if (text.length >= 1) {
       const { uid } = firebase.auth().currentUser;
       if(currentCategory===category.categoryName){
@@ -77,19 +81,24 @@ export const fetchUpdateCategory = (text, category) => async(dispatch, getstate)
     }
     console.log("이거11", categoryItem)
     dispatch(categoryListScreenUpdateCategory(categoryItem))
-    // dispatch(fetchNoteScreen())
+    dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
   } catch(e) {
     console.log(e)
   }
 }
 export const fetchDeleteCategory = (category) => async(dispatch, getstate) => {
   try{
-    const { uid } = firebase.auth().currentUser;
-    const stateItem = getstate();
-    const currentCategory = stateItem.noteScreen.currentCategory;
-    const categoryItem = stateItem.noteScreen.categoryItem
+    const { uid } = firebase.auth().currentUser
+    const stateItem = getstate()
+    const currentCategory = stateItem.categoryListScreen.currentCategory
+    const categoryItem = stateItem.categoryListScreen.categoryItem
+    const notesItem = stateItem.noteScreen.notesItem
     if (currentCategory===category.categoryName){
-      if (categoryItem[0]["categoryName"] === currentCategory) {
+      if (categoryItem.length === 1) {
+        const deleteCategory = firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
+        const updateCurrentCategory = firebase.database().ref(`users/${uid}/currentCategory/`).set(`메모장`)
+        await Promise.all([deleteCategory, updateCurrentCategory])
+      } else if (categoryItem[0]["categoryName"] === currentCategory) {
         const deleteCategory = firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
         const updateCurrentCategory = firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryItem[1]["categoryName"]}`)
         await Promise.all([deleteCategory, updateCurrentCategory])
@@ -98,12 +107,13 @@ export const fetchDeleteCategory = (category) => async(dispatch, getstate) => {
         const updateCurrentCategory = firebase.database().ref(`users/${uid}/currentCategory/`).set(`${categoryItem[0]["categoryName"]}`)
         await Promise.all([deleteCategory, updateCurrentCategory])
       }
+      categoryItem.splice((category.count - 1), 1)
     } else {
       await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).remove()
+      categoryItem.splice((category.count - 1), 1)
     }
-    dispatch(categoryListScreenDeleteCategory())
-    dispatch(fetchCategoryListScreen())
-    dispatch(fetchNoteScreen())
+    dispatch(categoryListScreenDeleteCategory(categoryItem))
+    dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
   } catch(e) {
     console.log(e)
   }
