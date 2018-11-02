@@ -38,6 +38,8 @@ export default class NoteHeaderComponent extends Component{
               handleResults={_handleResults}
               backButton={<Entypo name="chevron-left" size={28} />}
               onBack={() => this.handleBack()}
+              heightAdjust={-10}
+              backgroundColor="rgb(248,249,250)"
             />
           </View>
         </View>
