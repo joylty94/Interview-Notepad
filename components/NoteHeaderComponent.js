@@ -36,7 +36,7 @@ export default class NoteHeaderComponent extends Component{
               ref={(ref) => this.searchBar = ref}
               data={searchItem || []}
               handleResults={_handleResults}
-              backButton={<Entypo name="chevron-left" size={28} />}
+              backButton={<Entypo name="chevron-left" size={30} />}
               onBack={() => this.handleBack()}
               heightAdjust={-10}
               backgroundColor="rgb(248,249,250)"
