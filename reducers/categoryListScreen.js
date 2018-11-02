@@ -23,7 +23,8 @@ export default function (state = initialState, action) {
     case ADDCATEGORY:
       return {
         ...state,
-        addPrompt: !state.addPrompt
+        addPrompt: !state.addPrompt,
+        categoryItem: action.categoryItem
       };
     case UPDATECATEGORY:
       return {

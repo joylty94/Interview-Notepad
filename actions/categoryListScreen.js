@@ -18,9 +18,10 @@ export function categoryListScreenSuccess(currentCategory, categoryItem) {
   };
 }
 
-export function categoryListScreenAddCategory() {
+export function categoryListScreenAddCategory(categoryItem) {
   return {
-    type: ADDCATEGORY
+    type: ADDCATEGORY,
+    categoryItem
   };
 }
 
