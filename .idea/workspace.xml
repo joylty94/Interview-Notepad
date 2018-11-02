@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/components/CategoryButtonComponent.js" afterPath="$PROJECT_DIR$/components/CategoryButtonComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/NoteHeaderComponent.js" afterPath="$PROJECT_DIR$/components/NoteHeaderComponent.js" />
-      <change beforePath="$PROJECT_DIR$/components/SharedNotesHeaderComponent.js" afterPath="$PROJECT_DIR$/components/SharedNotesHeaderComponent.js" />
+      <change beforePath="$PROJECT_DIR$/actions/writingNoteScreen.js" afterPath="$PROJECT_DIR$/actions/writingNoteScreen.js" />
+      <change beforePath="$PROJECT_DIR$/containers/WritingNoteScreenContainer.js" afterPath="$PROJECT_DIR$/containers/WritingNoteScreenContainer.js" />
+      <change beforePath="$PROJECT_DIR$/reducers/writingNoteScreen.js" afterPath="$PROJECT_DIR$/reducers/writingNoteScreen.js" />
+      <change beforePath="$PROJECT_DIR$/thunk/writingNoteScreen.js" afterPath="$PROJECT_DIR$/thunk/writingNoteScreen.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
