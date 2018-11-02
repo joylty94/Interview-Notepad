@@ -13,7 +13,7 @@ export default class DetailNoteComponent extends Component{
     const { navigation, detailCategory, onShare } = this.props;
     if (detailCategory){
       return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -107,12 +107,15 @@ export default class DetailNoteComponent extends Component{
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
+    flex:1,
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
+  },
+  headerContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 85,
+    height: 50,
     backgroundColor: "rgb(145,167,255)",
     paddingHorizontal: 10
   },
