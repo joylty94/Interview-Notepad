@@ -32,8 +32,9 @@ export function categoryListScreenUpdateCategory(categoryItem) {
   };
 }
 
-export function categoryListScreenDeleteCategory() {
+export function categoryListScreenDeleteCategory(categoryItem) {
   return {
-    type: DELETECATEGORY
+    type: DELETECATEGORY,
+    categoryItem
   };
 }

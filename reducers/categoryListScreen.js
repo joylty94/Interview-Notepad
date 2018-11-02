@@ -35,7 +35,8 @@ export default function (state = initialState, action) {
     case DELETECATEGORY:
       return {
         ...state,
-        updatePrompt: !state.updatePrompt
+        updatePrompt: !state.updatePrompt,
+        categoryItem: action.categoryItem
       };
     default:
       return state;
