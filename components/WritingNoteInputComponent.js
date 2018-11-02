@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   answerText: {
-    paddingLeft: 8,
+    paddingLeft: 6,
     fontSize: 16,
   },
   tagText: {
     paddingLeft: 10,
-    fontSize: 16,
+    fontSize: 15,
   }
 })
