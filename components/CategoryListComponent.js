@@ -13,13 +13,13 @@ export default class CategoryListComponent extends Component{
     this.props.onUpdatePrompt("")
   }
   render(){
-    const { currentCategory, categoryItem, addPrompt } = this.props;
+    const { currentCategory, categoryItem, addPrompt, updatePrompt } = this.props;
     return(
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.listContainer}>
           <FlatList
             data={categoryItem}
-            extraData={addPrompt}
+            extraData={addPrompt || updatePrompt}
             renderItem={({ item, index }) => {
               return (
                 <View style={styles.listItem}>
