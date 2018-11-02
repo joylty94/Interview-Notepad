@@ -24,11 +24,11 @@ export default class CategoryButtonComponent extends Component{
 const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
   categoryText: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontWeight: "500",
     textAlign: "center",
     color: "rgb(248,249,250)"
   },
