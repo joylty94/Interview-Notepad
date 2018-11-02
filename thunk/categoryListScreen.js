@@ -39,7 +39,6 @@ export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
         noteCount: 0,
         id: categoryPush.key
       })
-      console.log(categoryItem)
     }
     dispatch(categoryListScreenAddCategory(categoryItem))
     // dispatch(fetchNoteScreen())
@@ -51,7 +50,8 @@ export const fetchAddCategory = (text) => async (dispatch ,getstate) => {
 export const fetchUpdateCategory = (text, category) => async(dispatch, getstate) => {
   try{
     const stateItem = getstate();
-    const currentCategory = stateItem.noteScreen.currentCategory;
+    const currentCategory = stateItem.categoryListScreen.currentCategory;
+    const categoryItem = stateItem.categoryListScreen.categoryItem
     if (text.length >= 1) {
       const { uid } = firebase.auth().currentUser;
       if(currentCategory===category.categoryName){
@@ -69,10 +69,15 @@ export const fetchUpdateCategory = (text, category) => async(dispatch, getstate)
           noteCount: category.noteCount
         })
       }
+      categoryItem.splice((category.count -1), 1, {
+        categoryName: text,
+        count: category.count,
+        noteCount: category.noteCount
+      })
     }
-    dispatch(categoryListScreenUpdateCategory())
-    dispatch(fetchCategoryListScreen())
-    dispatch(fetchNoteScreen())
+    console.log("이거11", categoryItem)
+    dispatch(categoryListScreenUpdateCategory(categoryItem))
+    // dispatch(fetchNoteScreen())
   } catch(e) {
     console.log(e)
   }
