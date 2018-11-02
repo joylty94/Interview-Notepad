@@ -49,7 +49,6 @@ export const fetchDetailSharedNotesLikeTyping = () => async (dispatch, getstate)
 export const fetchDetailSharedNotesOnScrapModal = () => async (dispatch, getstate) => {
   const stateItem = getstate();
   const categoryItem = stateItem.noteScreen.categoryItem
-  console.log("이거", categoryItem)
   dispatch(detailSharedNotesScreenOnScrapModal(categoryItem))
 }
 
