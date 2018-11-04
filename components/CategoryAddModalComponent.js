@@ -16,6 +16,10 @@ export default class CategoryAddModalComponent extends Component{
   handleAdd = (text) => {
     this.props.onAddPrompt(text)
   }
+  handleChangeText = (text) => {
+    this.props.changeText(text)
+    this.props.changecheck(text)
+  }
   render(){
     const { addPrompt, changeText, text, check } = this.props;
     return(
@@ -38,7 +42,7 @@ export default class CategoryAddModalComponent extends Component{
                 autoCapitalize="none"
                 autoFocus={true}
                 style={styles.modalInput}
-                onChangeText={(text) => changeText(text)} />
+                onChangeText={(text) => this.handleChangeText(text)} />
             </View>
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
@@ -61,7 +65,7 @@ export default class CategoryAddModalComponent extends Component{
                 autoCapitalize="none"
                 autoFocus={true}
                 style={styles.modalInput}
-                onChangeText={(text) => changeText(text)} />
+                onChangeText={(text) => this.handleChangeText(text)} />
             </View>
             <Text style={styles.noPassText}>사용 중인 카테고리 이름입니다.</Text>
             <View style={styles.modalButtonContainer}>
