@@ -66,21 +66,31 @@ export const fetchUpdateCategory = (text, category) => async(dispatch, getstate)
           noteCount: category.noteCount
         })
         await Promise.all([updateCurrentCategory, updateCategory])
+        categoryItem.splice((category.count - 1), 1, {
+          categoryName: text,
+          count: category.count,
+          noteCount: category.noteCount
+        })
+        dispatch(categoryListScreenSuccess(text, categoryItem))
+        dispatch(categoryListScreenUpdateCategory(categoryItem))
+        dispatch(noteScreenSuccess(text, notesItem, categoryItem))
       } else {
         await firebase.database().ref(`/users/${uid}/categorys/${category.id}`).update({
           categoryName: text,
           count: category.count,
           noteCount: category.noteCount
         })
+        categoryItem.splice((category.count -1), 1, {
+          categoryName: text,
+          count: category.count,
+          noteCount: category.noteCount
+        })
+        dispatch(categoryListScreenUpdateCategory(categoryItem))
+        dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
       }
-      categoryItem.splice((category.count -1), 1, {
-        categoryName: text,
-        count: category.count,
-        noteCount: category.noteCount
-      })
+    } else{
+      dispatch(categoryListScreenUpdateCategory(categoryItem))
     }
-    dispatch(categoryListScreenUpdateCategory(categoryItem))
-    dispatch(noteScreenSuccess(currentCategory, notesItem, categoryItem))
   } catch(e) {
     console.log(e)
   }
