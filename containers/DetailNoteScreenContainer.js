@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { fetchDetailNoteScreen, fetchDetailNoteScreenDelete, fetchDetailNoteScreenShare } from "../thunk/detailNoteScreen";
+import { fetchDetailNoteScreen, fetchDetailNoteScreenDelete, fetchDetailNoteScreenShare,
+  fetchDetailNoteScreenModal, fetchDetailNoteScreenMove } from "../thunk/detailNoteScreen";
 
 import DetailNoteComponent from "../components/DetailNoteComponent";
 import LoadingContainer from "./LoadingContainer";
+import DetailNoteMoveModalComponent from "../components/DetailNoteMoveModalComponent";
 
 class DetailNoteScreenContainer extends Component {
   componentDidMount() {
@@ -20,6 +22,7 @@ class DetailNoteScreenContainer extends Component {
     return (
       <View style={{flex:1}}>
         <DetailNoteComponent {...rest}/>
+        <DetailNoteMoveModalComponent {...rest} />
       </View>
     )
   }
@@ -28,7 +31,9 @@ class DetailNoteScreenContainer extends Component {
 export default connect(
   state => ({
     loading: state.detailNoteScreen.loading,
-    detailCategory: state.detailNoteScreen.detailCategory
+    detailCategory: state.detailNoteScreen.detailCategory,
+    modal: state.detailNoteScreen.modal,
+    categoryItem: state.detailNoteScreen.categoryItem
   }),
   dispatch => ({
     onMount: (item) => {
@@ -40,5 +45,11 @@ export default connect(
     onShare: (detailCategory) => {
       dispatch(fetchDetailNoteScreenShare(detailCategory))
     },
+    onModal: () => {
+      dispatch(fetchDetailNoteScreenModal())
+    },
+    onMove: (item, category) => {
+      dispatch(fetchDetailNoteScreenMove(item, category))
+    }
   })
 )(DetailNoteScreenContainer)
