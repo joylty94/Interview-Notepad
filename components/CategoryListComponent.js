@@ -10,7 +10,7 @@ export default class CategoryListComponent extends Component{
   handleUpdatePrompt = (item) => {
     this.props.changeText(item.categoryName)
     this.props.changeCategory(item)
-    this.props.onUpdatePrompt("")
+    this.props.onUpdatePrompt("", item)
   }
   render(){
     const { currentCategory, categoryItem, addPrompt, updatePrompt } = this.props;
