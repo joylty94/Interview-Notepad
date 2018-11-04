@@ -22,7 +22,6 @@ class CategoryListScreenContainer extends Component{
     this.props.onMount()
   }
   changeText = (text) => {
-    this.changecheck(text)
     this.setState({
       text
     })
@@ -59,7 +58,7 @@ class CategoryListScreenContainer extends Component{
         <CategoryAddModalComponent {...rest} changeText={this.changeText} text={this.state.text}
           check={this.state.check} changecheck={this.changecheck}/>
         <CategoryUpdateModalComponent {...rest} changeText={this.changeText} category={this.state.category}
-          text={this.state.text}/>
+          text={this.state.text} changecheck={this.changecheck} check={this.state.check}/>
       </View>
     )
   }
