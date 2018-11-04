@@ -13,9 +13,12 @@ export default class DetailNoteMoveModalComponent extends Component {
     this.props.onModal()
   }
   handleMove = (noteItem, category) => {
-    this.props.onMove(noteItem, category)
     this.props.onModal()
     this.props.navigation.goBack()
+    this.props.onMove(noteItem, category)
+  }
+  handleMoveCategory = (item) => {
+    this.setState({item})
   }
   render() {
     const { modal, categoryItem } = this.props;
@@ -39,7 +42,7 @@ export default class DetailNoteMoveModalComponent extends Component {
                   return(
                     <TouchableOpacity
                       style={styles.modalListButton}
-                      onPress={() => this.setState(({ item }))}>
+                      onPress={() => this.handleMoveCategory(item)}>
                     <Text style={[styles.madalListText,
                         { color: (this.state.item.categoryName === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }
                       ]}>

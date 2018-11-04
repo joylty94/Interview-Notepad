@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 import { detailNoteScreenLoading, detailNoteScreenSuccess, detailNoteScreenDelete,
   detailNoteScreenModal, detailNoteScreenMove } from "../actions/detailNoteScreen";
 import { noteScreenSuccess } from "../actions/noteScreen";
+import { fetchNoteScreen } from "./noteScreen";
 
 export const fetchDetailNoteScreen = (item) => async(dispatch, getstate) => {
   dispatch(detailNoteScreenLoading())
@@ -93,6 +94,7 @@ export const fetchDetailNoteScreenMove = (item, category) => async (dispatch) =>
       })
       await Promise.all([notePush, categoryNoteCount])
       dispatch(detailNoteScreenMove())
+      dispatch(fetchNoteScreen())
     }
   } catch(e) {
     console.log(e)
