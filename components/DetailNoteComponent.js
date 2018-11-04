@@ -10,7 +10,7 @@ export default class DetailNoteComponent extends Component{
     this.props.navigation.goBack()
   }
   render() {
-    const { navigation, detailCategory, onShare } = this.props;
+    const { navigation, detailCategory, onShare, onModal } = this.props;
     if (detailCategory){
       return (
         <View style={styles.container}>
@@ -61,6 +61,10 @@ export default class DetailNoteComponent extends Component{
                   <Text style={styles.headerText}>공 유</Text>
                 </TouchableOpacity>
               }
+              <TouchableOpacity style={styles.headerButton}
+                onPress={() => onModal()}>
+                <Text style={styles.headerText}>이 동</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={styles.headerButton}
                 onPress={() => Alert.alert(
                   "",
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "400",
-    fontSize : 15,
+    fontSize : 16,
     color: "rgb(248,249,250)",
   },
   bodyContainer: {
@@ -146,6 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 20,
+    backgroundColor:"rgb(248,249,250)"
   },
   tiemView: {
     alignItems: "flex-end",
