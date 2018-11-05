@@ -18,20 +18,23 @@ export function categoryListScreenSuccess(currentCategory, categoryItem) {
   };
 }
 
-export function categoryListScreenAddCategory() {
+export function categoryListScreenAddCategory(categoryItem) {
   return {
-    type: ADDCATEGORY
+    type: ADDCATEGORY,
+    categoryItem
   };
 }
 
-export function categoryListScreenUpdateCategory() {
+export function categoryListScreenUpdateCategory(categoryItem) {
   return {
-    type: UPDATECATEGORY
+    type: UPDATECATEGORY,
+    categoryItem
   };
 }
 
-export function categoryListScreenDeleteCategory() {
+export function categoryListScreenDeleteCategory(categoryItem) {
   return {
-    type: DELETECATEGORY
+    type: DELETECATEGORY,
+    categoryItem
   };
 }

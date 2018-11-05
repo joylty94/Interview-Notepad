@@ -3,7 +3,6 @@ import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
 import { fetchNoteScreen, fetchcategoryOnModal, fetchCategoryUpdating,
   fetchNoteScreenSearching } from "../thunk/noteScreen";
-import { Spinner } from 'native-base';
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";

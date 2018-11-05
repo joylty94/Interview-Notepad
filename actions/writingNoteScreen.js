@@ -4,9 +4,11 @@ export const HANDLESHARE = "writingNoteScreen/HANDLESHARE";
 export const CREATING = 'writingNoteScreen/CREATING';
 export const UPDATING = 'writingNoteScreen/UPDATING';
 
-export function writingNoteScreenHandleCategory(){
+export function writingNoteScreenHandleCategory(currentCategory, categoryItem){
   return{
     type: HANDLECATEGORY,
+    currentCategory,
+    categoryItem
   }
 }
 

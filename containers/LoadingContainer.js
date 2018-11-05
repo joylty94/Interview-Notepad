@@ -27,7 +27,8 @@ export default class LoadingContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View
+        <ImageBackground
+          source={require("../images/note.png")}
           style={styles.backgroundImage}
         >
           <Animated.View style={[ styles.backgroundImage, {
@@ -38,10 +39,10 @@ export default class LoadingContainer extends Component {
             ]
           }]}
             >
-        <Image style={styles.imageContainer} source={require('../images/book.png')}/>
-        <Text style={styles.loadingText}>Loading...</Text>
+            <Image style={styles.imageContainer} source={require('../images/book.png')}/>
+            <Text style={styles.loadingText}>Loading...</Text>
           </Animated.View>
-        </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
     flex: 1,
-    backgroundColor:"rgb(248,249,250)"
   },
   backgroundImage: {
     flex: 1,

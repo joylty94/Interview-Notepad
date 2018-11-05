@@ -1,7 +1,8 @@
-import { LOADING, SUCCESS, DELETE, SHARE } from "../actions/detailNoteScreen";
+import { LOADING, SUCCESS, DELETE, MOVE, MODAL } from "../actions/detailNoteScreen";
 
 const initialState = {
   loading: false,
+  modal: false,
 }
 
 export default function (state = initialState, action) {
@@ -21,9 +22,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
       }
-    case SHARE :
+    case MOVE :
+      return {
+        ...state
+      }
+    case MODAL :
       return {
         ...state,
+        modal: !state.modal,
+        categoryItem: action.categoryItem
       }
     default:
       return state;

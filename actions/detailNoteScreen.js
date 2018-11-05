@@ -1,7 +1,8 @@
 export const LOADING = "detailNoteScreen/LOADING";
 export const SUCCESS = "detailNoteScreen/SUCCESS";
 export const DELETE = "detailNoteScreen/DELETE";
-export const SHARE = "detailNoteScreen/SHARE"
+export const MOVE = "detailNoteScreen/MOVE"
+export const MODAL = "detailNoteScreen/MODAL"
 
 export function detailNoteScreenLoading() {
   return {
@@ -22,8 +23,14 @@ export function detailNoteScreenDelete() {
   }
 }
 
-export function detailNoteScreenShare() {
+export function detailNoteScreenModal(categoryItem) {
   return {
-    type: SHARE
+    type: MODAL,
+    categoryItem
+  }
+}
+export function detailNoteScreenMove() {
+  return {
+    type: MOVE
   }
 }

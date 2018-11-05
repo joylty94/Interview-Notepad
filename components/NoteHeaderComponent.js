@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Platform, TouchableOpacity, Text } from "react-native";
-import { Feather, Entypo, Foundation, FontAwesome } from "@expo/vector-icons";
+import { View, StyleSheet, Platform, TouchableOpacity, Text, Alert } from "react-native";
+import * as firebase from "firebase";
+import { Entypo, Foundation } from "@expo/vector-icons";
 import SearchBar from 'react-native-searchbar';
-import { SharedNotesScreen } from "../screenName";
+import { SharedNotesScreen, AuthLoading } from "../screenName";
 
 import CategoryButtonComponent from "./CategoryButtonComponent";
 
@@ -15,6 +16,24 @@ export default class NoteHeaderComponent extends Component{
     this.props.onSearshing()
     this.searchBar.hide()
   }
+  handleSignOut = () => {
+    Alert.alert(
+      "",
+      "로그아웃 하시겠습니까?",
+      [
+        {
+          text: '로그아웃', onPress: () => {
+            firebase.auth().signOut()
+            this.props.naviagtion.navigate(AuthLoading)
+          }
+        },
+        {
+          text: '취소'
+        },
+      ],
+      { cancelable: false }
+    )
+  }
   render(){
     const { _handleResults, searchItem, ...rest } = this.props;
     return(
@@ -26,17 +45,18 @@ export default class NoteHeaderComponent extends Component{
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => this.handleSearch()}>
-                <FontAwesome name="search" size={25} color="rgb(248,249,250)" />
+                <Text style={styles.buttonText}>검색</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.button, {marginTop:2}]}>
-                <Entypo name="dots-three-vertical" size={25} color="rgb(248,249,250)" />
+              <TouchableOpacity style={styles.button}
+                onPress={() => this.handleSignOut()}>
+                <Text style={styles.buttonText}>로그아웃</Text>
               </TouchableOpacity>
             </View>
             <SearchBar
               ref={(ref) => this.searchBar = ref}
               data={searchItem || []}
               handleResults={_handleResults}
-              backButton={<Entypo name="chevron-left" size={28} />}
+              backButton={<Entypo name="chevron-left" size={30} />}
               onBack={() => this.handleBack()}
               heightAdjust={-10}
               backgroundColor="rgb(248,249,250)"
@@ -79,7 +99,12 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 4,
     paddingVertical: 10,
-    marginLeft: 8
+    marginLeft: 12
+  },
+  buttonText:{
+    color:"rgb(248,249,250)",
+    fontWeight: "400",
+    fontSize: 16
   },
   tabContainer: {
     flexDirection:"row",

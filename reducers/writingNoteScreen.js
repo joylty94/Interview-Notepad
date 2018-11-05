@@ -11,7 +11,9 @@ export default function ( state = initialState, action ) {
     case HANDLECATEGORY :
       return{
         ...state,
-        writingModal: !state.writingModal
+        writingModal: !state.writingModal,
+        currentCategory: action.currentCategory,
+        categoryItem: action.categoryItem
     };
     case HANDLETAG :
       return{

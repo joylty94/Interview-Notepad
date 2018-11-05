@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 10,
     borderColor: "rgb(173,181,189)",
-    backgroundColor: "rgb(241,243,245)",
+    backgroundColor: "rgb(248,249,250)",
     borderRadius:5
   },
   questionText: {
@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "300",
     color: "rgb(73,80,87)",
-    marginBottom: 10,
+    marginBottom: 2,
     marginLeft:2
   },
   tagText: {
     fontSize: 16,
-    fontWeight: "200",
+    fontWeight: "100",
     color: "rgb(134,142,150)",
     marginLeft: 3
   },

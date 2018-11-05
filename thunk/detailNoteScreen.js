@@ -1,6 +1,8 @@
 import * as firebase from "firebase";
-import { detailNoteScreenLoading, detailNoteScreenSuccess, detailNoteScreenDelete } from "../actions/detailNoteScreen";
-import { fetchNoteScreen} from "./noteScreen";
+import { detailNoteScreenLoading, detailNoteScreenSuccess, detailNoteScreenDelete,
+  detailNoteScreenModal, detailNoteScreenMove } from "../actions/detailNoteScreen";
+import { noteScreenSuccess } from "../actions/noteScreen";
+import { fetchNoteScreen } from "./noteScreen";
 
 export const fetchDetailNoteScreen = (item) => async(dispatch, getstate) => {
   dispatch(detailNoteScreenLoading())
@@ -18,16 +20,19 @@ export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, 
   const stateItem = getstate();
   const currentCategory = stateItem.noteScreen.currentCategory;
   const categoryItem = stateItem.noteScreen.categoryItem;
+  const notesItem = stateItem.noteScreen.notesItem;
   const category = categoryItem.find(item => item.categoryName === currentCategory)
-  const deletenote = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).remove()
+  const deletenote = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${detailCategory.id}`).remove()
   const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
     categoryName: category.categoryName,
     count: category.count,
     noteCount: category.noteCount - 1,
   })
   await Promise.all([deletenote, categoryNoteCount])
+  const index = notesItem.findIndex(item => item.id === detailCategory.id)
+  notesItem.splice(index, 1)
   dispatch(detailNoteScreenDelete());
-  dispatch(fetchNoteScreen())
+  dispatch(noteScreenSuccess(currentCategory, notesItem ,categoryItem ))
 }
 
 export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, getstate) => {
@@ -36,12 +41,11 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
   const currentCategory = stateItem.noteScreen.currentCategory;
   if(detailCategory.share){
     const rmShare = firebase.database().ref(`/shared/${uid}/${detailCategory.id}`).remove()
-    const categoryUpdate = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).update({
+    const categoryUpdate = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${detailCategory.id}`).update({
       question: detailCategory.question,
       answer: detailCategory.answer,
       tag: detailCategory.tag,
       time: detailCategory.time,
-      count: detailCategory.count,
       share: false
     })
     await Promise.all([rmShare, categoryUpdate])
@@ -53,15 +57,46 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
       tag: detailCategory.tag,
       time: detailCategory.time,
     })
-    const categoryUpdate = firebase.database().ref(`users/${uid}/${currentCategory}/${detailCategory.id}`).update({
+    const categoryUpdate = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${detailCategory.id}`).update({
       question: detailCategory.question,
       answer: detailCategory.answer,
       tag: detailCategory.tag,
       time: detailCategory.time,
-      count: detailCategory.count,
       share: true
     })
     await Promise.all([addShare, categoryUpdate])
     dispatch(fetchDetailNoteScreen(detailCategory))
+  }
+}
+
+export const fetchDetailNoteScreenModal = () => async (dispatch, getstate) => {
+  const stateItem = getstate();
+  const categoryItem = stateItem.noteScreen.categoryItem;
+  dispatch(detailNoteScreenModal(categoryItem))
+}
+
+export const fetchDetailNoteScreenMove = (item, category) => async (dispatch) => {
+  try {
+    const { uid } = firebase.auth().currentUser;
+    if (item.length !== 0) {
+      dispatch(fetchDetailNoteScreenDelete(item))
+      const notePush = firebase.database().ref(`users/${uid}/notes/${category.categoryName}/${item.id}`).set({
+        question: item.question,
+        answer: item.answer,
+        tag: item.tag,
+        time: item.time,
+        share: item.share
+      })
+      const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
+        categoryName: category.categoryName,
+        count: category.count,
+        noteCount: category.noteCount + 1,
+      })
+      await Promise.all([notePush, categoryNoteCount])
+      dispatch(detailNoteScreenMove())
+      dispatch(fetchNoteScreen())
+    }
+  } catch(e) {
+    console.log(e)
   }
 }

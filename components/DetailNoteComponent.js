@@ -10,10 +10,10 @@ export default class DetailNoteComponent extends Component{
     this.props.navigation.goBack()
   }
   render() {
-    const { navigation, detailCategory, onShare } = this.props;
+    const { navigation, detailCategory, onShare, onModal } = this.props;
     if (detailCategory){
       return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -62,6 +62,10 @@ export default class DetailNoteComponent extends Component{
                 </TouchableOpacity>
               }
               <TouchableOpacity style={styles.headerButton}
+                onPress={() => onModal()}>
+                <Text style={styles.headerText}>이 동</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.headerButton}
                 onPress={() => Alert.alert(
                   "",
                   "메모를 삭제합니다.",
@@ -107,12 +111,15 @@ export default class DetailNoteComponent extends Component{
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
+    flex:1,
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
+  },
+  headerContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 85,
+    height: 50,
     backgroundColor: "rgb(145,167,255)",
     paddingHorizontal: 10
   },
@@ -133,7 +140,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "400",
-    fontSize : 15,
+    fontSize : 16,
     color: "rgb(248,249,250)",
   },
   bodyContainer: {
@@ -143,6 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 20,
+    backgroundColor:"rgb(248,249,250)"
   },
   tiemView: {
     alignItems: "flex-end",
