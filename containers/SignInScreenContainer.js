@@ -17,8 +17,7 @@ export default class SignInScreenContainer extends Component {
           style={styles.container}
         >
           <KeyboardAvoidingView
-            behavior={Platform.select({ ios: "padding", android: null })}
-            keyboardVerticalOffset={Platform.select({ ios: 0, android: 500 })}
+            behavior="padding"
             style={styles.container}
           >
             <TouchableWithoutFeedback style={styles.container}
@@ -61,6 +60,5 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 235,
-    padding: 20,
   }
 });
