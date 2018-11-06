@@ -11,14 +11,14 @@ export default class SignUpScreenContainer extends Component {
   render() {
     const { ...rest } = this.props
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ImageBackground
           source={require("../images/note.png")}
           style={styles.infoContainer}
           >
           <EmailSignUpComponent {...rest}/>
         </ImageBackground>
-      </SafeAreaView>
+      </View>
     )
   }
 }

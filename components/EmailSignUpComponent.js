@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TextInput, Platform, Alert } from "react-native";
+import { View, StyleSheet, Text, TextInput, Platform, Alert, KeyboardAvoidingView,
+  TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button } from "native-base";
 import * as firebase from "firebase";
 
@@ -14,28 +15,65 @@ export default class EmailSignUpComponent extends Component {
   }
   signupUser = async (email, password, identifyPW) => {
     try {
-      if (!email.includes("@")){
-        Alert.alert("이메일 오류!!!", "이메일 형식에 맞지 않습니다.")
-        return;
-      } else if (password.length < 8) {
-        Alert.alert("패스워드 오류!!!", "패스워드를 8글자 이상 입력해주세요.")
-        return;
-      } else if ( password !== identifyPW ) {
-        Alert.alert("패스워드 오류!!!", "패스워드가 같지 않습니다.")
+      if ( password !== identifyPW ) {
+        Alert.alert("", "패스워드가 같지 않습니다.")
         return;
       }
-      await firebase.auth().createUserWithEmailAndPassword(email, password)
-      await firebase.auth().signOut()
-      Alert.alert(
-        "회원가입",
-        "회원가입 완료!!!",
-        [
-          { text: 'OK', onPress: () => {
-            this.props.navigation.goBack()
-          }},
-        ],
-        { cancelable: false }
-      )
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(() =>{
+        firebase.auth().signOut()
+        Alert.alert(
+          "",
+          "회원가입 성공하셨습니다.",
+          [
+            {
+              text: "OK", onPress: () => {
+                this.props.navigation.goBack()
+              }
+            },
+          ],
+          { cancelable: false }
+        )
+      }).catch(e => {
+        const errorCode = e.code;
+        if (errorCode == "auth/email-already-in-use") {
+          Alert.alert(
+            "",
+            "사용중인 이메일입니다.",
+            [
+              { text: "OK" }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/invalid-email") {
+          Alert.alert(
+            "",
+            "유효한 이메일 주소가 아닙니다.",
+            [
+              { text: "OK" }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/operation-not-allowed") {
+          Alert.alert(
+            "",
+            "회원가입이 승인되지 않았습니다.",
+            [
+              { text: "OK" }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/weak-password") {
+          Alert.alert(
+            "",
+            "패스워드가 너무 쉽습니다.",
+            [
+              {text: "OK"}
+            ],
+            { cancelable: false }
+          )
+        } else {
+        }
+      })
     }
     catch (error) {
       console.log(e.toString())
@@ -43,56 +81,65 @@ export default class EmailSignUpComponent extends Component {
   }
   render(){
     return(
-      <View style={styles.container}>
-        <Text style={styles.titleText}>회원 가입</Text>
-        <View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.labelText}>아이디</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType='email-address'
-              autoCorrect={false}
-              autoCapitalize="none"
-              returnKeyType='next'
-              onSubmitEditing={() => this.refs.password.focus()}
-              onChangeText={(email) => this.setState({ email })}
-            />
-            <Text style={styles.labelText}>패스워드</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              autoCorrect={false}
-              autoCapitalize="none"
-              returnKeyType='next'
-              ref={"password"}
-              onSubmitEditing={() => this.refs.identifyPW.focus()}
-              onChangeText={(password) => this.setState({ password })}
-            />
-            <Text style={styles.labelText}>패스워드 확인</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              autoCorrect={false}
-              autoCapitalize="none"
-              ref={"identifyPW"}
-              onChangeText={(identifyPW) => this.setState({ identifyPW })}
-            />
-          </View>
-            <Button
-              full
-              style={styles.button}
-              onPress={() => this.signupUser(this.state.email, this.state.password, this.state.identifyPW)}
-              >
-              <Text style={styles.buttonText}>가입</Text>
-            </Button>
-            <Button
-              full
-              style={styles.button}
-              onPress={() => this.props.navigation.goBack()}
-              >
-              <Text style={styles.buttonText}>취소</Text>
-            </Button>
-        </View>
+      <View style={{flex:1, width:"100%"}}>
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={styles.container}>
+          <TouchableWithoutFeedback style={styles.container}
+            onPress={Keyboard.dismiss}>
+            <View style={styles.touchContainer}>
+              <Text style={styles.titleText}>회원 가입</Text>
+              <View>
+                <View style={styles.inputContainer}>
+                  <Text style={styles.labelText}>아이디</Text>
+                  <TextInput
+                    style={styles.input}
+                    keyboardType='email-address'
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    returnKeyType='next'
+                    onSubmitEditing={() => this.refs.password.focus()}
+                    onChangeText={(email) => this.setState({ email })}
+                  />
+                  <Text style={styles.labelText}>패스워드</Text>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={true}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    returnKeyType='next'
+                    ref={"password"}
+                    onSubmitEditing={() => this.refs.identifyPW.focus()}
+                    onChangeText={(password) => this.setState({ password })}
+                  />
+                  <Text style={styles.labelText}>패스워드 확인</Text>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={true}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    ref={"identifyPW"}
+                    onChangeText={(identifyPW) => this.setState({ identifyPW })}
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <Button
+            full
+            style={styles.button}
+            onPress={() => this.signupUser(this.state.email, this.state.password, this.state.identifyPW)}
+          >
+            <Text style={styles.buttonText}>가입</Text>
+          </Button>
+          <Button
+            full
+            style={styles.button}
+            onPress={() => this.props.navigation.goBack()}
+          >
+            <Text style={styles.buttonText}>취소</Text>
+          </Button>
+        </KeyboardAvoidingView>
       </View>
     )
   }
@@ -102,8 +149,10 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     paddingTop: Platform.OS === "ios" ? 34 : 24,
+    justifyContent: "center"
+  },
+  touchContainer:{
     alignItems: "center",
-    justifyContent: "center",
   },
   titleText: {
     fontSize: 24,
@@ -123,7 +172,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 350,
+    width: 300,
     backgroundColor: 'rgb(222,226,230)',
     marginBottom: 15,
     paddingHorizontal: 10,
