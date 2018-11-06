@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, TextInput } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import * as firebase from "firebase";
-import { Container, Content, Header, Form, Input, Item, Button, Label } from "native-base";
-import { App, SignUpScreen } from "../screenName";
+import { Button } from "native-base";
+import { App, SignUpScreen, AuthLoading } from "../screenName";
 
 export default class EmailSignInComponent extends Component {
   constructor(props) {
@@ -10,12 +10,55 @@ export default class EmailSignInComponent extends Component {
     this.state = ({
       email: "",
       password: "",
+      signIn: true,
     })
   }
+
   signInUser = (email, password) => {
     try{
-      firebase.auth().signInWithEmailAndPassword(email, password)
-      this.props.navigation.navigate(App)
+      firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+        console.log("1",user)
+        this.props.navigation.navigate(App)
+      }).catch(e => {
+        const errorCode = e.code;
+        if (errorCode == "auth/invalid-email") {
+          Alert.alert(
+            "",
+            "유효하지 않은 이메일입니다.",
+            [
+              { text: "OK", onPress: () => {this.setState({signIn: true})} }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/user-disabled") {
+          Alert.alert(
+            "",
+            "비활성화 된 이메일입니다.",
+            [
+              { text: "OK", onPress: () => { this.setState({ signIn: true }) } }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/user-not-found") {
+          Alert.alert(
+            "",
+            "이메일 또는 패스워드가 틀립니다.",
+            [
+              { text: "OK", onPress: () => { this.setState({ signIn: true }) } }
+            ],
+            { cancelable: false }
+          )
+        } else if (errorCode == "auth/wrong-password") {
+          Alert.alert(
+            "",
+            "이메일 또는 패스워드가 틀립니다.",
+            [
+              { text: "OK", onPress: () => { this.setState({ signIn: true }) } }
+            ],
+            { cancelable: false }
+          )
+        }
+      })
     }
     catch(e){
       console.log(e)
@@ -66,10 +109,13 @@ export default class EmailSignInComponent extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex:1,
+    alignItems:"center",
+    justifyContent: "center",
   },
   input: {
     height: 40,
+    width: 300,
     backgroundColor: 'rgb(222,226,230)',
     marginBottom: 15,
     paddingHorizontal: 10,
@@ -77,12 +123,12 @@ const styles = StyleSheet.create({
     color: "rgb(52,58,64)",
   },
   buttonContainer: {
+    width: 300,
     borderBottomWidth: 1,
     borderColor: "rgb(206,212,218)"
   },
   button: {
     height: 40,
-    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
