@@ -10,7 +10,7 @@ export default class CategoryListHeaderComponent extends Component {
         <View style={styles.header}>
           <TouchableOpacity style={styles.button}
             onPress={() => navigation.goBack()}>
-            <FontAwesome name="angle-left" size={26} color="rgb(248,249,250)"/>
+            <FontAwesome name="angle-left" size={26} color="rgb(255,255,255)"/>
           </TouchableOpacity>
           <Text style={styles.text}>카테고리 관리</Text>
         </View>
@@ -22,7 +22,7 @@ export default class CategoryListHeaderComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(145,167,255)",
+    backgroundColor: "rgb(255,135,135)",
   },
   header: {
     flexDirection: "row",
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: 18,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
     fontFamily: "GodoB"
   }
 })

@@ -17,7 +17,7 @@ export default class DetailSharedNotesComponent extends Component {
             <TouchableOpacity
               onPress={() => navigation.goBack()}
               style={styles.headerBackButton}>
-              <Entypo name="chevron-left" size={30} color="rgb(248,249,250)" />
+              <Entypo name="chevron-left" size={30} color="rgb(255,255,255)" />
             </TouchableOpacity>
             <View style={styles.headerButtonContainer}>
               {(like)
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 74,
     paddingHorizontal: 10,
-    backgroundColor: "rgb(145,167,255)",
+    backgroundColor: "rgb(255,135,135)",
   },
   headerButtonContainer: {
     flexDirection: "row",
@@ -106,16 +106,16 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontFamily: "GodoB",
     fontSize: 15,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
   },
   headerText: {
     fontFamily: "GodoB",
     fontSize: 15,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
   },
   bodyContainer: {
     flex: 1,
-    backgroundColor: "rgb(248,249,250)"
+    backgroundColor: "rgb(255,255,255)"
   },
   bodyView: {
     flex: 1,

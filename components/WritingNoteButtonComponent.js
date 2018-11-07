@@ -36,7 +36,7 @@ export default class WritingNoteButtonComponent extends Component{
             <Text style={styles.buttonText}>체 크</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button,
-            { backgroundColor: writingTag ? "rgb(222,226,230)" : "rgb(248,249,250)"}]}
+            { backgroundColor: writingTag ? "rgb(222,226,230)" : "rgb(255,255,255)"}]}
             onPress={this.handleTagButton}>
             <FontAwesome name="tags" size={23} color={writingTag ? "rgb(247,131,172)" : "rgb(52,58,64)"} />
             <Text style={[styles.buttonText,
@@ -45,7 +45,7 @@ export default class WritingNoteButtonComponent extends Component{
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button,
-            { backgroundColor: writingShare ? "rgb(222,226,230)" : "rgb(248,249,250)" }]}
+            { backgroundColor: writingShare ? "rgb(222,226,230)" : "rgb(255,255,255)" }]}
             onPress={this.handleShareButton}>
             <FontAwesome name="share-alt" size={23} color={writingShare ? "rgb(77,171,247)" : "rgb(52,58,64)"} />
             <Text style={[styles.buttonText,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 85,
-    backgroundColor: "rgb(248,249,250)"
+    backgroundColor: "rgb(255,255,255)"
   },
   buttonContainer: {
     flexDirection: "row",

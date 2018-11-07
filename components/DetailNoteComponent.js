@@ -18,7 +18,7 @@ export default class DetailNoteComponent extends Component{
             <TouchableOpacity
               onPress={() => navigation.goBack()}
               style={styles.headerBackButton}>
-              <Entypo name="chevron-left" size={30} color="rgb(248,249,250)" />
+              <Entypo name="chevron-left" size={30} color="rgb(255,255,255)" />
             </TouchableOpacity>
             <View style={styles.headerButtonContainer}>
               {(detailCategory.share)
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     height: 50,
-    backgroundColor: "rgb(145,167,255)",
+    backgroundColor: "rgb(255,135,135)",
     paddingHorizontal: 10
   },
   headerButtonContainer: {
@@ -140,9 +140,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontFamily: "GodoB",
-    fontWeight: "400",
     fontSize : 16,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
   },
   bodyContainer: {
     flex:1,
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 20,
-    backgroundColor:"rgb(248,249,250)"
+    backgroundColor:"rgb(255,255,255)"
   },
   tiemView: {
     alignItems: "flex-end",
@@ -160,19 +159,16 @@ const styles = StyleSheet.create({
   questionText: {
     fontFamily: "GodoB",
     fontSize: 20,
-    fontWeight: "400",
     color: "rgb(73,80,87)"
   },
   answerText: {
     fontFamily: "GodoB",
     fontSize: 18,
-    fontWeight: "300",
     color: "rgb(73,80,87)"
   },
   timeText: {
     fontFamily: "GodoB",
     fontSize: 14,
-    fontWeight: "200",
     color: "rgb(134,142,150)"
   }
 })

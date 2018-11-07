@@ -29,9 +29,8 @@ const styles = StyleSheet.create({
   categoryText: {
     fontFamily: "GodoB",
     fontSize: 24,
-    fontWeight: "400",
     textAlign: "center",
-    color: "rgb(248,249,250)"
+    color: "rgb(255,255,255)"
   },
 
 })

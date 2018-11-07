@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
   },
   logoContainer: {
     flex: 1,

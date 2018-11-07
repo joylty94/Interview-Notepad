@@ -59,19 +59,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 10,
     borderColor: "rgb(173,181,189)",
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     borderRadius:5
   },
   questionText: {
     fontSize: 20,
-    fontWeight: "400",
     fontFamily: "GodoB",
     color: "rgb(73,80,87)",
     marginBottom: 2
   },
   answerText: {
     fontSize: 18,
-    fontWeight: "300",
     fontFamily: "GodoB",
     color: "rgb(73,80,87)",
     marginBottom: 2,
@@ -79,7 +77,6 @@ const styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 16,
-    fontWeight: "100",
     fontFamily: "BMYEONSUNG",
     color: "rgb(134,142,150)",
     marginLeft: 3

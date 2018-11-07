@@ -106,7 +106,7 @@ export default class EmailSignUpComponent extends Component {
         <View style={{flex:1}}>
           <View style={styles.inputFormContainer}>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="user" size={20} color="rgb(248,249,250)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="user" size={20} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 keyboardType='email-address'
@@ -115,13 +115,13 @@ export default class EmailSignUpComponent extends Component {
                 returnKeyType='next'
                 placeholder="email"
                 placeholderTextColor='rgb(173,181,189)'
-                underlineColorAndroid='rgb(248,249,250)'
+                underlineColorAndroid='rgb(255,255,255)'
                 onSubmitEditing={() => this.refs.password.focus()}
                 onChangeText={(email) => this.setState({ email })}
               />
             </View>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(248,249,250)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -131,13 +131,13 @@ export default class EmailSignUpComponent extends Component {
                 ref={"password"}
                 placeholder="password"
                 placeholderTextColor='rgb(173,181,189)'
-                underlineColorAndroid='rgb(248,249,250)'
+                underlineColorAndroid='rgb(255,255,255)'
                 onSubmitEditing={() => this.refs.identifyPW.focus()}
                 onChangeText={(password) => this.setState({ password })}
               />
             </View>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(248,249,250)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -146,7 +146,7 @@ export default class EmailSignUpComponent extends Component {
                 ref={"identifyPW"}
                 placeholder="password"
                 placeholderTextColor='rgb(173,181,189)'
-                underlineColorAndroid='rgb(248,249,250)'
+                underlineColorAndroid='rgb(255,255,255)'
                 onChangeText={(identifyPW) => this.setState({ identifyPW })}
               />
             </View>
@@ -177,20 +177,8 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     alignItems: "center",
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     justifyContent: "space-between"
-  },
-  titleText: {
-    fontSize: 24,
-    color: "rgb(255,135,135)",
-    fontWeight: "bold",
-    marginVertical: 25
-  },
-  labelText: {
-    fontSize: 18,
-    color: "rgb(255,135,135)",
-    fontWeight: "300",
-    marginBottom: 8,
   },
   inputFormContainer: {
   },
@@ -199,7 +187,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 50,
     width: 300,
-    backgroundColor: 'rgb(248,249,250)',
+    backgroundColor: 'rgb(255,255,255)',
     borderWidth: 1,
     borderColor: "rgb(255,135,135)",
     borderRadius: 30,
@@ -232,7 +220,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
   },
   buttonText: {
     textAlign: 'center',

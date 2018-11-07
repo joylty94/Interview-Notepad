@@ -89,12 +89,12 @@ export default class EmailSignInComponent extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-          <View style={styles.inputIcon}><FontAwesome name="user" size={25} color="rgb(248,249,250)" /></View>
+          <View style={styles.inputIcon}><FontAwesome name="user" size={28} color="rgb(255,255,255)" /></View>
           <TextInput
             style={styles.input}
             placeholder="email"
             placeholderTextColor='rgb(173,181,189)'
-            underlineColorAndroid='rgb(248,249,250)'
+            underlineColorAndroid='rgb(255,255,255)'
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType='next'
@@ -104,12 +104,12 @@ export default class EmailSignInComponent extends Component {
           />
         </View>
         <View style={styles.inputContainer}>
-          <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(248,249,250)" /></View>
+          <View style={styles.inputIcon}><FontAwesome name="lock" size={28} color="rgb(255,255,255)" /></View>
           <TextInput
             style={styles.input}
             placeholder="password"
             placeholderTextColor='rgb(173,181,189)'
-            underlineColorAndroid='rgb(248,249,250)'
+            underlineColorAndroid='rgb(255,255,255)'
             secureTextEntry={true}
             autoCorrect={false}
             autoCapitalize="none"
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 50,
     width: 300,
-    backgroundColor: 'rgb(248,249,250)',
+    backgroundColor: 'rgb(255,255,255)',
     borderWidth:1,
     borderColor: "rgb(255,135,135)",
     borderRadius: 30,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     borderWidth: 1,
     borderColor: "rgb(255,107,107)",
     borderRadius: 30,
