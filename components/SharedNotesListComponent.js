@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, ScrollView, FlatList, Text } from "react-native";
+import { View, StyleSheet, ScrollView, FlatList, Text, Image } from "react-native";
 
 import SharedNotesListAnimatedComponent from "./SharedNotesListAnimatedComponent"
 
@@ -9,7 +9,7 @@ export default class SharedNotesListComponent extends Component{
     if(results.length === 0){
       return(
         <View style={styles.initContainer}>
-          <Text style={styles.initText}>면접 질문을 입력하세요.</Text>
+          <Image style={styles.image} source={require("../images/물음표.png")} />
         </View>
       )
     }
@@ -35,15 +35,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingBottom: 10,
     marginBottom: 10,
+    backgroundColor: "rgb(241,243,245)"
   },
   initContainer: {
     flex: 1,
     justifyContent:"center",
     alignItems:"center",
   },
-  initText: {
-    fontSize: 20,
-    fontFamily: "GodoB",
-    color:"rgb(73,80,87)",
+  image: {
+    width: 250,
+    height: 340
   }
 })
