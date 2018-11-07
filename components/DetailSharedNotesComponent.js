@@ -12,7 +12,7 @@ export default class DetailSharedNotesComponent extends Component {
     const { navigation, sharedItem, like, likesCount, handleScrapModal } = this.props;
     if (sharedItem) {
       return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -66,14 +66,17 @@ export default class DetailSharedNotesComponent extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  },
   headerContainer: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 85,
+    height: 74,
+    paddingHorizontal: 10,
     backgroundColor: "rgb(145,167,255)",
-    paddingHorizontal: 10
   },
   headerButtonContainer: {
     flexDirection: "row",
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
+    backgroundColor: "rgb(248,249,250)"
   },
   bodyView: {
     flex: 1,
