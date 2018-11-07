@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
   buttonText:{
     color:"rgb(248,249,250)",
     fontWeight: "400",
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "GodoB",
   },
   tabContainer: {
     flexDirection:"row",

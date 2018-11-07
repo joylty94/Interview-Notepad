@@ -63,21 +63,21 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   questionText: {
+    fontFamily: "GodoB",
     fontSize: 20,
-    fontWeight: "500",
     color: "rgb(73,80,87)",
     marginBottom: 2
   },
   answerText: {
+    fontFamily: "GodoB",
     fontSize: 18,
-    fontWeight: "300",
     color: "rgb(73,80,87)",
     marginBottom: 10,
     marginLeft: 2
   },
   tagText: {
+    fontFamily: "GodoB",
     fontSize: 16,
-    fontWeight: "200",
     color: "rgb(134,142,150)",
     marginLeft: 3
   },

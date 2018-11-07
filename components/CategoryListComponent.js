@@ -66,11 +66,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   text: {
+    fontFamily: "GodoB",
     fontWeight: "400",
     fontSize: 18,
     marginLeft: 2,
   },
   buttonText: {
+    fontFamily: "GodoB",
     fontWeight: "400",
     fontSize: 18,
     marginLeft: 2,
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
     borderColor: "rgb(173,181,189)",
   },
   addText: {
+    fontFamily: "GodoB",
     fontWeight: "400",
     fontSize: 18,
     color: "rgb(52,58,64)",

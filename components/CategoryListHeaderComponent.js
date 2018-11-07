@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: 18,
-    color: "rgb(248,249,250)"
+    color: "rgb(248,249,250)",
+    fontFamily: "GodoB"
   }
 })

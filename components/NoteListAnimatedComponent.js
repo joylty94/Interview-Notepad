@@ -64,13 +64,15 @@ const styles = StyleSheet.create({
   },
   questionText: {
     fontSize: 20,
-    fontWeight: "500",
+    fontWeight: "400",
+    fontFamily: "GodoB",
     color: "rgb(73,80,87)",
     marginBottom: 2
   },
   answerText: {
     fontSize: 18,
     fontWeight: "300",
+    fontFamily: "GodoB",
     color: "rgb(73,80,87)",
     marginBottom: 2,
     marginLeft:2
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
   tagText: {
     fontSize: 16,
     fontWeight: "100",
+    fontFamily: "BMYEONSUNG",
     color: "rgb(134,142,150)",
     marginLeft: 3
   },

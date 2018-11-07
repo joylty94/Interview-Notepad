@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   initText: {
     fontSize: 20,
-    fontWeight:"400",
+    fontFamily: "GodoB",
     color:"rgb(73,80,87)",
   }
 })

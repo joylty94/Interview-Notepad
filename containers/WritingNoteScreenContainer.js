@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, BackHandler } from "react-native";
 import { connect } from "react-redux";
+import { Font } from "expo";
 
 import CategoryListModalComponent from "../components/CategoryListModalComponent";
 import WritingNoteButtonComponent from "../components/WritingNoteButtonComponent";
@@ -8,6 +9,7 @@ import WritingNoteInputComponent from "../components/WritingNoteInputComponent";
 import { fatchCategoryHandleModal, fatchHandleTag,
   fatchHandleShare, fatchCreating, fatchUpdating } from "../thunk/writingNoteScreen";
 import { fetchCategoryUpdating } from "../thunk/noteScreen";
+import LoadingContainer from "./LoadingContainer";
 
 class WritingNoteScreenContainer extends Component{
   constructor(props) {
@@ -16,17 +18,29 @@ class WritingNoteScreenContainer extends Component{
       question: "",
       answer: "",
       tag: "",
+      fontLoaded: false
     }
   }
 
-  componentDidMount() {
-    if (this.props.navigation.state.params) {
-      const category = this.props.navigation.state.params;
-      this.changeQuestion(category.question);
-      this.changeAnswer(category.answer);
-      this.changeTag(category.tag);
-      if(category.share){
-        this.props.handleShare()
+  async componentDidMount() {
+    {
+      try {
+        await Font.loadAsync({
+          "BMYEONSUNG": require("../assets/fonts/BMYEONSUNG.ttf"),
+          "GodoB": require("../assets/fonts/GodoB.ttf"),
+        });
+        this.setState({ fontLoaded: true });
+          if (this.props.navigation.state.params) {
+            const category = this.props.navigation.state.params;
+            this.changeQuestion(category.question);
+            this.changeAnswer(category.answer);
+            this.changeTag(category.tag);
+            if(category.share){
+              this.props.handleShare()
+            }
+          }
+      } catch (e) {
+        console.log(e)
       }
     }
   }
@@ -42,6 +56,9 @@ class WritingNoteScreenContainer extends Component{
 
   render(){
     const { ...rest } = this.props
+    if(!this.state.fontLoaded){
+      return (<LoadingContainer/>)
+    }
     return(
       <View style={styles.container}>
         <WritingNoteButtonComponent {...rest} question={this.state.question}

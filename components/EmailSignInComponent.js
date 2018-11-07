@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: 'rgb(255,135,135)',
-    fontWeight: 'bold',
+    fontFamily: "GodoB",
     fontSize: 18
   },
   signUpContainer:{
@@ -203,7 +203,6 @@ const styles = StyleSheet.create({
     fontFamily: "BMYEONSUNG",
     textAlign: "right",
     fontSize: 16,
-    fontWeight: "400",
     color: "rgb(52,58,64)"
   }
 })

@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   modalTitle: {
-    fontWeight: "500",
+    fontFamily: "GodoB",
     fontSize: 20,
     color: "rgb(52,58,64)",
     marginBottom: 15,
@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   buttonText: {
-    fontWeight: "300",
+    fontFamily: "GodoB",
     fontSize: 14,
     color: "rgb(52,58,64)",
   },
   buttonNoPassText: {
-    fontWeight: "300",
+    fontFamily: "GodoB",
     fontSize: 14,
     color: "rgb(173,181,189)",
   }

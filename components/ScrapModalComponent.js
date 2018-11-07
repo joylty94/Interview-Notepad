@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   madalListText: {
     textAlign: "center",
     fontSize: 18,
-    fontWeight: "400",
     color:"rgb(73,80,87)"
   },
   modalButtonContainer: {

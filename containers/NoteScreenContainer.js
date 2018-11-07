@@ -3,6 +3,7 @@ import { View, StyleSheet, Text} from "react-native";
 import { connect } from "react-redux";
 import { fetchNoteScreen, fetchcategoryOnModal, fetchCategoryUpdating,
   fetchNoteScreenSearching } from "../thunk/noteScreen";
+import { Font } from "expo";
 
 import NoteHeaderComponent from "../components/NoteHeaderComponent";
 import PlusButtonComponent from "../components/PlusButtonComponent";
@@ -14,11 +15,23 @@ class NoteScreenContainer extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      results: []
+      results: [],
+      fontLoaded: false,
     }
   }
-  componentDidMount() {
-    this.props.onMount()
+  async componentDidMount() {
+    {
+      try {
+        await Font.loadAsync({
+          "BMYEONSUNG": require("../assets/fonts/BMYEONSUNG.ttf"),
+          "GodoB": require("../assets/fonts/GodoB.ttf"),
+        });
+        this.setState({ fontLoaded: true });
+        this.props.onMount()
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }
   _handleResults = (newObject) => {
     this.setState({
@@ -27,7 +40,7 @@ class NoteScreenContainer extends Component{
   }
   render(){
     const { onMount, loading, ...rest } = this.props
-    if (loading){
+    if (loading || !this.state.fontLoaded){
       return (<LoadingContainer/>)
     }
     return(

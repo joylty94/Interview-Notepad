@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   modalTitle: {
-    fontWeight: "500",
+    fontFamily: "GodoB",
+    fontWeight: "400",
     fontSize: 20,
     color: "rgb(52,58,64)",
     marginBottom: 20
@@ -133,9 +134,6 @@ const styles = StyleSheet.create({
   modalInput: {
     width: 250,
   },
-  noPassText: {
-    color: "rgb(201,42,42)"
-  },
   modalButtonContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -150,14 +148,17 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   buttonText: {
+    fontFamily: "GodoB",
     fontWeight: "300",
     fontSize: 14,
     color: "rgb(52,58,64)",
   },
   noPassText: {
+    fontFamily: "GodoB",
     color: "rgb(201,42,42)"
   },
   buttonNoPassText: {
+    fontFamily: "GodoB",
     fontWeight: "300",
     fontSize: 14,
     color: "rgb(173,181,189)",

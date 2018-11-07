@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontFamily: "GodoB",
+    fontWeight: "400",
     textAlign: "center",
     color: "rgb(145,167,255)"
   },
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
   madalText: {
     textAlign: "center",
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "300",
+    fontFamily: "GodoB"
   }
 })

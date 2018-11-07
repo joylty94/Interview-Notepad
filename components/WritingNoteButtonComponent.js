@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 12,
+    fontFamily: "GodoB",
     textAlign: "center",
-    fontWeight: "400",
     color: "rgb(52,58,64)"
   },
 })

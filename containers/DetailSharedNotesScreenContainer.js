@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
+import { Font } from "expo";
 
 import DetailSharedNotesComponent from "../components/DetailSharedNotesComponent";
 import ScrapModalComponent from "../components/ScrapModalComponent";
@@ -9,16 +10,31 @@ import { fetchDetailSharedNotes, fetchDetailSharedNotesLikeTyping,
   fetchDetailSharedNotesOnScrapModal, fetchDetailSharedNotesScrap } from "../thunk/detailSharedNotesScreen";
 
 class DetailSharedNotesScreenContainer extends Component {
-  componentDidMount() {
-    let item = this.props.navigation.state.params;
-    this.props.onMount(item)
+  constructor(props){
+    super(props)
+    this.state = {
+      fontLoaded: false,
+    }
+  }
+  async componentDidMount() {
+    try {
+      await Font.loadAsync({
+        "BMYEONSUNG": require("../assets/fonts/BMYEONSUNG.ttf"),
+        "GodoB": require("../assets/fonts/GodoB.ttf"),
+      });
+      this.setState({ fontLoaded: true });
+      let item = this.props.navigation.state.params;
+      this.props.onMount(item)
+    } catch (e) {
+      console.log(e)
+    }
   }
   handleScrapModal = () => {
     this.props.onScrapModal()
   }
   render() {
     const { loading, ...rest } = this.props
-    if (loading) {
+    if (loading || !this.state.fontLoaded) {
       return (<LoadingContainer />)
     }
     return (

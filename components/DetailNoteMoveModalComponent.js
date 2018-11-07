@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   },
   madalListText: {
     textAlign: "center",
+    fontFamily: "GodoB",
     fontSize: 18,
     fontWeight: "400",
     color: "rgb(73,80,87)",
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 5,
-    width: 60,
+    width: 70,
     backgroundColor: "rgb(248,249,250)",
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",

@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontFamily: "BMYEONSUNG",
-    fontWeight: "400",
     fontSize: 50,
     color: "rgb(255,135,135)"
   },

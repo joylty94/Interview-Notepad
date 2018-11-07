@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     marginLeft: 2
   },
   headerText: {
+    fontFamily: "GodoB",
     fontWeight: "400",
     fontSize : 16,
     color: "rgb(248,249,250)",
@@ -157,16 +158,19 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   questionText: {
+    fontFamily: "GodoB",
     fontSize: 20,
-    fontWeight: "500",
+    fontWeight: "400",
     color: "rgb(73,80,87)"
   },
   answerText: {
+    fontFamily: "GodoB",
     fontSize: 18,
     fontWeight: "300",
     color: "rgb(73,80,87)"
   },
   timeText: {
+    fontFamily: "GodoB",
     fontSize: 14,
     fontWeight: "200",
     color: "rgb(134,142,150)"

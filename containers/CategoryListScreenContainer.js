@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
+import { Font } from "expo";
 
 import CategoryListComponent from "../components/CategoryListComponent";
 import CategoryListHeaderComponent from "../components/CategoryListHeaderComponent";
@@ -16,10 +17,22 @@ class CategoryListScreenContainer extends Component{
       text : "",
       category: {},
       check: true,
+      fontLoaded: false,
     }
   }
-  componentDidMount() {
-    this.props.onMount()
+  async componentDidMount() {
+    {
+      try {
+        await Font.loadAsync({
+          "BMYEONSUNG": require("../assets/fonts/BMYEONSUNG.ttf"),
+          "GodoB": require("../assets/fonts/GodoB.ttf"),
+        });
+        this.setState({ fontLoaded: true });
+        this.props.onMount()
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }
   changeText = (text) => {
     this.setState({
@@ -48,7 +61,8 @@ class CategoryListScreenContainer extends Component{
 
   render() {
     const { loading, ...rest } = this.props
-    if(loading){
+    console.log(this.state.fontLoaded)
+    if(loading || !this.state.fontLoaded){
       return (<LoadingContainer/>)
     }
     return(
