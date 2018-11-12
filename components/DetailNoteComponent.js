@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     height: 50,
-    backgroundColor: "rgb(255,135,135)",
+    backgroundColor: "rgb(77,171,247)",
     paddingHorizontal: 10
   },
   headerButtonContainer: {

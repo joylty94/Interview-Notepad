@@ -38,7 +38,7 @@ export default class CategoryListModalComponent extends Component{
               <Text style={styles.categoryText}>카태고리</Text>
               <TouchableOpacity
                 onPress={() => this.handleModalPage()}>
-                <MaterialIcons name="settings" size={28} color="rgb(255,135,135)" />
+                <MaterialIcons name="settings" size={28} color="rgb(77,171,247)" />
               </TouchableOpacity>
             </View>
             <ScrollView>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: "GodoB",
     textAlign: "center",
-    color: "rgb(255,135,135)"
+    color: "rgb(77,171,247)"
   },
   modalButton: {
     flexDirection: "row",

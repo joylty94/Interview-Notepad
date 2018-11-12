@@ -65,7 +65,7 @@ export default class NoteHeaderComponent extends Component{
         </View>
         <View style={styles.tabContainer}>
           <View style={styles.tabActiveButton}>
-            <Foundation name="page-edit" size={25} color="rgb(255,135,135)" />
+            <Foundation name="page-edit" size={25} color="rgb(77,171,247)" />
           </View>
           <TouchableOpacity style={styles.tabButton}
             onPress={() => this.props.navigation.navigate(SharedNotesScreen)}>
@@ -80,7 +80,7 @@ export default class NoteHeaderComponent extends Component{
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(255,135,135)"
+    backgroundColor: "rgb(77,171,247)"
   },
   headerContainer: {
     height: 50,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
     borderBottomWidth: 3,
-    borderColor:"rgb(255,135,135)"
+    borderColor:"rgb(77,171,247)"
   },
   tabButton: {
     flex:1,

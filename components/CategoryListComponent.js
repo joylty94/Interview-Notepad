@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",
     borderRadius: 5,
-    backgroundColor: "rgb(255,135,135)"
+    backgroundColor: "rgb(77,171,247)"
   },
   addContainer: {
     borderBottomWidth: 1,

@@ -22,7 +22,7 @@ export default class CategoryListHeaderComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(255,135,135)",
+    backgroundColor: "rgb(77,171,247)",
   },
   header: {
     flexDirection: "row",

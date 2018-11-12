@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 74,
     paddingHorizontal: 10,
-    backgroundColor: "rgb(255,135,135)",
+    backgroundColor: "rgb(77,171,247)",
   },
   headerButtonContainer: {
     flexDirection: "row",
