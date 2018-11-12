@@ -28,7 +28,7 @@ export default class LoadingContainer extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../images/note.png")}
+          source={require("../assets/images/note.png")}
           style={styles.backgroundImage}
         >
           <Animated.View style={[ styles.backgroundImage, {
@@ -39,7 +39,7 @@ export default class LoadingContainer extends Component {
             ]
           }]}
             >
-            <Image style={styles.imageContainer} source={require('../images/book.png')}/>
+            <Image style={styles.imageContainer} source={require('../assets/images/book.png')}/>
             <Text style={styles.loadingText}>Loading...</Text>
           </Animated.View>
         </ImageBackground>

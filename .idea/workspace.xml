@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57e1800e-cdc8-4a41-a4e5-f348f07adbf5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/components/CategoryButtonComponent.js" afterPath="$PROJECT_DIR$/components/CategoryButtonComponent.js" />
+      <change beforePath="$PROJECT_DIR$/components/SharedNotesListComponent.js" afterPath="$PROJECT_DIR$/components/SharedNotesListComponent.js" />
+      <change beforePath="$PROJECT_DIR$/containers/LoadingContainer.js" afterPath="$PROJECT_DIR$/containers/LoadingContainer.js" />
+      <change beforePath="$PROJECT_DIR$/images/book.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/logo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/note.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/물음표1.png" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
