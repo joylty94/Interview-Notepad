@@ -90,19 +90,19 @@ const styles = StyleSheet.create({
     minHeight: 100,
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     alignItems: "center",
     borderRadius: 10
   },
   ListContainer: {
     width: 280,
     maxHeight: 200,
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     paddingVertical: 5,
     marginVertical: 10,
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     borderRadius: 5
   },
   modalListButton: {
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
   },
   madalListText: {
     textAlign: "center",
+    fontFamily: "GodoB",
     fontSize: 18,
-    fontWeight: "400",
     color: "rgb(73,80,87)",
     paddingHorizontal: 10,
   },
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 5,
-    width: 60,
-    backgroundColor: "rgb(248,249,250)",
+    width: 70,
+    backgroundColor: "rgb(255,255,255)",
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",
     borderRadius: 5,

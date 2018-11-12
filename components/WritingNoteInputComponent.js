@@ -4,7 +4,7 @@ import { View, TextInput, StyleSheet, TouchableWithoutFeedback,
 
 export default class WritingNotesInputComponent extends Component {
   render(){
-    const { writingTag, changeQuestion, changeAnswer, changeTag, navigation, question,
+    const { writingTag, changeQuestion, changeAnswer, changeTag, question,
     answer, tag } = this.props
     return(
       <KeyboardAvoidingView style={styles.container}
@@ -39,7 +39,7 @@ export default class WritingNotesInputComponent extends Component {
         {(!writingTag) ? null :
         <View style={styles.tageContainer}>
           <TextInput
-            placeholder="#키워드 입력하세요"
+            placeholder="# 키워드 입력하세요"
             placeholderTextColor="rgb(134,142,150)"
             underlineColorAndroid="rgb(222,226,230)"
             autoCapitalize="none"
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: 45,
     paddingTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "rgb(173,181,189)"
+    borderBottomColor: "rgb(173,181,189)",
   },
   answerContainer: {
     flex: 8,
@@ -80,14 +80,17 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   questionText: {
+    fontFamily: "GodoB",
     paddingLeft: 5,
     fontSize: 20,
   },
   answerText: {
+    fontFamily: "GodoB",
     paddingLeft: 6,
     fontSize: 16,
   },
   tagText: {
+    fontFamily: "BMYEONSUNG",
     paddingLeft: 10,
     fontSize: 15,
   }

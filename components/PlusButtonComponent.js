@@ -10,7 +10,7 @@ export default class PlusButtonComponent extends Component{
     return(
       <TouchableOpacity style={styles.positionView}
         onPress={() => { navigation.navigate(WritingNoteScreen)}}>
-        <Entypo name="plus" size={32} color="rgb(248,249,250)" />
+        <Entypo name="plus" size={32} color="rgb(255,255,255)" />
       </TouchableOpacity>
     )
   }
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 35,
     bottom: 30,
-    backgroundColor: "rgb(145,167,255)",
+    backgroundColor: "rgb(77,171,247)",
     paddingVertical: 13,
     paddingHorizontal: 13,
     borderTopRightRadius: 40,

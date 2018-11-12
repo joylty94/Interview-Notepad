@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TextInput, Platform, Alert, KeyboardAvoidingVie
   TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button } from "native-base";
 import * as firebase from "firebase";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default class EmailSignUpComponent extends Component {
   constructor(props){
@@ -15,7 +16,27 @@ export default class EmailSignUpComponent extends Component {
   }
   signupUser = async (email, password, identifyPW) => {
     try {
-      if ( password !== identifyPW ) {
+      if(email.length===0){
+        Alert.alert(
+          "",
+          "이메일을 입력해주세요.",
+          [
+            { text: "OK" }
+          ],
+          { cancelable: false }
+        )
+        return;
+      } else if(password.length===0 || identifyPW.length === 0){
+        Alert.alert(
+          "",
+          "패스워드를 입력해주세요.",
+          [
+            { text: "OK" }
+          ],
+          { cancelable: false }
+        )
+        return;
+      }else if ( password !== identifyPW ) {
         Alert.alert("", "패스워드가 같지 않습니다.")
         return;
       }
@@ -81,117 +102,130 @@ export default class EmailSignUpComponent extends Component {
   }
   render(){
     return(
-      <View style={{flex:1, width:"100%"}}>
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={styles.container}>
-          <TouchableWithoutFeedback style={styles.container}
-            onPress={Keyboard.dismiss}>
-            <View style={styles.touchContainer}>
-              <Text style={styles.titleText}>회원 가입</Text>
-              <View>
-                <View style={styles.inputContainer}>
-                  <Text style={styles.labelText}>아이디</Text>
-                  <TextInput
-                    style={styles.input}
-                    keyboardType='email-address'
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    returnKeyType='next'
-                    onSubmitEditing={() => this.refs.password.focus()}
-                    onChangeText={(email) => this.setState({ email })}
-                  />
-                  <Text style={styles.labelText}>패스워드</Text>
-                  <TextInput
-                    style={styles.input}
-                    secureTextEntry={true}
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    returnKeyType='next'
-                    ref={"password"}
-                    onSubmitEditing={() => this.refs.identifyPW.focus()}
-                    onChangeText={(password) => this.setState({ password })}
-                  />
-                  <Text style={styles.labelText}>패스워드 확인</Text>
-                  <TextInput
-                    style={styles.input}
-                    secureTextEntry={true}
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    ref={"identifyPW"}
-                    onChangeText={(identifyPW) => this.setState({ identifyPW })}
-                  />
-                </View>
-              </View>
+      <View style={styles.container}>
+        <View style={{flex:1}}>
+          <View style={styles.inputFormContainer}>
+            <View style={styles.inputContainer}>
+              <View style={styles.inputIcon}><FontAwesome name="user" size={25} color="rgb(255,255,255)" /></View>
+              <TextInput
+                style={styles.input}
+                keyboardType='email-address'
+                autoCorrect={false}
+                autoCapitalize="none"
+                returnKeyType='next'
+                placeholder="email"
+                placeholderTextColor='rgb(173,181,189)'
+                underlineColorAndroid='rgb(255,255,255)'
+                onSubmitEditing={() => this.refs.password.focus()}
+                onChangeText={(email) => this.setState({ email })}
+              />
             </View>
-          </TouchableWithoutFeedback>
+            <View style={styles.inputContainer}>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(255,255,255)" /></View>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                autoCorrect={false}
+                autoCapitalize="none"
+                returnKeyType='next'
+                ref={"password"}
+                placeholder="password"
+                placeholderTextColor='rgb(173,181,189)'
+                underlineColorAndroid='rgb(255,255,255)'
+                onSubmitEditing={() => this.refs.identifyPW.focus()}
+                onChangeText={(password) => this.setState({ password })}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(255,255,255)" /></View>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                autoCorrect={false}
+                autoCapitalize="none"
+                ref={"identifyPW"}
+                placeholder="password"
+                placeholderTextColor='rgb(173,181,189)'
+                underlineColorAndroid='rgb(255,255,255)'
+                onChangeText={(identifyPW) => this.setState({ identifyPW })}
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
           <Button
             full
             style={styles.button}
             onPress={() => this.signupUser(this.state.email, this.state.password, this.state.identifyPW)}
-          >
+            >
             <Text style={styles.buttonText}>가입</Text>
           </Button>
           <Button
             full
             style={styles.button}
             onPress={() => this.props.navigation.goBack()}
-          >
+            >
             <Text style={styles.buttonText}>취소</Text>
           </Button>
-        </KeyboardAvoidingView>
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
     flex:1,
-    paddingTop: Platform.OS === "ios" ? 34 : 24,
-    justifyContent: "center"
-  },
-  touchContainer:{
     alignItems: "center",
+    backgroundColor: "rgb(255,255,255)",
+    justifyContent: "space-between"
   },
-  titleText: {
-    fontSize: 24,
-    color: "rgb(73,80,87)",
-    fontWeight: "bold",
-    marginVertical: 25
-  },
-  labelText: {
-    fontSize: 18,
-    color: "rgb(134,142,150)",
-    fontWeight: "300",
-    marginBottom: 8,
+  inputFormContainer: {
   },
   inputContainer: {
-    borderBottomWidth: 1,
-    borderColor: "rgb(206,212,218)",
+    flexDirection: "row",
+    alignItems: "center",
+    height: 45,
+    width: 300,
+    backgroundColor: 'rgb(255,255,255)',
+    borderWidth: 1,
+    borderColor: "rgb(77,171,247)",
+    borderRadius: 30,
+    marginBottom: 10,
+  },
+  inputIcon: {
+    height: 45,
+    width: 45,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(77,171,247)",
+    borderRadius: 30
   },
   input: {
     height: 40,
-    width: 300,
-    backgroundColor: 'rgb(222,226,230)',
-    marginBottom: 15,
+    width: 260,
+    fontFamily: "GodoB",
     paddingHorizontal: 10,
     fontSize: 18,
     color: "rgb(52,58,64)",
-    marginBottom: 20
+  },
+  buttonContainer:{
+    width: "100%",
+    flexDirection:"row",
+    backgroundColor:"blue"
   },
   button: {
-    height: 40,
+    height: 50,
+    width: "50%",
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
-    marginTop: 20,
-    backgroundColor: "rgb(201,42,42)"
+    backgroundColor: "rgb(255,255,255)",
   },
   buttonText: {
     textAlign: 'center',
-    color: 'rgb(255,245,245)',
-    fontWeight: 'bold',
-    fontSize: 18
+    fontFamily: "BMYEONSUNG",
+    color: 'rgb(92,124,250)',
+    fontSize: 22
   },
 })

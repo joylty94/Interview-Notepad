@@ -1,30 +1,43 @@
 import React, { Component } from "react";
 import {
   View, SafeAreaView, StyleSheet, ImageBackground, KeyboardAvoidingView,
-  TouchableWithoutFeedback, Keyboard, Platform
+  TouchableWithoutFeedback, Keyboard, Platform, Text
 } from "react-native";
+import { Font } from "expo";
 
-import LogoComponent from "../components/LogoComponent";
 import EmailSignInComponent from "../components/EmailSignInComponent";
+import LoadingContainer from "./LoadingContainer";
 
 export default class SignInScreenContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { fontLoaded: false };
+  }
+  async componentDidMount() {
+    try {
+      await Font.loadAsync({
+        "BMYEONSUNG": require("../assets/fonts/BMYEONSUNG.ttf"),
+        "GodoB": require("../assets/fonts/GodoB.ttf"),
+      });
+      this.setState({ fontLoaded: true });
+    } catch (e) {
+      console.log(e)
+    }
+  }
   render() {
     const { ...rest } = this.props
-    return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={require("../images/note.png")}
-          style={styles.container}
-        >
+    if(this.state.fontLoaded){
+      return (
+        <View style={styles.container}>
           <KeyboardAvoidingView
             behavior="padding"
-            style={styles.container}
+            style={{flex: 1}}
           >
-            <TouchableWithoutFeedback style={styles.container}
+            <TouchableWithoutFeedback style={{flex:1}}
               onPress={Keyboard.dismiss}>
               <View style={styles.logoContainer}>
                 <View style={styles.logoContainer2}>
-                  <LogoComponent />
+                  <Text style={styles.logoText}>아이노트</Text>
                 </View>
                 <View style={styles.infoContainer}>
                   <EmailSignInComponent {...rest} />
@@ -32,8 +45,11 @@ export default class SignInScreenContainer extends Component {
               </View>
             </TouchableWithoutFeedback>
           </KeyboardAvoidingView>
-        </ImageBackground>
-      </SafeAreaView>
+        </View>
+      )
+    }
+    return(
+      <LoadingContainer/>
     )
   }
 }
@@ -42,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
+    backgroundColor: "rgb(255,255,255)",
   },
   logoContainer: {
     flex: 1,
@@ -54,11 +71,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: -200
   },
+  logoText: {
+    fontFamily: "BMYEONSUNG",
+    fontSize: 50,
+    color:"rgb(77,171,247)"
+  },
   infoContainer: {
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    height: 235,
+    height: 210,
   }
 });

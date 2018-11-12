@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   text: {
-    fontWeight: "400",
+    fontFamily: "GodoB",
     fontSize: 18,
     marginLeft: 2,
   },
   buttonText: {
-    fontWeight: "400",
+    fontFamily: "GodoB",
     fontSize: 18,
     marginLeft: 2,
   },
@@ -79,14 +79,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgb(73,80,87)",
     borderRadius: 5,
-    backgroundColor: "rgb(145,167,255)"
+    backgroundColor: "rgb(77,171,247)"
   },
   addContainer: {
     borderBottomWidth: 1,
     borderColor: "rgb(173,181,189)",
   },
   addText: {
-    fontWeight: "400",
+    fontFamily: "GodoB",
     fontSize: 18,
     color: "rgb(52,58,64)",
     marginLeft: 6

@@ -59,17 +59,17 @@ export default class NoteHeaderComponent extends Component{
               backButton={<Entypo name="chevron-left" size={30} />}
               onBack={() => this.handleBack()}
               heightAdjust={-10}
-              backgroundColor="rgb(248,249,250)"
+              backgroundColor="rgb(255,255,255)"
             />
           </View>
         </View>
         <View style={styles.tabContainer}>
           <View style={styles.tabActiveButton}>
-            <Foundation name="page-edit" size={25} color="rgb(145,167,255)" />
+            <Foundation name="page-edit" size={25} color="rgb(77,171,247)" />
           </View>
           <TouchableOpacity style={styles.tabButton}
             onPress={() => this.props.navigation.navigate(SharedNotesScreen)}>
-            <Foundation name="page-search" size={25} color="rgb(145,167,255)" />
+            <Foundation name="page-search" size={25} color="rgb(173,181,189)" />
           </TouchableOpacity>
         </View>
       </View>
@@ -80,7 +80,7 @@ export default class NoteHeaderComponent extends Component{
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(145,167,255)"
+    backgroundColor: "rgb(77,171,247)"
   },
   headerContainer: {
     height: 50,
@@ -102,21 +102,21 @@ const styles = StyleSheet.create({
     marginLeft: 12
   },
   buttonText:{
-    color:"rgb(248,249,250)",
-    fontWeight: "400",
-    fontSize: 16
+    color:"rgb(255,255,255)",
+    fontSize: 16,
+    fontFamily: "GodoB",
   },
   tabContainer: {
     flexDirection:"row",
     height:50,
-    backgroundColor:"rgb(248,249,250)"
+    backgroundColor:"rgb(255,255,255)"
   },
   tabActiveButton: {
     flex:1,
     justifyContent:"center",
     alignItems:"center",
     borderBottomWidth: 3,
-    borderColor:"rgb(145,167,255)"
+    borderColor:"rgb(77,171,247)"
   },
   tabButton: {
     flex:1,

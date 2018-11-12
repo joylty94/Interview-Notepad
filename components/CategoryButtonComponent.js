@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   categoryText: {
+    fontFamily: "GodoB",
     fontSize: 22,
-    fontWeight: "500",
     textAlign: "center",
-    color: "rgb(248,249,250)"
+    color: "rgb(255,255,255)"
   },
 
 })

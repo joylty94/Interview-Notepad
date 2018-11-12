@@ -12,12 +12,12 @@ export default class DetailSharedNotesComponent extends Component {
     const { navigation, sharedItem, like, likesCount, handleScrapModal } = this.props;
     if (sharedItem) {
       return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
               style={styles.headerBackButton}>
-              <Entypo name="chevron-left" size={30} color="rgb(248,249,250)" />
+              <Entypo name="chevron-left" size={30} color="rgb(255,255,255)" />
             </TouchableOpacity>
             <View style={styles.headerButtonContainer}>
               {(like)
@@ -66,14 +66,17 @@ export default class DetailSharedNotesComponent extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  },
   headerContainer: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 85,
-    backgroundColor: "rgb(145,167,255)",
-    paddingHorizontal: 10
+    height: 74,
+    paddingHorizontal: 10,
+    backgroundColor: "rgb(77,171,247)",
   },
   headerButtonContainer: {
     flexDirection: "row",
@@ -101,17 +104,18 @@ const styles = StyleSheet.create({
   },
   headerHeartText: {
     marginLeft: 8,
-    fontWeight: "400",
+    fontFamily: "GodoB",
     fontSize: 15,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
   },
   headerText: {
-    fontWeight: "400",
+    fontFamily: "GodoB",
     fontSize: 15,
-    color: "rgb(248,249,250)",
+    color: "rgb(255,255,255)",
   },
   bodyContainer: {
     flex: 1,
+    backgroundColor: "rgb(255,255,255)"
   },
   bodyView: {
     flex: 1,
@@ -123,18 +127,18 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   questionText: {
+    fontFamily: "GodoB",
     fontSize: 20,
-    fontWeight: "500",
     color: "rgb(73,80,87)"
   },
   answerText: {
+    fontFamily: "GodoB",
     fontSize: 18,
-    fontWeight: "300",
     color: "rgb(73,80,87)"
   },
   timeText: {
+    fontFamily: "GodoB",
     fontSize: 14,
-    fontWeight: "200",
     color: "rgb(134,142,150)"
   }
 })

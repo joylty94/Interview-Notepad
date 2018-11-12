@@ -12,13 +12,14 @@ export default class SharedNotesHeaderComponent extends Component {
           <SearchBar
             ref={(ref) => this.searchBar = ref}
             data={sharedItem}
+            placeholder="질문 or 키워드"
             handleResults={_handleResults}
             hideBack={true}
             showOnLoad={true}
             focusOnLayout={false}
-            backgroundColor="rgb(145,167,255)"
-            textColor="rgb(248,249,250)"
-            iconColor="rgb(248,249,250)"
+            backgroundColor="rgb(77,171,247)"
+            textColor="rgb(255,255,255)"
+            iconColor="rgb(255,255,255)"
             placeholderTextColor="rgb(241,243,245)"
             heightAdjust={-10}
           />
@@ -27,10 +28,10 @@ export default class SharedNotesHeaderComponent extends Component {
           <TouchableOpacity
             style={styles.tabButton}
             onPress={() => this.props.navigation.goBack()}>
-            <Foundation name="page-edit" size={25} color="rgb(145,167,255)" />
+            <Foundation name="page-edit" size={25} color="rgb(173,181,189)" />
           </TouchableOpacity>
           <View style={styles.tabActiveButton}>
-            <Foundation name="page-search" size={25} color="rgb(145,167,255)" />
+            <Foundation name="page-search" size={25} color="rgb(77,171,247)" />
           </View>
         </View>
       </View>
@@ -41,7 +42,7 @@ export default class SharedNotesHeaderComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === 'ios' ? 34 : 24,
-    backgroundColor: "rgb(145,167,255)"
+    backgroundColor: "rgb(77,171,247)"
   },
   header: {
     justifyContent: "center",
@@ -50,14 +51,14 @@ const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: "row",
     height: 50,
-    backgroundColor: "rgb(248,249,250)"
+    backgroundColor: "rgb(255,255,255)"
   },
   tabActiveButton: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     borderBottomWidth: 3,
-    borderColor: "rgb(145,167,255)"
+    borderColor: "rgb(77,171,247)"
   },
   tabButton: {
     flex: 1,
