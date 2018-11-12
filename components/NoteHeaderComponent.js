@@ -23,8 +23,9 @@ export default class NoteHeaderComponent extends Component{
       [
         {
           text: '로그아웃', onPress: () => {
-            firebase.auth().signOut()
-            this.props.naviagtion.navigate(AuthLoading)
+            firebase.auth().signOut().then(e => {
+              this.props.navigation.navigate(AuthLoading)
+            })
           }
         },
         {
