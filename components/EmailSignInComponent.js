@@ -89,7 +89,7 @@ export default class EmailSignInComponent extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-          <View style={styles.inputIcon}><FontAwesome name="user" size={28} color="rgb(255,255,255)" /></View>
+          <View style={styles.inputIcon}><FontAwesome name="user" size={25} color="rgb(255,255,255)" /></View>
           <TextInput
             style={styles.input}
             placeholder="email"
@@ -104,7 +104,7 @@ export default class EmailSignInComponent extends Component {
           />
         </View>
         <View style={styles.inputContainer}>
-          <View style={styles.inputIcon}><FontAwesome name="lock" size={28} color="rgb(255,255,255)" /></View>
+          <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(255,255,255)" /></View>
           <TextInput
             style={styles.input}
             placeholder="password"
@@ -145,11 +145,11 @@ const styles = StyleSheet.create({
   inputContainer:{
     flexDirection:"row",
     alignItems: "center",
-    height: 50,
+    height: 45,
     width: 300,
     backgroundColor: 'rgb(255,255,255)',
     borderWidth:1,
-    borderColor: "rgb(255,135,135)",
+    borderColor: "rgb(77,171,247)",
     borderRadius: 30,
     marginBottom:10,
   },
@@ -162,32 +162,32 @@ const styles = StyleSheet.create({
     color: "rgb(52,58,64)",
   },
   inputIcon: {
-    height:50,
-    width:50,
+    height:45,
+    width:45,
     justifyContent:"center",
     alignItems: "center",
-    backgroundColor:"rgb(255,135,135)",
+    backgroundColor:"rgb(77,171,247)",
     borderRadius:30
   },
   buttonContainer: {
     width: 300,
     borderBottomWidth: 1,
-    borderColor: "rgb(255,201,201)"
+    borderColor: "rgb(116,143,252)"
   },
   button: {
-    height: 50,
+    height: 45,
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
     backgroundColor: "rgb(255,255,255)",
     borderWidth: 1,
-    borderColor: "rgb(255,107,107)",
+    borderColor: "rgb(151,117,250)",
     borderRadius: 30,
     marginBottom: 10,
   },
   buttonText: {
     textAlign: 'center',
-    color: 'rgb(255,135,135)',
+    color: 'rgb(177,151,252)',
     fontFamily: "GodoB",
     fontSize: 18
   },

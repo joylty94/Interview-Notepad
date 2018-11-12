@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
   logoText: {
     fontFamily: "BMYEONSUNG",
     fontSize: 50,
-    color: "rgb(255,135,135)"
+    color: "rgb(77,171,247)"
   },
   infoContainer: {
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    height: 225,
+    height: 210,
   }
 });
 

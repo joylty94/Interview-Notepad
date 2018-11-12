@@ -106,7 +106,7 @@ export default class EmailSignUpComponent extends Component {
         <View style={{flex:1}}>
           <View style={styles.inputFormContainer}>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="user" size={20} color="rgb(255,255,255)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="user" size={25} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 keyboardType='email-address'
@@ -121,7 +121,7 @@ export default class EmailSignUpComponent extends Component {
               />
             </View>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(255,255,255)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -137,7 +137,7 @@ export default class EmailSignUpComponent extends Component {
               />
             </View>
             <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}><FontAwesome name="lock" size={20} color="rgb(255,255,255)" /></View>
+              <View style={styles.inputIcon}><FontAwesome name="lock" size={25} color="rgb(255,255,255)" /></View>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -185,20 +185,20 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    height: 50,
+    height: 45,
     width: 300,
     backgroundColor: 'rgb(255,255,255)',
     borderWidth: 1,
-    borderColor: "rgb(255,135,135)",
+    borderColor: "rgb(77,171,247)",
     borderRadius: 30,
     marginBottom: 10,
   },
   inputIcon: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(255,135,135)",
+    backgroundColor: "rgb(77,171,247)",
     borderRadius: 30
   },
   input: {
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontFamily: "BMYEONSUNG",
-    color: 'rgb(250,82,82)',
+    color: 'rgb(92,124,250)',
     fontSize: 22
   },
 })
