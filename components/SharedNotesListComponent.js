@@ -9,7 +9,7 @@ export default class SharedNotesListComponent extends Component{
     if(results.length === 0){
       return(
         <View style={styles.initContainer}>
-          <Image style={styles.image} source={require("../images/물음표.png")} />
+          <Image style={styles.image} source={require("../images/물음표1.png")} />
         </View>
       )
     }
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   image: {
-    width: 250,
-    height: 340
+    width: 200,
+    height: 200
   }
 })
