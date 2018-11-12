@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 10,
     borderColor: "rgb(173,181,189)",
-    backgroundColor: "rgb(248,249,250)",
+    backgroundColor: "rgb(255,255,255)",
     borderRadius: 5
   },
   questionText: {
