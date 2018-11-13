@@ -28,11 +28,13 @@ export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, 
     count: category.count,
     noteCount: category.noteCount - 1,
   })
-  await Promise.all([deletenote, categoryNoteCount])
+  const deleteSharedNote = firebase.database().ref(`shared/${detailCategory.id}`).remove()
+  const deleteLikes = firebase.database().ref(`likesForNote/${detailCategory.id}`).remove()
+  await Promise.all([deletenote, categoryNoteCount, deleteLikes, deleteSharedNote])
   const index = notesItem.findIndex(item => item.id === detailCategory.id)
   notesItem.splice(index, 1)
   dispatch(detailNoteScreenDelete());
-  dispatch(noteScreenSuccess(currentCategory, notesItem ,categoryItem ))
+  dispatch(fetchNoteScreen())
 }
 
 export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, getstate) => {
