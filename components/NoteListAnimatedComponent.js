@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "GodoB",
     color: "rgb(73,80,87)",
-    marginBottom: 2,
+    marginBottom: 10,
     marginLeft:2
   },
   tagText: {
     fontSize: 16,
-    fontFamily: "BMYEONSUNG",
+    fontFamily: "GodoB",
     color: "rgb(134,142,150)",
     marginLeft: 3
   },
