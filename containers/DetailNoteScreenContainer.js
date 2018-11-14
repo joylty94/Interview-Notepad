@@ -57,8 +57,8 @@ export default connect(
     onMount: (item) => {
       dispatch(fetchDetailNoteScreen(item))
     },
-    onDelete: (detailCategory) => {
-      dispatch(fetchDetailNoteScreenDelete(detailCategory))
+    onDelete: (detailCategory, navigation) => {
+      dispatch(fetchDetailNoteScreenDelete(detailCategory, navigation))
     },
     onShare: (detailCategory) => {
       dispatch(fetchDetailNoteScreenShare(detailCategory))
@@ -66,8 +66,8 @@ export default connect(
     onModal: () => {
       dispatch(fetchDetailNoteScreenModal())
     },
-    onMove: (item, category) => {
-      dispatch(fetchDetailNoteScreenMove(item, category))
+    onMove: (item, category, navigation) => {
+      dispatch(fetchDetailNoteScreenMove(item, category, navigation))
     }
   })
 )(DetailNoteScreenContainer)

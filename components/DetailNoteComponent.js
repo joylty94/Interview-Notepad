@@ -5,9 +5,8 @@ import Moment from 'react-moment';
 import { WritingNoteScreen } from "../screenName";
 
 export default class DetailNoteComponent extends Component{
-  handleDelet = (detailCategory) => {
-    this.props.onDelete(detailCategory)
-    this.props.navigation.goBack()
+  handleDelet = (detailCategory, navigation) => {
+    this.props.onDelete(detailCategory, navigation)
   }
   render() {
     const { navigation, detailCategory, onShare, onModal } = this.props;
@@ -72,7 +71,7 @@ export default class DetailNoteComponent extends Component{
                   [
                     {
                       text: '삭제', onPress: () => {
-                        this.handleDelet(detailCategory)}
+                        this.handleDelet(detailCategory, navigation)}
                     },
                     {
                       text: '취소'
