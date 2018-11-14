@@ -12,16 +12,15 @@ export default class DetailNoteMoveModalComponent extends Component {
   cancelButton = () => {
     this.props.onModal()
   }
-  handleMove = (noteItem, category) => {
+  handleMove = (noteItem, category, navigation) => {
     this.props.onModal()
-    this.props.navigation.goBack()
-    this.props.onMove(noteItem, category)
+    this.props.onMove(noteItem, category, navigation)
   }
   handleMoveCategory = (item) => {
     this.setState({item})
   }
   render() {
-    const { modal, categoryItem } = this.props;
+    const { modal, categoryItem, navigation } = this.props;
     let noteItem = this.props.navigation.state.params;
     return (
       <Modal
@@ -63,7 +62,7 @@ export default class DetailNoteMoveModalComponent extends Component {
           <View style={styles.modalButtonContainer}>
             <TouchableOpacity
               style={styles.modalButton}
-              onPress={() => this.handleMove(noteItem, this.state.item)}
+              onPress={() => this.handleMove(noteItem, this.state.item, navigation)}
               >
               <Text style={styles.madalListText}>이 동</Text>
             </TouchableOpacity>

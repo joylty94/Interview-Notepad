@@ -15,7 +15,7 @@ export const fetchDetailNoteScreen = (item) => async(dispatch, getstate) => {
   dispatch(detailNoteScreenSuccess(detailCategory))
 }
 
-export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, getstate) => {
+export const fetchDetailNoteScreenDelete = (detailCategory, navigation) => async (dispatch, getstate) => {
   const { uid } = firebase.auth().currentUser;
   const stateItem = getstate();
   const currentCategory = stateItem.noteScreen.currentCategory;
@@ -35,6 +35,7 @@ export const fetchDetailNoteScreenDelete = (detailCategory) => async (dispatch, 
   notesItem.splice(index, 1)
   dispatch(detailNoteScreenDelete());
   dispatch(fetchNoteScreen())
+  navigation.goBack()
 }
 
 export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, getstate) => {
@@ -77,7 +78,7 @@ export const fetchDetailNoteScreenModal = () => async (dispatch, getstate) => {
   dispatch(detailNoteScreenModal(categoryItem))
 }
 
-export const fetchDetailNoteScreenMove = (item, category) => async (dispatch) => {
+export const fetchDetailNoteScreenMove = (item, category, navigation) => async (dispatch) => {
   try {
     const { uid } = firebase.auth().currentUser;
     if (item.length !== 0) {
@@ -97,6 +98,7 @@ export const fetchDetailNoteScreenMove = (item, category) => async (dispatch) =>
       await Promise.all([notePush, categoryNoteCount])
       dispatch(detailNoteScreenMove())
       dispatch(fetchNoteScreen())
+      navigation.goBack()
     }
   } catch(e) {
     console.log(e)
