@@ -12,13 +12,12 @@ export default class WritingNoteButtonComponent extends Component{
   handleShareButton = () => {
     this.props.handleShare()
   }
-  handleCreatingButton = (category, question, answer, tag) => {
+  handleCreatingButton = (category, question, answer, tag, navigation) => {
     if (category){
-      this.props.handleUpdating(category, question, answer, tag)
+      this.props.handleUpdating(category, question, answer, tag, navigation)
     } else {
-      this.props.handleCreating(question, answer, tag)
+      this.props.handleCreating(question, answer, tag, navigation)
     }
-    this.props.navigation.goBack()
   }
   render(){
     const { writingShare, writingTag, question, answer, tag, navigation } = this.props;
@@ -54,7 +53,7 @@ export default class WritingNoteButtonComponent extends Component{
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.handleCreatingButton(category, question, answer, tag)}
+            onPress={() => this.handleCreatingButton(category, question, answer, tag, navigation)}
             style={styles.button}>
             <Entypo name="save" size={23} color="rgb(52,58,64)" />
             <Text style={styles.buttonText}>저 장</Text>
