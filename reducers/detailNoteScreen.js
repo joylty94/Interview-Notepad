@@ -24,7 +24,8 @@ export default function (state = initialState, action) {
       }
     case MOVE :
       return {
-        ...state
+        ...state,
+        modal: !state.modal,
       }
     case MODAL :
       return {
