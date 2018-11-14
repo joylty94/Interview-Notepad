@@ -7,19 +7,21 @@ export default class ScrapModalComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      categoryName: "",
-      id:"",
+      item: {},
     }
   }
-  handleScrap = (item, id) => {
-    this.props.onScrap(item, id)
-    this.props.handleScrapModal()
+  handleScrap = (item) => {
+    this.props.onScrap(item)
   }
   cancelButton = () => {
     this.props.handleScrapModal()
   }
+  handleOnPressCategory = (item) => {
+    this.setState({ item })
+  }
   render(){
     const { modal, categoryItem, handleScrapModal } = this.props;
+    console.log(modal)
     return(
       <Modal
         animationIn="zoomInDown"
@@ -32,32 +34,35 @@ export default class ScrapModalComponent extends Component {
         <View style={styles.container}>
           <View style={styles.ListContainer}>
             <ScrollView>
-              { (!categoryItem) ? null :
-                categoryItem.map(({ categoryName, noteCount, id, itemProps = {} }) => (
-                <View {...itemProps}>
-                  <TouchableOpacity
-                    style={styles.modalListButton}
-                    onPress={() => this.setState(({ categoryName, id }))}>
-                    <Text style={[styles.madalListText,
-                      { color: (this.state.categoryName === categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }
-                    ]}>
-                      {(categoryName.length > 23) ? categoryName.substring(0, 20) + "..." : categoryName}
-                    </Text>
-                    <Text style={[styles.madalListText,
-                      { color: (this.state.categoryName === categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }
-                    ]}>
-                      {noteCount}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              ))
-              }
+              <FlatList
+                data={categoryItem}
+                extraData={this.state.item}
+                renderItem={({ item, index }) => {
+                  return (
+                    <TouchableOpacity
+                      style={styles.modalListButton}
+                      onPress={() => this.handleOnPressCategory(item)}>
+                      <Text style={[styles.madalListText,
+                      { color: (this.state.item.categoryName === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }
+                      ]}>
+                        {((item.categoryName).length > 23) ? item.categoryName.substring(0, 20) + "..." : item.categoryName}
+                      </Text>
+                      <Text style={[styles.madalListText,
+                      { color: (this.state.item.categoryName === item.categoryName) ? "rgb(230,119,0)" : "rgb(52,58,64)" }
+                      ]}>
+                        {item.noteCount}
+                      </Text>
+                    </TouchableOpacity>
+                  )
+                }}
+                keyExtractor={(item, index) => item.category + `${index}`}>
+              </FlatList>
             </ScrollView>
           </View>
           <View style={styles.modalButtonContainer}>
             <TouchableOpacity
               style={styles.modalButton}
-              onPress={() => this.handleScrap(this.state.categoryName, this.state.id)}>
+              onPress={() => this.handleScrap(this.state.item)}>
               <Text style={styles.madalListText}>스크랩</Text>
             </TouchableOpacity>
             <TouchableOpacity
