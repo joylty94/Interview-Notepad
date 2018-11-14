@@ -2,6 +2,7 @@ import * as firebase from "firebase"
 import { detailSharedNotesScreenLoading, detailSharedNotesScreenSuccess,
   detailSharedNotesScreenLikeTyping, detailSharedNotesScreenOnScrapModal,
   detailSharedNotesScreenScrap } from "../actions/detailSharedNotesScreen";
+import { fetchNoteScreen } from "./noteScreen";
 
 export const fetchDetailSharedNotes = (item) => async (dispatch) => {
   try{
@@ -52,25 +53,26 @@ export const fetchDetailSharedNotesOnScrapModal = () => async (dispatch, getstat
   dispatch(detailSharedNotesScreenOnScrapModal(categoryItem))
 }
 
-export const fetchDetailSharedNotesScrap = (categoryName ,id) => async (dispatch, getstate) => {
+export const fetchDetailSharedNotesScrap = (item) => async (dispatch, getstate) => {
   try {
     const { uid } = firebase.auth().currentUser
     const stateItem = getstate()
     const sharedItem = stateItem.detailSharedNotesScreen.sharedItem
-    const notePush = firebase.database().ref(`users/${uid}/notes/${categoryName}`).push({
+    const notePush = firebase.database().ref(`users/${uid}/notes/${item.categoryName}`).push({
       question: sharedItem.question,
       answer: sharedItem.answer,
       tag: sharedItem.tag,
       time: firebase.database.ServerValue.TIMESTAMP,
       share: false
     })
-    const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${id}`).update({
+    const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${item.id}`).update({
       categoryName: item.categoryName,
       count: item.count,
       noteCount: item.noteCount + 1,
     })
     await Promise.all([notePush, categoryNoteCount])
     dispatch(detailSharedNotesScreenScrap())
+    dispatch(fetchNoteScreen())
   } catch(e) {
     console.log(e)
   }
