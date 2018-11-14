@@ -22,13 +22,19 @@ export default class NoteListComponent extends Component {
       duration: 200,
     }).start()
   }
+  handleSearching = (search) => {
+    if (search){
+      this.props.onSearching()
+    }
+    this.props.navigation.navigate(DetailNoteScreen, this.props.item)
+  }
   render() {
-    const { item } = this.props;
+    const { item, search } = this.props;
     return (
       <TouchableWithoutFeedback
         onPressIn={() => this.AnimateIn()}
         onPressOut={() => this.AnimateOut()}
-        onPress={() => this.props.navigation.navigate(DetailNoteScreen, this.props.item)}
+        onPress={() => this.handleSearching(search)}
         >
         <Animated.View style={[{
           transform: [
