@@ -75,6 +75,9 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
 export const fetchDetailNoteScreenModal = () => async (dispatch, getstate) => {
   const stateItem = getstate();
   const categoryItem = stateItem.noteScreen.categoryItem;
+  const currentCategory = stateItem.noteScreen.currentCategory;
+  const index = categoryItem.findIndex(item => item.categoryName === currentCategory)
+  categoryItem.splice(index, 1)
   dispatch(detailNoteScreenModal(categoryItem))
 }
 
