@@ -69,7 +69,8 @@ export const fetchUpdateCategory = (text, category) => async(dispatch, getstate)
         categoryItem.splice((category.count - 1), 1, {
           categoryName: text,
           count: category.count,
-          noteCount: category.noteCount
+          noteCount: category.noteCount,
+          id: category.id
         })
         dispatch(categoryListScreenSuccess(text, categoryItem))
         dispatch(categoryListScreenUpdateCategory(categoryItem))
