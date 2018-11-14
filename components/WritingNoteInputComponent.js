@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   answerContainer: {
     flex: 8,
-    paddingVertical: 9,
+    marginTop: 9,
   },
   tageContainer: {
     height: 40,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   tagText: {
-    fontFamily: "BMYEONSUNG",
+    fontFamily: "GodoB",
     paddingLeft: 10,
     fontSize: 15,
   }
