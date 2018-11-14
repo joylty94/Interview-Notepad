@@ -77,13 +77,18 @@ export const fetchDetailNoteScreenModal = () => async (dispatch, getstate) => {
   const categoryItem = stateItem.noteScreen.categoryItem;
   const currentCategory = stateItem.noteScreen.currentCategory;
   const index = categoryItem.findIndex(item => item.categoryName === currentCategory)
-  categoryItem.splice(index, 1)
+  if(index !== -1){
+    categoryItem.splice(index, 1)
+  }
   dispatch(detailNoteScreenModal(categoryItem))
 }
 
-export const fetchDetailNoteScreenMove = (item, category, navigation) => async (dispatch) => {
+export const fetchDetailNoteScreenMove = (item, category, navigation) => async (dispatch, getstate) => {
   try {
     const { uid } = firebase.auth().currentUser;
+    const stateItem = getstate();
+    const categoryItem = stateItem.noteScreen.categoryItem;
+    const currentCategory = stateItem.noteScreen.currentCategory;
     if (item.length !== 0) {
       dispatch(fetchDetailNoteScreenDelete(item))
       const notePush = firebase.database().ref(`users/${uid}/notes/${category.categoryName}/${item.id}`).set({
@@ -93,12 +98,19 @@ export const fetchDetailNoteScreenMove = (item, category, navigation) => async (
         time: item.time,
         share: item.share
       })
-      const categoryNoteCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
+      const currentCategoryItem = categoryItem.find(item => item.categoryName === currentCategory)
+      console.log(currentCategoryItem)
+      const subCount = firebase.database().ref(`users/${uid}/categorys/${currentCategoryItem.id}`).update({
+        categoryName: currentCategoryItem.categoryName,
+        count: currentCategoryItem.count,
+        noteCount: currentCategoryItem.noteCount -1,
+      })
+      const addCount = firebase.database().ref(`users/${uid}/categorys/${category.id}`).update({
         categoryName: category.categoryName,
         count: category.count,
         noteCount: category.noteCount + 1,
       })
-      await Promise.all([notePush, categoryNoteCount])
+      await Promise.all([notePush, subCount, addCount])
       dispatch(detailNoteScreenMove())
       dispatch(fetchNoteScreen())
       navigation.goBack()
