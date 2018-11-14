@@ -86,7 +86,7 @@ export default connect(
     onCurrentCategory: (categoryName) => {
       dispatch(fetchCategoryUpdating(categoryName))
     },
-    onSearshing: () => {
+    onSearching: () => {
       dispatch(fetchNoteScreenSearching())
     },
   })
