@@ -35,6 +35,7 @@ export default function(state= initialState, action) {
     case SCRAP :
       return{
         ...state,
+        modal: !state.modal,
       };
     default :
       return state;

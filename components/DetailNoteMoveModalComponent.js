@@ -13,7 +13,6 @@ export default class DetailNoteMoveModalComponent extends Component {
     this.props.onModal()
   }
   handleMove = (noteItem, category, navigation) => {
-    this.props.onModal()
     this.props.onMove(noteItem, category, navigation)
   }
   handleMoveCategory = (item) => {
