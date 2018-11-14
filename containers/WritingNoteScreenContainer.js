@@ -97,11 +97,11 @@ export default connect (
     handleShare: () => {
       dispatch(fatchHandleShare())
     },
-    handleCreating: (question, answer, tag) => {
-      dispatch(fatchCreating(question, answer, tag))
+    handleCreating: (question, answer, tag, navigation) => {
+      dispatch(fatchCreating(question, answer, tag, navigation))
     },
-    handleUpdating: (category, question, answer, tag) => {
-      dispatch(fatchUpdating(category, question, answer, tag))
+    handleUpdating: (category, question, answer, tag, navigation) => {
+      dispatch(fatchUpdating(category, question, answer, tag, navigation))
     },
     onCurrentCategory: (categoryName) => {
       dispatch(fetchCategoryUpdating(categoryName))
