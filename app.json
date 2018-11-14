@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "interview-notepad",
-    "description": "This project is really great.",
-    "slug": "interview-notepad",
+    "name": "INote",
+    "description": "interview notepad",
+    "slug": "INote",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
@@ -18,10 +18,17 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.exp.INote",
       "supportsTablet": true
+    },
+    "android": {
+      "package":"com.exp.INote",
+      "permissions": [
+        ""
+      ]
     }
   }
 }
