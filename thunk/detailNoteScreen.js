@@ -43,7 +43,7 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
   const stateItem = getstate();
   const currentCategory = stateItem.noteScreen.currentCategory;
   if(detailCategory.share){
-    const rmShare = firebase.database().ref(`/shared/${uid}/${detailCategory.id}`).remove()
+    const rmShare = firebase.database().ref(`/shared/${detailCategory.id}`).remove()
     const categoryUpdate = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${detailCategory.id}`).update({
       question: detailCategory.question,
       answer: detailCategory.answer,
@@ -54,11 +54,12 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
     await Promise.all([rmShare, categoryUpdate])
     dispatch(fetchDetailNoteScreen(detailCategory))
   } else {
-    const addShare = firebase.database().ref(`/shared/${uid}/${detailCategory.id}`).set({
+    const addShare = firebase.database().ref(`/shared/${detailCategory.id}`).set({
       question: detailCategory.question,
       answer: detailCategory.answer,
       tag: detailCategory.tag,
       time: detailCategory.time,
+      uid
     })
     const categoryUpdate = firebase.database().ref(`users/${uid}/notes/${currentCategory}/${detailCategory.id}`).update({
       question: detailCategory.question,
