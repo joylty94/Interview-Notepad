@@ -19,7 +19,7 @@ export const fatchHandleShare = () => (dispatch) => {
   dispatch(writingNoteScreenHandleShare())
 }
 
-export const fatchCreating = (question, answer, tag) => async (dispatch, gestate) => {
+export const fatchCreating = (question, answer, tag, navigation) => async (dispatch, gestate) => {
   try{
     const { uid } = firebase.auth().currentUser;
     const stateItem = gestate();
@@ -66,12 +66,13 @@ export const fatchCreating = (question, answer, tag) => async (dispatch, gestate
     }
     dispatch(writingNoteScreenHandleCreating())
     dispatch(fetchNoteScreen())
+    navigation.goBack()
   } catch(e) {
     console.log(e)
   }
 }
 
-export const fatchUpdating = (category, question, answer, tag) => async(dispatch, gestate) => {
+export const fatchUpdating = (category, question, answer, tag, navigation) => async(dispatch, gestate) => {
   try {
     const { uid } = firebase.auth().currentUser;
     const stateItem = gestate();
@@ -107,6 +108,7 @@ export const fatchUpdating = (category, question, answer, tag) => async(dispatch
     dispatch(writingNoteScreenHandleUpdating())
     dispatch(fetchDetailNoteScreen(category))
     dispatch(fetchNoteScreen())
+    navigation.goBack()
   } catch (e) {
     console.log(e)
   }
