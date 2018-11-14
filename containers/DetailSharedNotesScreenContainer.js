@@ -65,8 +65,8 @@ export default connect(
     onScrapModal: () => {
       dispatch(fetchDetailSharedNotesOnScrapModal())
     },
-    onScrap: (categoryName, id) => {
-      dispatch(fetchDetailSharedNotesScrap(categoryName, id))
+    onScrap: (item) => {
+      dispatch(fetchDetailSharedNotesScrap(item))
     },
   })
 )(DetailSharedNotesScreenContainer)
