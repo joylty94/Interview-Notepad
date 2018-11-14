@@ -63,12 +63,14 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   questionText: {
+    textAlign: "justify",
     fontFamily: "GodoB",
     fontSize: 20,
     color: "rgb(73,80,87)",
     marginBottom: 2
   },
   answerText: {
+    textAlign: "justify",
     fontFamily: "GodoB",
     fontSize: 18,
     color: "rgb(73,80,87)",
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     marginLeft: 2
   },
   tagText: {
+    textAlign: "justify",
     fontFamily: "GodoB",
     fontSize: 16,
     color: "rgb(134,142,150)",
