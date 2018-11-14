@@ -74,8 +74,8 @@ export const fetchDetailNoteScreenShare = (detailCategory) => async (dispatch, g
 
 export const fetchDetailNoteScreenModal = () => async (dispatch, getstate) => {
   const stateItem = getstate();
-  const categoryItem = stateItem.noteScreen.categoryItem;
-  const currentCategory = stateItem.noteScreen.currentCategory;
+  const categoryItem = stateItem.noteScreen.categoryItem.slice()
+  const currentCategory = stateItem.noteScreen.currentCategory
   const index = categoryItem.findIndex(item => item.categoryName === currentCategory)
   if(index !== -1){
     categoryItem.splice(index, 1)
@@ -99,7 +99,6 @@ export const fetchDetailNoteScreenMove = (item, category, navigation) => async (
         share: item.share
       })
       const currentCategoryItem = categoryItem.find(item => item.categoryName === currentCategory)
-      console.log(currentCategoryItem)
       const subCount = firebase.database().ref(`users/${uid}/categorys/${currentCategoryItem.id}`).update({
         categoryName: currentCategoryItem.categoryName,
         count: currentCategoryItem.count,
