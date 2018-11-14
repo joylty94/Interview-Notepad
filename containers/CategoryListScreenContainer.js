@@ -61,7 +61,6 @@ class CategoryListScreenContainer extends Component{
 
   render() {
     const { loading, ...rest } = this.props
-    console.log(this.state.fontLoaded)
     if(loading || !this.state.fontLoaded){
       return (<LoadingContainer/>)
     }
