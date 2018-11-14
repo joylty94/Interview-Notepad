@@ -9,11 +9,11 @@ import CategoryButtonComponent from "./CategoryButtonComponent";
 
 export default class NoteHeaderComponent extends Component{
   handleSearch = () => {
-    this.props.onSearshing()
+    this.props.onSearching()
     this.searchBar.show()
   }
   handleBack = () => {
-    this.props.onSearshing()
+    this.props.onSearching()
     this.searchBar.hide()
   }
   handleSignOut = () => {
@@ -36,7 +36,7 @@ export default class NoteHeaderComponent extends Component{
     )
   }
   render(){
-    const { _handleResults, searchItem, ...rest } = this.props;
+    const { _handleResults, searchItem, search, ...rest } = this.props;
     return(
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -59,6 +59,7 @@ export default class NoteHeaderComponent extends Component{
               handleResults={_handleResults}
               backButton={<Entypo name="chevron-left" size={30} />}
               onBack={() => this.handleBack()}
+              onBlur={() => this.searchBar.hide()}
               heightAdjust={-10}
               backgroundColor="rgb(255,255,255)"
             />
